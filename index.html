@@ -36,13 +36,53 @@
   .app {
     display: grid;
     height: 100dvh;
+  }
+  /* 首頁模式：品牌列＋分頁列＋內容 */
+  .app.home {
     grid-template-columns: var(--rail-w) 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: "brand stage" "tabs stage";
   }
-  .brandbar { grid-area: brand; }
-  .tabs     { grid-area: tabs; }
-  .stage    { grid-area: stage; }
+  /* 詳情模式：全螢幕內容＋頂部返回列 */
+  .app.detail {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "dbar" "stage";
+  }
+  .brandbar  { grid-area: brand; }
+  .tabs      { grid-area: tabs; }
+  .stage     { grid-area: stage; }
+  .detailbar { grid-area: dbar; }
+  .app.home .detailbar { display: none; }
+  .app.detail .brandbar,
+  .app.detail .tabs { display: none; }
+
+  /* ============ DETAIL BAR (返回列) ============ */
+  .detailbar {
+    display: flex; align-items: center; gap: 13px;
+    padding: 13px 20px; background: var(--card);
+    border-bottom: 1px solid var(--line);
+  }
+  .detailbar .back {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--line); background: var(--paper);
+    cursor: pointer; flex: 0 0 auto; padding: 0;
+    -webkit-tap-highlight-color: transparent; transition: background .15s, transform .1s;
+  }
+  .detailbar .back:hover { background: var(--paper-warm); }
+  .detailbar .back:active { transform: scale(0.94); }
+  .detailbar .back svg { width: 21px; height: 21px; stroke: var(--ink); }
+  .detailbar .dtitle { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+  .detailbar .dtitle .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent, var(--gold)); }
+  .detailbar .dnav { margin-left: auto; display: flex; gap: 6px; }
+  .detailbar .dnav button {
+    font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-soft);
+    background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+    padding: 7px 11px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .detailbar .dnav button:hover { background: var(--paper-warm); color: var(--ink); }
+  .detailbar .dnav button:disabled { opacity: 0.35; cursor: default; }
 
   /* ============ BRAND (left top / mobile header) ============ */
   .brandbar {
@@ -124,7 +164,28 @@
   .stop {
     background: var(--card); border: 1px solid var(--line);
     border-top: 4px solid var(--accent); border-radius: 12px; padding: 16px 18px;
+    cursor: pointer; transition: background .15s, transform .1s, box-shadow .15s;
+    text-align: left; font-family: inherit; width: 100%;
   }
+  .stop:hover { background: var(--paper-warm); box-shadow: 0 5px 18px rgba(0,0,0,0.07); }
+  .stop:active { transform: scale(0.99); }
+  .stop .go-hint { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 8px; opacity: 0; transition: opacity .15s; }
+  .stop:hover .go-hint { opacity: 1; }
+
+  .enter-label { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; margin: 26px 0 12px; }
+  .entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 11px; }
+  .entry {
+    display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; cursor: pointer;
+    background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0; padding: 15px 17px; transition: background .15s, transform .1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .entry:hover { background: var(--paper-warm); }
+  .entry:active { transform: scale(0.98); }
+  .entry .ei { font-size: 21px; line-height: 1; }
+  .entry .et { font-size: 15.5px; font-weight: 800; color: var(--ink); }
+  .entry .ed { font-size: 11.5px; color: var(--ink-faint); font-weight: 600; margin-top: 1px; }
+  .entry .ar { margin-left: auto; color: var(--ink-faint); font-weight: 700; font-size: 17px; }
   .stop .place { font-weight: 800; font-size: 17px; }
   .stop .nights { font-size: 12px; color: var(--ink-faint); font-weight: 700; margin-top: 2px; }
   .stop .info { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.55; }
@@ -159,11 +220,13 @@
   .strip {
     display: flex; gap: 16px; flex: 1; min-height: 0;
     overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    scroll-padding-left: 2px;
     padding: 2px 0 6px; scrollbar-width: thin;
   }
+  .strip::after { content: ""; flex: 0 0 8px; }
   .day {
-    flex: 0 0 min(430px, 88%); scroll-snap-align: center;
+    flex: 0 0 min(430px, 88%); scroll-snap-align: start;
     background: var(--card); border: 1px solid var(--line);
     border-top: 5px solid var(--accent);
     border-radius: 14px; padding: 20px 22px;
@@ -238,11 +301,19 @@
 
   /* ============ MOBILE ============ */
   @media (max-width: 899px) {
-    .app {
+    .app.home {
       grid-template-columns: 1fr;
       grid-template-rows: auto auto 1fr;
       grid-template-areas: "brand" "tabs" "stage";
     }
+    .app.detail {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      grid-template-areas: "dbar" "stage";
+    }
+    .detailbar { padding: 11px 14px; }
+    .detailbar .dtitle { font-size: 17px; }
+    .detailbar .dnav button { padding: 6px 9px; font-size: 12px; }
     .brandbar { padding: 16px 18px 14px; }
     .brand-title { font-size: 24px; }
     .brand-flt { flex-direction: row; margin-top: 12px; }
@@ -259,7 +330,19 @@
     .panel { padding: 20px 18px 40px; }
     .p-title { font-size: 22px; }
     .flight-full { grid-template-columns: 1fr; }
-    .day { flex-basis: 90%; }
+    /* 手機版逐日行程：卡片全寬、自然高度，左右滑動換天、整頁可上下捲讀完整天 */
+    .panel--days { display: block; }
+    .strip {
+      flex: none; height: auto; min-height: 0;
+      overflow-x: auto; overflow-y: visible;
+      gap: 14px; padding-bottom: 4px;
+    }
+    .day {
+      flex-basis: 100%; height: auto; overflow: visible;
+      scroll-snap-align: start; padding: 20px 20px 22px;
+    }
+    .day-h { font-size: 20px; }
+    .row-what { font-size: 14.5px; }
     .swipe-hint {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       font-size: 11.5px; color: var(--ink-faint); font-weight: 600;
@@ -278,7 +361,19 @@
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app home" id="app">
+
+  <!-- DETAIL BAR (詳情模式頂部返回列) -->
+  <header class="detailbar" id="detailbar">
+    <button class="back" id="back" aria-label="返回首頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="dtitle" id="dtitle"><span class="dot"></span><span id="dtitle-text">詳情</span></div>
+    <div class="dnav">
+      <button id="dprev" aria-label="上一個區塊">‹</button>
+      <button id="dnext" aria-label="下一個區塊">›</button>
+    </div>
+  </header>
 
   <!-- BRAND -->
   <header class="brandbar">
@@ -328,31 +423,53 @@
           <span class="fact">避開白銀週連假</span>
         </div>
 
+        <p class="p-sub" style="margin-top:14px;font-weight:600;color:var(--ink-faint);font-size:13px;">👇 點任一項展開全螢幕詳情，左上角箭頭可返回</p>
+
         <div class="rail-flow">
-          <div class="stop" style="--accent:var(--yunokawa)">
+          <button class="stop" style="--accent:var(--yunokawa)" data-day="0">
             <div class="place">湯之川溫泉</div>
             <div class="nights">2 晚 · Day 1–2</div>
             <div class="info">函館觀光據點。朝市・元町・函館山夜景。落地就泡湯。</div>
             <div class="hotel">✅ 湯元 啄木亭（9/4–9/6 附早餐）</div>
-          </div>
-          <div class="stop" style="--accent:var(--toya)">
+            <div class="go-hint">看 Day 1–2 行程 →</div>
+          </button>
+          <button class="stop" style="--accent:var(--toya)" data-day="2">
             <div class="place">洞爺湖</div>
             <div class="nights">2 晚連泊 · Day 3–4</div>
             <div class="info">花火 ×2、有珠山・昭和新山火山日。</div>
             <div class="hotel">✅ 洞爺 湖畔亭（9/6–9/8 湖側素泊）</div>
-          </div>
-          <div class="stop" style="--accent:var(--nobo)">
+            <div class="go-hint">看 Day 3–4 行程 →</div>
+          </button>
+          <button class="stop" style="--accent:var(--nobo)" data-day="4">
             <div class="place">登別溫泉</div>
             <div class="nights">1 晚 · Day 5</div>
             <div class="info">地獄谷・大湯沼。日本頂級硫磺泉。</div>
             <div class="hotel">✅ adex inn（9/8–9/9 附早餐）</div>
-          </div>
-          <div class="stop" style="--accent:var(--sapporo)">
+            <div class="go-hint">看 Day 5 行程 →</div>
+          </button>
+          <button class="stop" style="--accent:var(--sapporo)" data-day="5">
             <div class="place">札幌</div>
             <div class="nights">1 晚 · Day 6</div>
             <div class="info">美食高潮：湯咖哩・燒肉・味噌拉麵。</div>
             <div class="hotel">✅ Dormy Inn PREMIUM（9/9–9/10）</div>
-          </div>
+            <div class="go-hint">看 Day 6 行程 →</div>
+          </button>
+        </div>
+
+        <div class="enter-label">展開查看</div>
+        <div class="entry-grid">
+          <button class="entry" style="--accent:var(--yunokawa)" data-goto="1">
+            <span class="ei">🗓️</span><span><span class="et">逐日行程</span><span class="ed">Day 1–7 每日安排</span></span><span class="ar">→</span>
+          </button>
+          <button class="entry" style="--accent:var(--toya)" data-goto="2">
+            <span class="ei">♨️</span><span><span class="et">住宿</span><span class="ed">四站已訂旅館</span></span><span class="ar">→</span>
+          </button>
+          <button class="entry" style="--accent:var(--nobo)" data-goto="3">
+            <span class="ei">🍜</span><span><span class="et">美食</span><span class="ed">燒肉・拉麵・居酒屋</span></span><span class="ar">→</span>
+          </button>
+          <button class="entry" style="--accent:var(--sapporo)" data-goto="4">
+            <span class="ei">🚆</span><span><span class="et">交通</span><span class="ed">JR 車資與接駁</span></span><span class="ar">→</span>
+          </button>
         </div>
 
         <div class="flight-full">
@@ -486,7 +603,7 @@
           <!-- DAY 7 -->
           <article class="day" style="--accent:#888780">
             <div class="day-top"><span class="day-no">DAY 7</span><span class="day-date">9/10（四）· 回程</span></div>
-            <div class="day-h">最後一碗 · 返桃園</div>
+            <div class="day-h">最後一餐 · 返桃園</div>
             <div class="day-move">✈ IT235 新千歲 12:05 起飛 ｜ JR 快速約 37 分</div>
             <div class="rows">
               <div class="row"><div class="row-when">6:30–8:00</div><div class="row-what"><span class="tag t-eat">早餐</span>Dormy Inn 自助海鮮丼＋湯咖哩，這頓抵二条市場</div></div>
@@ -626,25 +743,61 @@
 
 <script>
 (function(){
+  var app   = document.getElementById('app');
   var track = document.getElementById('track');
   var tabs  = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   var panels= Array.prototype.slice.call(document.querySelectorAll('.panel'));
   var stage = document.getElementById('stage');
+  var detailbar = document.getElementById('detailbar');
+  var dtitleText = document.getElementById('dtitle-text');
+  var dtitle = document.getElementById('dtitle');
+  var backBtn = document.getElementById('back');
+  var dprev = document.getElementById('dprev');
+  var dnext = document.getElementById('dnext');
   var idx = 0;
+
+  var SECTIONS = [
+    { name:'總覽',     accent:'#b8863a' },
+    { name:'逐日行程', accent:'#3f7d8c' },
+    { name:'住宿',     accent:'#2f8f6a' },
+    { name:'美食',     accent:'#c65a37' },
+    { name:'交通',     accent:'#6b5aa8' }
+  ];
 
   function go(i){
     idx = Math.max(0, Math.min(panels.length-1, i));
     track.style.transform = 'translateX(' + (-idx*100) + '%)';
     tabs.forEach(function(t,k){ t.classList.toggle('on', k===idx); });
-    var t = tabs[idx];
-    if(t && t.scrollIntoView) t.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+    // 首頁 vs 詳情模式
+    if(idx===0){
+      app.classList.add('home'); app.classList.remove('detail');
+    } else {
+      app.classList.add('detail'); app.classList.remove('home');
+      dtitleText.textContent = SECTIONS[idx].name;
+      detailbar.style.setProperty('--accent', SECTIONS[idx].accent);
+      dprev.disabled = (idx<=1);
+      dnext.disabled = (idx>=panels.length-1);
+    }
     if(panels[idx]) panels[idx].scrollTop = 0;
+    window.scrollTo(0,0);
   }
   tabs.forEach(function(t,i){ t.addEventListener('click', function(){ go(i); }); });
+
+  // 返回首頁
+  backBtn.addEventListener('click', function(){ go(0); });
+  // 詳情模式的上一個 / 下一個區塊
+  dprev.addEventListener('click', function(){ if(idx>1) go(idx-1); });
+  dnext.addEventListener('click', function(){ if(idx<panels.length-1) go(idx+1); });
+
+  // 首頁「展開查看」選單
+  Array.prototype.slice.call(document.querySelectorAll('.entry')).forEach(function(b){
+    b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-goto'),10)); });
+  });
 
   document.addEventListener('keydown', function(e){
     if(e.key==='ArrowRight') go(idx+1);
     else if(e.key==='ArrowLeft') go(idx-1);
+    else if(e.key==='Escape' && idx!==0) go(0);
   });
 
   // swipe between panels (ignore when the gesture starts inside a horizontal scroller)
@@ -667,25 +820,56 @@
   var strip = document.getElementById('strip');
   var chips = Array.prototype.slice.call(document.querySelectorAll('.daychip'));
   var days  = Array.prototype.slice.call(document.querySelectorAll('.day'));
-  chips.forEach(function(c,i){
-    c.addEventListener('click', function(){
-      if(days[i]) days[i].scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+
+  var lockChip = false; // 點膠囊時鎖定，避免滾動監聽的邊界規則搶走高亮
+
+  function setChip(i){ chips.forEach(function(cc,k){ cc.classList.toggle('on', k===i); }); }
+
+  function scrollToDay(i){
+    if(!strip || !days[i]) return;
+    lockChip = true;                    // 鎖定：接下來的程式化捲動不改高亮
+    setChip(i);
+    // 用可視座標的相對差計算：不受 offsetParent 影響
+    var left = strip.scrollLeft + (days[i].getBoundingClientRect().left - strip.getBoundingClientRect().left) - 2;
+    if(strip.scrollTo) strip.scrollTo({left: left, behavior: 'smooth'});
+    else strip.scrollLeft = left;
+  }
+
+  // 首頁溫泉站 → 進入逐日行程並捲到對應天
+  Array.prototype.slice.call(document.querySelectorAll('.stop')).forEach(function(s){
+    s.addEventListener('click', function(){
+      var d = parseInt(s.getAttribute('data-day'),10) || 0;
+      go(1);
+      setTimeout(function(){ scrollToDay(d); }, 60);
     });
   });
+
+  chips.forEach(function(c,i){
+    c.addEventListener('click', function(){ scrollToDay(i); });
+  });
   if(strip){
+    // 使用者手動操作膠捲時解鎖，交還高亮控制權
+    ['wheel','touchstart','pointerdown','mousedown'].forEach(function(ev){
+      strip.addEventListener(ev, function(){ lockChip = false; }, {passive:true});
+    });
     var raf=null;
     strip.addEventListener('scroll', function(){
+      if(lockChip) return;            // 鎖定期間不搶高亮
       if(raf) return;
       raf = requestAnimationFrame(function(){
         raf=null;
-        var sr=strip.getBoundingClientRect();
-        var sc=(sr.left+sr.right)/2, best=0, bd=1e9;
-        days.forEach(function(d,i){
-          var r=d.getBoundingClientRect();
-          var dist=Math.abs((r.left+r.right)/2 - sc);
-          if(dist<bd){ bd=dist; best=i; }
-        });
-        chips.forEach(function(c,k){ c.classList.toggle('on', k===best); });
+        var sl=strip.scrollLeft, best=0, bd=1e9;
+        // 捲到最右：強制高亮最後一天；最左：第一天（僅手動滑動時生效）
+        if(sl + strip.clientWidth >= strip.scrollWidth - 4){ best = days.length-1; }
+        else if(sl <= 2){ best = 0; }
+        else {
+          var sLeft = strip.getBoundingClientRect().left;
+          days.forEach(function(d,i){
+            var dist=Math.abs(d.getBoundingClientRect().left - sLeft);
+            if(dist<bd){ bd=dist; best=i; }
+          });
+        }
+        setChip(best);
       });
     }, {passive:true});
   }
