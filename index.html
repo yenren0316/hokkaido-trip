@@ -3,47 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
 <title>北海道 7 天 6 夜 ｜ 2026.9.4–9.10</title>
 <style>
   :root {
-    --ink: #1a1d23;
-    --ink-soft: #4a4f5a;
-    --ink-faint: #878d99;
-    --paper: #f2ede4;
-    --paper-warm: #e8e0d2;
-    --card: #fbf8f2;
-    --line: #d8cfbe;
-    --steam: #e4ede9;
-    --yunokawa: #3f7d8c;
-    --toya: #2f8f6a;
-    --nobo: #c65a37;
-    --sapporo: #6b5aa8;
-    --gold: #b8863a;
-    --rail-w: 264px;
+    color-scheme: light only;
+    /* —— 色彩：冷霧紙感，脫離奶油色預設 —— */
+    --bg: #EDEEEB;
+    --surface: #FBFCFA;
+    --surface-2: #F3F5F1;
+    --ink: #191C21;
+    --ink-2: #565C64;
+    --ink-3: #899099;
+    --hair: rgba(25,28,33,0.09);
+    --hair-soft: rgba(25,28,33,0.055);
+    /* 車站色（北斗線一路南下：海濱湯 → 湖火山 → 硫磺 → 城市） */
+    --c-yuno: #2E7C8A;
+    --c-toya: #2C8B5D;
+    --c-nobo: #C4542C;
+    --c-sapp: #5A53AD;
+    --c-gold: #A8792B;
+    /* 陰影：半透明層疊，取代實線邊框 */
+    --sh-1: 0 1px 2px rgba(18,22,28,0.05), 0 3px 10px rgba(18,22,28,0.045);
+    --sh-2: 0 2px 6px rgba(18,22,28,0.06), 0 12px 30px rgba(18,22,28,0.09);
+    --sh-pop: 0 4px 12px rgba(18,22,28,0.08), 0 20px 48px rgba(18,22,28,0.12);
+    /* Easing：進場 out、退場 in、抽屜曲線 */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+    --r: 16px; --r-sm: 10px; --r-lg: 22px;
+    --rail-w: 268px;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", monospace;
+    --sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+  html, body { height: 100%; background: var(--bg); }
   body {
-    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    background: var(--paper);
+    font-family: var(--sans);
+    background: var(--bg);
     color: var(--ink);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     overflow: hidden;
   }
+  button { font-family: inherit; }
 
   /* ============ APP SHELL ============ */
-  .app {
-    display: grid;
-    height: 100dvh;
-  }
-  /* 首頁模式：品牌列＋分頁列＋內容 */
+  .app { display: grid; height: 100dvh; }
   .app.home {
     grid-template-columns: var(--rail-w) 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: "brand stage" "tabs stage";
   }
-  /* 詳情模式：全螢幕內容＋頂部返回列 */
   .app.detail {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
@@ -54,365 +67,391 @@
   .stage     { grid-area: stage; }
   .detailbar { grid-area: dbar; }
   .app.home .detailbar { display: none; }
-  .app.detail .brandbar,
-  .app.detail .tabs { display: none; }
+  .app.detail .brandbar, .app.detail .tabs { display: none; }
 
-  /* ============ DETAIL BAR (返回列) ============ */
-  .detailbar {
-    display: flex; align-items: center; gap: 13px;
-    padding: 13px 20px; background: var(--card);
-    border-bottom: 1px solid var(--line);
-  }
-  .detailbar .back {
-    display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: 50%;
-    border: 1px solid var(--line); background: var(--paper);
-    cursor: pointer; flex: 0 0 auto; padding: 0;
-    -webkit-tap-highlight-color: transparent; transition: background .15s, transform .1s;
-  }
-  .detailbar .back:hover { background: var(--paper-warm); }
-  .detailbar .back:active { transform: scale(0.94); }
-  .detailbar .back svg { width: 21px; height: 21px; stroke: var(--ink); }
-  .detailbar .dtitle { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-  .detailbar .dtitle .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent, var(--gold)); }
-  .detailbar .dnav { margin-left: auto; display: flex; gap: 6px; }
-  .detailbar .dnav button {
-    font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-soft);
-    background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
-    padding: 7px 11px; cursor: pointer; -webkit-tap-highlight-color: transparent;
-  }
-  .detailbar .dnav button:hover { background: var(--paper-warm); color: var(--ink); }
-  .detailbar .dnav button:disabled { opacity: 0.35; cursor: default; }
-
-  /* ============ BRAND (left top / mobile header) ============ */
+  /* ============ BRAND ============ */
   .brandbar {
-    background: linear-gradient(150deg, #2f8f6a 0%, #3f7d8c 40%, #6b5aa8 74%, #c65a37 100%);
-    color: #fff;
-    padding: 22px 22px 20px;
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(155deg, #2C8B5D 0%, #2E7C8A 38%, #5A53AD 72%, #C4542C 100%);
+    color: #fff; padding: 26px 24px 22px; position: relative; overflow: hidden;
   }
   .brandbar::after {
     content:""; position:absolute; inset:0;
     background:
-      radial-gradient(circle at 15% 25%, rgba(255,255,255,0.16) 0, transparent 42%),
-      radial-gradient(circle at 88% 72%, rgba(255,255,255,0.12) 0, transparent 40%);
+      radial-gradient(140% 90% at 12% 20%, rgba(255,255,255,0.20) 0, transparent 45%),
+      radial-gradient(120% 80% at 92% 84%, rgba(255,255,255,0.12) 0, transparent 42%);
     pointer-events:none;
   }
   .brandbar > * { position: relative; z-index: 1; }
-  .brand-kicker { font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; font-weight: 700; opacity: 0.9; }
-  .brand-title { font-size: 30px; font-weight: 800; letter-spacing: 0.03em; margin: 8px 0 2px; line-height: 1.1; }
-  .brand-sub { font-size: 12px; font-weight: 600; opacity: 0.94; letter-spacing: 0.04em; }
-  .brand-flt {
-    margin-top: 16px; display: flex; flex-direction: column; gap: 8px;
-  }
+  .brand-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.92; font-weight: 500; }
+  .brand-title { font-size: 33px; font-weight: 800; letter-spacing: 0.04em; margin: 10px 0 3px; line-height: 1.08; }
+  .brand-sub { font-size: 12px; font-weight: 600; opacity: 0.95; letter-spacing: 0.03em; }
+  .brand-flt { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
   .brand-flt .f {
-    background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28);
-    border-radius: 10px; padding: 8px 11px; backdrop-filter: blur(3px);
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 12px; padding: 10px 13px; backdrop-filter: blur(4px);
   }
-  .brand-flt .fc { font-size: 10px; letter-spacing: 0.14em; font-weight: 700; color: #ffe9c9; }
-  .brand-flt .fr { font-size: 14px; font-weight: 700; margin-top: 1px; }
-  .brand-flt .ft { font-size: 11px; opacity: 0.9; }
+  .brand-flt .fc { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; font-weight: 600; color: #ffe6c4; }
+  .brand-flt .fr { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  .brand-flt .ft { font-family: var(--mono); font-size: 11px; opacity: 0.92; letter-spacing: 0.02em; }
 
   /* ============ TABS ============ */
   .tabs {
-    background: var(--paper-warm);
-    display: flex; flex-direction: column; gap: 3px;
-    padding: 14px 12px; overflow-y: auto;
-    border-right: 1px solid var(--line);
+    background: transparent; display: flex; flex-direction: column; gap: 4px;
+    padding: 16px 14px; overflow-y: auto;
   }
   .tab {
-    display: flex; align-items: center; gap: 11px;
-    font-family: inherit; font-size: 14.5px; font-weight: 700;
-    color: var(--ink-soft); background: transparent; border: none;
-    text-align: left; cursor: pointer; padding: 11px 13px;
-    border-radius: 10px; white-space: nowrap; transition: background .15s, color .15s;
+    display: flex; align-items: center; gap: 12px; font-size: 14.5px; font-weight: 700;
+    color: var(--ink-2); background: transparent; border: none; text-align: left; cursor: pointer;
+    padding: 12px 14px; border-radius: 12px; white-space: nowrap;
+    transition: background .2s var(--ease-out), color .2s var(--ease-out), transform .12s var(--ease-out);
     -webkit-tap-highlight-color: transparent;
   }
-  .tab .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent, var(--ink-faint)); flex-shrink: 0; }
-  .tab .num { font-size: 10px; color: var(--ink-faint); font-weight: 800; margin-left: auto; letter-spacing: .05em; }
-  .tab:hover { background: rgba(0,0,0,0.04); color: var(--ink); }
-  .tab.on { background: var(--ink); color: #fff; }
-  .tab.on .num { color: rgba(255,255,255,0.6); }
-
-  /* ============ STAGE / TRACK ============ */
-  .stage { position: relative; overflow: hidden; background: var(--paper); }
-  .track {
-    display: flex; height: 100%; width: 100%;
-    transition: transform .38s cubic-bezier(.4,.0,.2,1);
-    will-change: transform;
+  .tab .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent, var(--ink-3)); flex-shrink: 0; transition: transform .2s var(--ease-out); }
+  .tab .tn { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-left: auto; letter-spacing: .04em; transition: color .2s; }
+  .tab:active { transform: scale(0.975); }
+  .tab.on { background: var(--ink); color: #fff; box-shadow: var(--sh-1); }
+  .tab.on .dot { transform: scale(1.15); }
+  .tab.on .tn { color: rgba(255,255,255,0.55); }
+  @media (hover: hover) and (pointer: fine) {
+    .tab:hover { background: rgba(25,28,33,0.05); color: var(--ink); }
+    .tab.on:hover { background: var(--ink); }
   }
+
+  /* ============ DETAIL BAR ============ */
+  .detailbar {
+    display: flex; align-items: center; gap: 14px; padding: 14px 22px;
+    background: rgba(251,252,250,0.86); backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--hair); animation: barIn .4s var(--ease-out);
+  }
+  @keyframes barIn { from { opacity:0; transform: translateY(-6px);} to {opacity:1; transform:none;} }
+  .detailbar .back {
+    display: flex; align-items: center; justify-content: center; width: 42px; height: 42px;
+    border-radius: 50%; border: none; background: var(--surface-2); box-shadow: var(--sh-1);
+    cursor: pointer; flex: 0 0 auto; padding: 0; -webkit-tap-highlight-color: transparent;
+    transition: transform .18s var(--ease-out), box-shadow .2s var(--ease-out), background .2s;
+  }
+  .detailbar .back svg { width: 21px; height: 21px; stroke: var(--ink); }
+  .detailbar .back:active { transform: scale(0.9); }
+  @media (hover: hover) and (pointer: fine) {
+    .detailbar .back:hover { background: #fff; box-shadow: var(--sh-2); transform: translateX(-1px); }
+  }
+  .detailbar .dtitle { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 11px; letter-spacing: .01em; }
+  .detailbar .dtitle .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--accent, var(--c-gold)); }
+  .detailbar .dnav { margin-left: auto; display: flex; gap: 7px; }
+  .detailbar .dnav button {
+    font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--ink-2);
+    background: var(--surface-2); border: none; border-radius: 10px; padding: 8px 13px;
+    cursor: pointer; box-shadow: var(--sh-1); -webkit-tap-highlight-color: transparent;
+    transition: transform .16s var(--ease-out), box-shadow .2s, color .2s, opacity .2s;
+  }
+  .detailbar .dnav button:active { transform: scale(0.92); }
+  .detailbar .dnav button:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .detailbar .dnav button:not(:disabled):hover { background:#fff; color: var(--ink); box-shadow: var(--sh-2); }
+  }
+
+  /* ============ STAGE / STACKED PANELS ============ */
+  .stage { position: relative; overflow: hidden; }
+  .panels { position: relative; height: 100%; }
   .panel {
-    flex: 0 0 100%; width: 100%; height: 100%;
-    overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: 30px 34px 60px;
+    position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 34px 38px 64px; opacity: 0; visibility: hidden;
+    transform: translateY(12px) scale(0.994); pointer-events: none;
+    transition: opacity .26s var(--ease-in), transform .26s var(--ease-in), visibility 0s linear .26s;
   }
-  .panel-head { margin-bottom: 22px; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; }
-  .p-title { font-size: 25px; font-weight: 800; margin-top: 5px; letter-spacing: .01em; }
-  .p-sub { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
-  .star { color: var(--gold); font-weight: 700; }
+  .panel.active {
+    opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+    transition: opacity .42s var(--ease-out), transform .42s var(--ease-out);
+  }
+  .panel-head { margin-bottom: 24px; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .p-title { font-size: 27px; font-weight: 800; margin-top: 7px; letter-spacing: .01em; }
+  .p-sub { font-size: 14px; color: var(--ink-2); margin-top: 8px; max-width: 62ch; }
+  .p-hint { margin-top: 14px; font-weight: 600; color: var(--ink-3); font-size: 13px; }
+  .star { color: var(--c-gold); font-weight: 700; }
 
-  /* swipe hint (mobile only) */
-  .swipe-hint { display: none; }
+  /* stagger 進場 */
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .panel.active .stagger > * { animation: rise .5s var(--ease-out) both; }
+  .panel.active .stagger > *:nth-child(1){animation-delay:.02s}
+  .panel.active .stagger > *:nth-child(2){animation-delay:.06s}
+  .panel.active .stagger > *:nth-child(3){animation-delay:.10s}
+  .panel.active .stagger > *:nth-child(4){animation-delay:.14s}
+  .panel.active .stagger > *:nth-child(5){animation-delay:.18s}
+  .panel.active .stagger > *:nth-child(6){animation-delay:.22s}
+  .panel.active .stagger > *:nth-child(7){animation-delay:.26s}
+  .panel.active .stagger > *:nth-child(8){animation-delay:.30s}
+  .panel.active .stagger > *:nth-child(9){animation-delay:.34s}
+  .panel.active .stagger > *:nth-child(n+10){animation-delay:.38s}
 
   /* ============ OVERVIEW ============ */
-  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-  .fact { font-size: 12.5px; font-weight: 600; background: var(--card); border: 1px solid var(--line); color: var(--ink-soft); padding: 6px 13px; border-radius: 100px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .fact { font-size: 12.5px; font-weight: 600; background: var(--surface); color: var(--ink-2); padding: 7px 14px; border-radius: 100px; box-shadow: var(--sh-1); }
 
-  .rail-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 12px; }
-  .stop {
-    background: var(--card); border: 1px solid var(--line);
-    border-top: 4px solid var(--accent); border-radius: 12px; padding: 16px 18px;
-    cursor: pointer; transition: background .15s, transform .1s, box-shadow .15s;
-    text-align: left; font-family: inherit; width: 100%;
+  /* 北斗線 路線圖 signature */
+  .routemap { display: flex; margin: 4px 0 22px; padding: 6px 0; }
+  .rm-node { flex: 1; text-align: center; position: relative; padding-top: 20px; }
+  .rm-node::before {
+    content: ""; position: absolute; top: 10px; left: -50%; width: 100%; height: 2px;
+    background: var(--hair); z-index: 0;
   }
-  .stop:hover { background: var(--paper-warm); box-shadow: 0 5px 18px rgba(0,0,0,0.07); }
-  .stop:active { transform: scale(0.99); }
-  .stop .go-hint { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 8px; opacity: 0; transition: opacity .15s; }
-  .stop:hover .go-hint { opacity: 1; }
+  .rm-node:first-child::before { display: none; }
+  .rm-node .rm-dot {
+    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+    width: 15px; height: 15px; border-radius: 50%; background: var(--c);
+    box-shadow: 0 0 0 4px var(--bg), var(--sh-1); z-index: 1;
+  }
+  .rm-node .rm-name { display: block; font-size: 13px; font-weight: 800; color: var(--ink); }
+  .rm-node .rm-n { display: block; font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 1px; }
 
-  .enter-label { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; margin: 26px 0 12px; }
-  .entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 11px; }
+  .rail-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(184px,1fr)); gap: 13px; }
+  .stop {
+    background: var(--surface); border: none; border-radius: var(--r);
+    padding: 17px 19px; cursor: pointer; text-align: left; width: 100%;
+    box-shadow: var(--sh-1); position: relative; overflow: hidden;
+    transition: transform .22s var(--ease-out), box-shadow .28s var(--ease-out);
+  }
+  .stop::before { content:""; position:absolute; top:0; left:0; width:100%; height:4px; background: var(--accent); border-radius: var(--r) var(--r) 0 0; }
+  .stop:active { transform: scale(0.985); }
+  @media (hover: hover) and (pointer: fine) {
+    .stop:hover { transform: translateY(-3px); box-shadow: var(--sh-pop); }
+  }
+  .stop .place { font-weight: 800; font-size: 17px; margin-top: 4px; }
+  .stop .nights { font-family: var(--mono); font-size: 11px; color: var(--ink-3); font-weight: 500; margin-top: 3px; letter-spacing: .02em; }
+  .stop .info { font-size: 12.5px; color: var(--ink-2); margin-top: 10px; line-height: 1.55; }
+  .stop .hotel { font-size: 11.5px; font-weight: 700; color: var(--accent); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair-soft); }
+  .stop .go-hint { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 7px; opacity: 0; transform: translateX(-4px); transition: opacity .22s var(--ease-out), transform .22s var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .stop:hover .go-hint { opacity: 1; transform: none; } }
+
+  .enter-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin: 28px 0 13px; }
+  .entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(164px,1fr)); gap: 12px; }
   .entry {
-    display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; cursor: pointer;
-    background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent);
-    border-radius: 0 12px 12px 0; padding: 15px 17px; transition: background .15s, transform .1s;
+    display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer;
+    background: var(--surface); border: none; border-radius: var(--r); padding: 16px 18px;
+    box-shadow: var(--sh-1); position: relative; overflow: hidden;
+    transition: transform .2s var(--ease-out), box-shadow .28s var(--ease-out);
     -webkit-tap-highlight-color: transparent;
   }
-  .entry:hover { background: var(--paper-warm); }
+  .entry::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
   .entry:active { transform: scale(0.98); }
-  .entry .ei { font-size: 21px; line-height: 1; }
-  .entry .et { font-size: 15.5px; font-weight: 800; color: var(--ink); }
-  .entry .ed { font-size: 11.5px; color: var(--ink-faint); font-weight: 600; margin-top: 1px; }
-  .entry .ar { margin-left: auto; color: var(--ink-faint); font-weight: 700; font-size: 17px; }
-  .stop .place { font-weight: 800; font-size: 17px; }
-  .stop .nights { font-size: 12px; color: var(--ink-faint); font-weight: 700; margin-top: 2px; }
-  .stop .info { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.55; }
-  .stop .hotel { font-size: 11.5px; font-weight: 700; color: var(--accent); margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line); }
-
-  .flight-full { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
-  .flight-full .ff {
-    background: var(--ink); color: #fff; border-radius: 12px; padding: 16px 18px;
+  @media (hover: hover) and (pointer: fine) {
+    .entry:hover { transform: translateY(-2px); box-shadow: var(--sh-pop); }
+    .entry:hover .ar { transform: translateX(3px); }
   }
-  .flight-full .fc { font-size: 11px; letter-spacing: 0.16em; color: var(--gold); font-weight: 700; }
-  .flight-full .fr { font-size: 19px; font-weight: 800; margin: 4px 0 2px; }
-  .flight-full .ft { font-size: 12.5px; color: #b6bcc6; }
+  .entry .ei { font-size: 22px; line-height: 1; }
+  .entry .et { font-size: 15.5px; font-weight: 800; color: var(--ink); }
+  .entry .ed { font-size: 11.5px; color: var(--ink-3); font-weight: 600; margin-top: 1px; }
+  .entry .ar { margin-left: auto; color: var(--ink-3); font-weight: 700; font-size: 18px; transition: transform .2s var(--ease-out); }
 
-  /* ============ DAYS (filmstrip) ============ */
-  .panel--days { display: flex; flex-direction: column; padding-bottom: 22px; }
-  .daychips { display: flex; gap: 7px; overflow-x: auto; padding: 2px 2px 14px; scrollbar-width: none; }
+  .flight-full { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 26px; }
+  .flight-full .ff { background: var(--ink); color: #fff; border-radius: var(--r); padding: 17px 19px; box-shadow: var(--sh-2); }
+  .flight-full .fc { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: #e7b96a; font-weight: 500; }
+  .flight-full .fr { font-size: 19px; font-weight: 800; margin: 5px 0 3px; }
+  .flight-full .ft { font-family: var(--mono); font-size: 12.5px; color: #b4bac4; letter-spacing: .01em; }
+
+  /* ============ DAYS ============ */
+  .panel--days { display: flex; flex-direction: column; padding-bottom: 26px; }
+  .daychips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 16px; scrollbar-width: none; }
   .daychips::-webkit-scrollbar { display: none; }
   .daychip {
-    flex: 0 0 auto; font-family: inherit; font-size: 12.5px; font-weight: 700;
-    border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
-    padding: 7px 13px; border-radius: 100px; cursor: pointer; white-space: nowrap;
-    transition: all .15s; -webkit-tap-highlight-color: transparent;
+    flex: 0 0 auto; font-size: 12.5px; font-weight: 700; border: none; background: var(--surface);
+    color: var(--ink-2); padding: 8px 14px; border-radius: 100px; cursor: pointer; white-space: nowrap;
+    box-shadow: var(--sh-1); -webkit-tap-highlight-color: transparent;
+    transition: transform .18s var(--ease-out), box-shadow .22s, color .2s, background .2s;
   }
-  .daychip .cd { font-size: 10px; color: var(--ink-faint); margin-left: 5px; font-weight: 600; }
-  .daychip.on { color: #fff; border-color: transparent; }
-  .daychip.on[data-a="y"]{ background: var(--yunokawa); } .daychip.on[data-a="y"] .cd{ color:rgba(255,255,255,.75);}
-  .daychip.on[data-a="t"]{ background: var(--toya); } .daychip.on[data-a="t"] .cd{ color:rgba(255,255,255,.75);}
-  .daychip.on[data-a="n"]{ background: var(--nobo); } .daychip.on[data-a="n"] .cd{ color:rgba(255,255,255,.75);}
-  .daychip.on[data-a="s"]{ background: var(--sapporo); } .daychip.on[data-a="s"] .cd{ color:rgba(255,255,255,.75);}
-  .daychip.on[data-a="g"]{ background: #888780; } .daychip.on[data-a="g"] .cd{ color:rgba(255,255,255,.75);}
+  .daychip .cd { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-left: 6px; font-weight: 500; }
+  .daychip:active { transform: scale(0.94); }
+  .daychip.on { color: #fff; box-shadow: var(--sh-2); transform: translateY(-1px); }
+  .daychip.on .cd { color: rgba(255,255,255,0.72); }
+  .daychip.on[data-a="y"]{ background: var(--c-yuno); }
+  .daychip.on[data-a="t"]{ background: var(--c-toya); }
+  .daychip.on[data-a="n"]{ background: var(--c-nobo); }
+  .daychip.on[data-a="s"]{ background: var(--c-sapp); }
+  .daychip.on[data-a="g"]{ background: #7d828b; }
 
   .strip {
-    display: flex; gap: 16px; flex: 1; min-height: 0;
-    overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
-    scroll-padding-left: 2px;
-    padding: 2px 0 6px; scrollbar-width: thin;
+    display: flex; gap: 18px; flex: 1; min-height: 0; overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scroll-padding-left: 2px;
+    padding: 4px 2px 10px;
   }
-  .strip::after { content: ""; flex: 0 0 8px; }
+  .strip::after { content: ""; flex: 0 0 10px; }
   .day {
-    flex: 0 0 min(430px, 88%); scroll-snap-align: start;
-    background: var(--card); border: 1px solid var(--line);
-    border-top: 5px solid var(--accent);
-    border-radius: 14px; padding: 20px 22px;
-    height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    flex: 0 0 min(440px, 88%); scroll-snap-align: start; background: var(--surface);
+    border-radius: var(--r-lg); padding: 22px 24px; height: 100%; overflow-y: auto;
+    -webkit-overflow-scrolling: touch; box-shadow: var(--sh-2); position: relative;
+    transition: box-shadow .3s var(--ease-out), transform .3s var(--ease-out);
   }
-  .day-top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .day-no { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #fff; background: var(--accent); padding: 3px 9px; border-radius: 6px; }
-  .day-date { font-size: 12.5px; color: var(--ink-faint); font-weight: 700; }
-  .day-h { font-size: 19px; font-weight: 800; margin: 8px 0 3px; }
-  .day-move { font-size: 12.5px; color: var(--accent); font-weight: 600; margin-bottom: 14px; line-height: 1.5; }
+  .day::before { content:""; position:absolute; top:0; left:0; width:100%; height:5px; background: var(--accent); border-radius: var(--r-lg) var(--r-lg) 0 0; }
+  .day-top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+  .day-no { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #fff; background: var(--accent); padding: 3px 9px; border-radius: 7px; }
+  .day-date { font-size: 12.5px; color: var(--ink-3); font-weight: 700; }
+  .day-h { font-size: 20px; font-weight: 800; margin: 9px 0 4px; letter-spacing: .01em; }
+  .day-move { font-size: 12.5px; color: var(--accent); font-weight: 600; margin-bottom: 16px; line-height: 1.5; }
   .rows { display: flex; flex-direction: column; }
-  .row { display: grid; grid-template-columns: 60px 1fr; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); }
+  .row { display: grid; grid-template-columns: 62px 1fr; gap: 13px; padding: 11px 0; border-top: 1px solid var(--hair-soft); }
   .row:first-child { border-top: none; }
-  .row-when { font-size: 11.5px; font-weight: 700; color: var(--ink-faint); padding-top: 2px; }
+  .row-when { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--ink-3); padding-top: 3px; letter-spacing: .01em; }
   .row-what { font-size: 14px; color: var(--ink); }
-  .row-what .sub { color: var(--ink-soft); font-size: 12.5px; }
-  .day-stay { font-size: 11.5px; color: var(--ink-soft); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .row-what .sub { color: var(--ink-2); font-size: 12.5px; }
+  .day-stay { font-size: 11.5px; color: var(--ink-2); margin-top: 14px; padding-top: 11px; border-top: 1px solid var(--hair-soft); }
   .day-stay b { color: var(--accent); }
 
-  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 5px; margin-right: 6px; vertical-align: 1.5px; }
-  .t-eat { background: #faead2; color: #7a4a12; }
-  .t-see { background: #dcecf6; color: #1a4f74; }
-  .t-onsen { background: #d7efe6; color: #10604a; }
-  .t-move { background: #eae7f5; color: #443a7a; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 1.5px 8px; border-radius: 6px; margin-right: 7px; vertical-align: 1.5px; }
+  .t-eat { background: rgba(196,84,44,0.12); color: #9a3f1f; }
+  .t-see { background: rgba(46,124,138,0.13); color: #1f5c68; }
+  .t-onsen { background: rgba(44,139,93,0.13); color: #196045; }
+  .t-move { background: rgba(90,83,173,0.12); color: #443a86; }
 
   /* ============ STAY ============ */
-  .stay-block { margin-bottom: 26px; }
-  .stay-h { font-size: 15px; font-weight: 800; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
-  .stay-h .chk { font-size: 11px; font-weight: 800; color: #fff; background: var(--accent); padding: 2px 9px; border-radius: 100px; letter-spacing: .04em; }
-  .lodge {
-    background: var(--card); border: 1px solid var(--accent);
-    border-radius: 12px; padding: 18px 20px;
-  }
-  .lodge .area { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--accent); }
-  .lodge .nm { font-weight: 800; font-size: 17px; margin: 6px 0 6px; }
-  .lodge .desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; }
-  .lodge .pick { font-size: 12px; font-weight: 700; color: var(--gold); margin-top: 10px; }
+  .stay-block { margin-bottom: 24px; }
+  .stay-h { font-size: 15px; font-weight: 800; margin: 0 0 13px; display: flex; align-items: center; gap: 9px; }
+  .stay-h .chk { font-family: var(--mono); font-size: 10px; font-weight: 600; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 100px; letter-spacing: .04em; }
+  .lodge { background: var(--surface); border-radius: var(--r); padding: 19px 21px; box-shadow: var(--sh-1); position: relative; overflow: hidden; }
+  .lodge::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
+  .lodge .area { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; }
+  .lodge .nm { font-weight: 800; font-size: 17px; margin: 7px 0 7px; }
+  .lodge .desc { font-size: 13.5px; color: var(--ink-2); line-height: 1.65; }
+  .lodge .pick { font-size: 12px; font-weight: 700; color: var(--c-gold); margin-top: 11px; }
 
   /* ============ FOOD ============ */
-  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 12px; }
-  .food { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0; padding: 14px 16px; }
-  .food .fcat { font-size: 11px; font-weight: 800; color: var(--accent); letter-spacing: .04em; }
-  .food .fnm { font-weight: 800; font-size: 15px; margin: 4px 0 3px; }
-  .food .fd { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px,1fr)); gap: 13px; }
+  .food { background: var(--surface); border-radius: var(--r); padding: 15px 17px; box-shadow: var(--sh-1); position: relative; overflow: hidden; transition: transform .2s var(--ease-out), box-shadow .26s var(--ease-out); }
+  .food::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
+  @media (hover: hover) and (pointer: fine) { .food:hover { transform: translateY(-2px); box-shadow: var(--sh-2); } }
+  .food .fcat { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+  .food .fnm { font-weight: 800; font-size: 15px; margin: 5px 0 3px; }
+  .food .fd { font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
 
   /* ============ TRANSPORT ============ */
-  .jr-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; font-size: 13.5px; }
-  .jr-table th { background: var(--ink); color: #fff; text-align: left; padding: 11px 14px; font-weight: 600; font-size: 12.5px; }
-  .jr-table td { padding: 11px 14px; border-top: 1px solid var(--line); vertical-align: top; }
-  .jr-table tr:nth-child(even) td { background: var(--paper); }
+  .jr-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--r); overflow: hidden; font-size: 13.5px; box-shadow: var(--sh-1); }
+  .jr-table th { background: var(--ink); color: #fff; text-align: left; padding: 12px 15px; font-weight: 600; font-size: 12px; }
+  .jr-table th:last-child { text-align: right; }
+  .jr-table td { padding: 12px 15px; border-top: 1px solid var(--hair-soft); vertical-align: top; }
   .jr-table .seg { font-weight: 700; }
-  .jr-table .day-lbl { font-size: 11px; color: var(--ink-faint); font-weight: 700; }
-  .jr-table .fare { font-weight: 700; white-space: nowrap; text-align: right; }
-  .jr-table tfoot td { background: var(--steam); font-weight: 800; border-top: 2px solid var(--toya); }
-  .leg-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 12px; margin-top: 16px; }
-  .leg { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0; padding: 13px 16px; }
-  .leg .lh { font-weight: 800; font-size: 14px; margin-bottom: 3px; }
-  .leg .lb { font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
-  .leg .lb b { color: var(--ink); }
-  .sub-h { font-size: 15px; font-weight: 800; margin: 24px 0 10px; }
+  .jr-table .day-lbl { font-family: var(--mono); font-size: 11px; color: var(--ink-3); font-weight: 500; }
+  .jr-table .fare { font-family: var(--mono); font-weight: 600; white-space: nowrap; text-align: right; }
+  .jr-table tfoot td { background: var(--surface-2); font-weight: 800; border-top: 2px solid var(--c-toya); }
+  .leg-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(304px,1fr)); gap: 13px; margin-top: 16px; }
+  .leg { background: var(--surface); border-radius: var(--r); padding: 14px 17px; box-shadow: var(--sh-1); position: relative; overflow: hidden; }
+  .leg::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
+  .leg .lh { font-weight: 800; font-size: 14px; margin-bottom: 4px; }
+  .leg .lb { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+  .leg .lb b { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 12px; }
+  .sub-h { font-size: 15px; font-weight: 800; margin: 26px 0 11px; }
 
   /* ============ SHARED ============ */
-  .callout { background: var(--steam); border: 1px solid #cfe0d8; border-radius: 12px; padding: 15px 18px; font-size: 13px; color: #24564a; line-height: 1.7; margin-top: 16px; }
-  .callout b { color: #163f36; }
-  .callout.paper { background: #f3eee4; border-color: var(--line); color: var(--ink-soft); }
+  .callout { background: rgba(44,139,93,0.08); border-radius: var(--r); padding: 16px 19px; font-size: 13px; color: #1c5540; line-height: 1.7; margin-top: 17px; box-shadow: var(--sh-1); }
+  .callout b { color: #123c2e; }
+  .callout.paper { background: var(--surface); color: var(--ink-2); }
   .callout.paper b { color: var(--ink); }
-  .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; }
-  .note { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 15px 17px; }
-  .note h4 { font-size: 14px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
-  .note h4::before { content:""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
-  .note p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
+  .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(244px,1fr)); gap: 13px; }
+  .note { background: var(--surface); border-radius: var(--r); padding: 16px 18px; box-shadow: var(--sh-1); }
+  .note h4 { font-size: 14px; font-weight: 800; margin-bottom: 7px; display: flex; align-items: center; gap: 8px; }
+  .note h4::before { content:""; width: 8px; height: 8px; border-radius: 50%; background: var(--c-gold); }
+  .note p { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
 
   /* ============ MOBILE ============ */
   @media (max-width: 899px) {
-    .app.home {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto 1fr;
-      grid-template-areas: "brand" "tabs" "stage";
-    }
-    .app.detail {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
-      grid-template-areas: "dbar" "stage";
-    }
-    .detailbar { padding: 11px 14px; }
-    .detailbar .dtitle { font-size: 17px; }
-    .detailbar .dnav button { padding: 6px 9px; font-size: 12px; }
-    .brandbar { padding: 16px 18px 14px; }
-    .brand-title { font-size: 24px; }
-    .brand-flt { flex-direction: row; margin-top: 12px; }
+    .app.home { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; grid-template-areas: "brand" "tabs" "stage"; }
+    .app.detail { grid-template-columns: 1fr; grid-template-rows: auto 1fr; grid-template-areas: "dbar" "stage"; }
+    .brandbar { padding: 18px 18px 15px; }
+    .brand-title { font-size: 26px; }
+    .brand-flt { flex-direction: row; margin-top: 13px; }
     .brand-flt .f { flex: 1; }
-    .tabs {
-      flex-direction: row; overflow-x: auto; gap: 6px;
-      padding: 10px 12px; border-right: none; border-bottom: 1px solid var(--line);
-      scrollbar-width: none;
-    }
+    .tabs { flex-direction: row; overflow-x: auto; gap: 7px; padding: 11px 14px; box-shadow: 0 1px 0 var(--hair); scrollbar-width: none; }
     .tabs::-webkit-scrollbar { display: none; }
-    .tab { padding: 9px 14px; }
-    .tab .num { display: none; }
+    .tab { padding: 9px 15px; }
+    .tab .tn { display: none; }
     .tab.on .dot { background: #fff; }
-    .panel { padding: 20px 18px 40px; }
-    .p-title { font-size: 22px; }
+    .detailbar { padding: 12px 15px; }
+    .detailbar .dtitle { font-size: 17px; }
+    .panel { padding: 22px 18px 46px; }
+    .p-title { font-size: 23px; }
     .flight-full { grid-template-columns: 1fr; }
-    /* 手機版逐日行程：卡片全寬、自然高度，左右滑動換天、整頁可上下捲讀完整天 */
+    /* 逐日行程：卡片全寬、自然高度、整頁可上下捲 */
     .panel--days { display: block; }
-    .strip {
-      flex: none; height: auto; min-height: 0;
-      overflow-x: auto; overflow-y: visible;
-      gap: 14px; padding-bottom: 4px;
-    }
-    .day {
-      flex-basis: 100%; height: auto; overflow: visible;
-      scroll-snap-align: start; padding: 20px 20px 22px;
-    }
+    .strip { flex: none; height: auto; min-height: 0; overflow-x: auto; overflow-y: visible; gap: 15px; }
+    .day { flex-basis: 100%; height: auto; overflow: visible; scroll-snap-align: start; padding: 21px 21px 23px; }
     .day-h { font-size: 20px; }
     .row-what { font-size: 14.5px; }
+    .routemap { padding: 4px 0; }
+    .rm-node .rm-name { font-size: 12px; }
     .swipe-hint {
       display: flex; align-items: center; justify-content: center; gap: 8px;
-      font-size: 11.5px; color: var(--ink-faint); font-weight: 600;
-      padding: 8px; margin-bottom: 4px;
+      font-size: 11.5px; color: var(--ink-3); font-weight: 600; padding: 6px 8px 10px;
     }
-    .swipe-hint .ar { animation: nudge 1.6s ease-in-out infinite; }
+    .swipe-hint .ar { animation: nudge 1.6s var(--ease-out) infinite; }
     @keyframes nudge { 0%,100%{transform:translateX(0);opacity:.5} 50%{transform:translateX(4px);opacity:1} }
   }
+  .swipe-hint { display: none; }
+
   @media (min-width: 900px) {
-    .day:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.07); }
+    .day { scroll-snap-align: start; }
+    @media (hover: hover) and (pointer: fine) {
+      .day:hover { box-shadow: var(--sh-pop); transform: translateY(-2px); }
+    }
   }
+
+  /* ============ 尊重減少動態偏好 ============ */
   @media (prefers-reduced-motion: reduce) {
-    .track { transition: none; }
-    .swipe-hint .ar { animation: none; }
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    .panel { transform: none; }
   }
 </style>
 </head>
 <body>
 <div class="app home" id="app">
 
-  <!-- DETAIL BAR (詳情模式頂部返回列) -->
+  <!-- BRAND -->
+  <header class="brandbar">
+    <div class="brand-kicker">Solo Trip · Hokkaido · 北斗線</div>
+    <div class="brand-title">北海道</div>
+    <div class="brand-sub">2026 · 9.4 → 9.10 ｜ 7 天 6 夜 ｜ 獨旅</div>
+    <div class="brand-flt">
+      <div class="f"><div class="fc">IT236 · 去程 9/4</div><div class="fr">桃園 → 函館</div><div class="ft">07:00 → 11:30</div></div>
+      <div class="f"><div class="fc">IT235 · 回程 9/10</div><div class="fr">新千歲 → 桃園</div><div class="ft">12:05 → 15:20</div></div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs" id="tabs">
+    <button class="tab on" style="--accent:var(--c-gold)"><span class="dot"></span>總覽<span class="tn">01</span></button>
+    <button class="tab" style="--accent:var(--c-yuno)"><span class="dot"></span>逐日行程<span class="tn">02</span></button>
+    <button class="tab" style="--accent:var(--c-toya)"><span class="dot"></span>住宿<span class="tn">03</span></button>
+    <button class="tab" style="--accent:var(--c-nobo)"><span class="dot"></span>美食<span class="tn">04</span></button>
+    <button class="tab" style="--accent:var(--c-sapp)"><span class="dot"></span>交通<span class="tn">05</span></button>
+  </nav>
+
+  <!-- DETAIL BAR -->
   <header class="detailbar" id="detailbar">
     <button class="back" id="back" aria-label="返回首頁">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-    <div class="dtitle" id="dtitle"><span class="dot"></span><span id="dtitle-text">詳情</span></div>
+    <div class="dtitle"><span class="dot"></span><span id="dtitle-text">詳情</span></div>
     <div class="dnav">
       <button id="dprev" aria-label="上一個區塊">‹</button>
       <button id="dnext" aria-label="下一個區塊">›</button>
     </div>
   </header>
 
-  <!-- BRAND -->
-  <header class="brandbar">
-    <div class="brand-kicker">Solo Trip · Hokkaido</div>
-    <div class="brand-title">北海道</div>
-    <div class="brand-sub">2026 · 9.4 → 9.10 ｜ 7 天 6 夜 ｜ 獨旅</div>
-    <div class="brand-flt">
-      <div class="f">
-        <div class="fc">IT236 · 去程 9/4</div>
-        <div class="fr">桃園 → 函館</div>
-        <div class="ft">07:00 → 11:30</div>
-      </div>
-      <div class="f">
-        <div class="fc">IT235 · 回程 9/10</div>
-        <div class="fr">新千歲 → 桃園</div>
-        <div class="ft">12:05 → 15:20</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- TABS -->
-  <nav class="tabs" id="tabs">
-    <button class="tab on" style="--accent:var(--gold)"><span class="dot"></span>總覽<span class="num">01</span></button>
-    <button class="tab" style="--accent:var(--yunokawa)"><span class="dot"></span>逐日行程<span class="num">02</span></button>
-    <button class="tab" style="--accent:var(--toya)"><span class="dot"></span>住宿<span class="num">03</span></button>
-    <button class="tab" style="--accent:var(--nobo)"><span class="dot"></span>美食<span class="num">04</span></button>
-    <button class="tab" style="--accent:var(--sapporo)"><span class="dot"></span>交通<span class="num">05</span></button>
-  </nav>
-
   <!-- STAGE -->
-  <div class="stage" id="stage">
-    <div class="track" id="track">
+  <div class="stage">
+    <div class="panels" id="panels">
 
-      <!-- ========== PANEL 1: OVERVIEW ========== -->
-      <section class="panel">
+      <!-- ===== PANEL 1: OVERVIEW ===== -->
+      <section class="panel active">
         <div class="panel-head">
           <div class="eyebrow">Overview</div>
           <h1 class="p-title">路線總覽</h1>
-          <p class="p-sub">北進南出、零回頭路。四站住宿全數訂妥，前四晚只搬一次家。溫泉泉質一路漸強：湯之川海鹽泉 → 洞爺湖景 → 登別硫磺名湯。</p>
+          <p class="p-sub">北進南出、零回頭路，整趟由 JR 特急北斗一線串連。四站住宿全數訂妥，前四晚只搬一次家。溫泉泉質一路漸強：湯之川海鹽泉 → 洞爺湖景 → 登別硫磺名湯。</p>
+          <p class="p-hint">👇 點任一項展開全螢幕詳情，左上角箭頭可返回</p>
+        </div>
+
+        <div class="routemap">
+          <div class="rm-node" style="--c:var(--c-yuno)"><span class="rm-dot"></span><span class="rm-name">湯之川</span><span class="rm-n">Day 1–2</span></div>
+          <div class="rm-node" style="--c:var(--c-toya)"><span class="rm-dot"></span><span class="rm-name">洞爺湖</span><span class="rm-n">Day 3–4</span></div>
+          <div class="rm-node" style="--c:var(--c-nobo)"><span class="rm-dot"></span><span class="rm-name">登別</span><span class="rm-n">Day 5</span></div>
+          <div class="rm-node" style="--c:var(--c-sapp)"><span class="rm-dot"></span><span class="rm-name">札幌</span><span class="rm-n">Day 6</span></div>
         </div>
 
         <div class="facts">
@@ -423,31 +462,29 @@
           <span class="fact">避開白銀週連假</span>
         </div>
 
-        <p class="p-sub" style="margin-top:14px;font-weight:600;color:var(--ink-faint);font-size:13px;">👇 點任一項展開全螢幕詳情，左上角箭頭可返回</p>
-
-        <div class="rail-flow">
-          <button class="stop" style="--accent:var(--yunokawa)" data-day="0">
+        <div class="rail-flow stagger">
+          <button class="stop" style="--accent:var(--c-yuno)" data-day="0">
             <div class="place">湯之川溫泉</div>
             <div class="nights">2 晚 · Day 1–2</div>
             <div class="info">函館觀光據點。朝市・元町・函館山夜景。落地就泡湯。</div>
             <div class="hotel">✅ 湯元 啄木亭（9/4–9/6 附早餐）</div>
             <div class="go-hint">看 Day 1–2 行程 →</div>
           </button>
-          <button class="stop" style="--accent:var(--toya)" data-day="2">
+          <button class="stop" style="--accent:var(--c-toya)" data-day="2">
             <div class="place">洞爺湖</div>
             <div class="nights">2 晚連泊 · Day 3–4</div>
             <div class="info">花火 ×2、有珠山・昭和新山火山日。</div>
             <div class="hotel">✅ 洞爺 湖畔亭（9/6–9/8 湖側素泊）</div>
             <div class="go-hint">看 Day 3–4 行程 →</div>
           </button>
-          <button class="stop" style="--accent:var(--nobo)" data-day="4">
+          <button class="stop" style="--accent:var(--c-nobo)" data-day="4">
             <div class="place">登別溫泉</div>
             <div class="nights">1 晚 · Day 5</div>
             <div class="info">地獄谷・大湯沼。日本頂級硫磺泉。</div>
             <div class="hotel">✅ adex inn（9/8–9/9 附早餐）</div>
             <div class="go-hint">看 Day 5 行程 →</div>
           </button>
-          <button class="stop" style="--accent:var(--sapporo)" data-day="5">
+          <button class="stop" style="--accent:var(--c-sapp)" data-day="5">
             <div class="place">札幌</div>
             <div class="nights">1 晚 · Day 6</div>
             <div class="info">美食高潮：湯咖哩・燒肉・味噌拉麵。</div>
@@ -457,39 +494,21 @@
         </div>
 
         <div class="enter-label">展開查看</div>
-        <div class="entry-grid">
-          <button class="entry" style="--accent:var(--yunokawa)" data-goto="1">
-            <span class="ei">🗓️</span><span><span class="et">逐日行程</span><span class="ed">Day 1–7 每日安排</span></span><span class="ar">→</span>
-          </button>
-          <button class="entry" style="--accent:var(--toya)" data-goto="2">
-            <span class="ei">♨️</span><span><span class="et">住宿</span><span class="ed">四站已訂旅館</span></span><span class="ar">→</span>
-          </button>
-          <button class="entry" style="--accent:var(--nobo)" data-goto="3">
-            <span class="ei">🍜</span><span><span class="et">美食</span><span class="ed">燒肉・拉麵・居酒屋</span></span><span class="ar">→</span>
-          </button>
-          <button class="entry" style="--accent:var(--sapporo)" data-goto="4">
-            <span class="ei">🚆</span><span><span class="et">交通</span><span class="ed">JR 車資與接駁</span></span><span class="ar">→</span>
-          </button>
+        <div class="entry-grid stagger">
+          <button class="entry" style="--accent:var(--c-yuno)" data-goto="1"><span class="ei">🗓️</span><span><span class="et">逐日行程</span><span class="ed">Day 1–7 每日安排</span></span><span class="ar">→</span></button>
+          <button class="entry" style="--accent:var(--c-toya)" data-goto="2"><span class="ei">♨️</span><span><span class="et">住宿</span><span class="ed">四站已訂旅館</span></span><span class="ar">→</span></button>
+          <button class="entry" style="--accent:var(--c-nobo)" data-goto="3"><span class="ei">🍜</span><span><span class="et">美食</span><span class="ed">燒肉・拉麵・居酒屋</span></span><span class="ar">→</span></button>
+          <button class="entry" style="--accent:var(--c-sapp)" data-goto="4"><span class="ei">🚆</span><span><span class="et">交通</span><span class="ed">JR 車資與接駁</span></span><span class="ar">→</span></button>
         </div>
 
         <div class="flight-full">
-          <div class="ff">
-            <div class="fc">IT236 · 去程 9/4（五）</div>
-            <div class="fr">桃園 → 函館</div>
-            <div class="ft">07:00 起飛 · 11:30 抵達</div>
-          </div>
-          <div class="ff">
-            <div class="fc">IT235 · 回程 9/10（四）</div>
-            <div class="fr">新千歲 → 桃園</div>
-            <div class="ft">12:05 起飛 · 15:20 抵達</div>
-          </div>
+          <div class="ff"><div class="fc">IT236 · 去程 9/4（五）</div><div class="fr">桃園 → 函館</div><div class="ft">07:00 起飛 · 11:30 抵達</div></div>
+          <div class="ff"><div class="fc">IT235 · 回程 9/10（四）</div><div class="fr">新千歲 → 桃園</div><div class="ft">12:05 起飛 · 15:20 抵達</div></div>
         </div>
-        <div class="callout paper">
-          <b>台灣虎航（LCC，單程組合）</b>　航班時刻以官方公告為準，出發前再確認一次。全程 JR 單程票約 ¥16,590，比周遊券省約 ¥4,400。
-        </div>
+        <div class="callout paper"><b>台灣虎航（LCC，單程組合）</b>　航班時刻以官方公告為準，出發前再確認一次。全程 JR 單程票約 ¥16,590，比周遊券省約 ¥4,400。</div>
       </section>
 
-      <!-- ========== PANEL 2: DAYS ========== -->
+      <!-- ===== PANEL 2: DAYS ===== -->
       <section class="panel panel--days">
         <div class="panel-head" style="margin-bottom:14px;">
           <div class="eyebrow">Itinerary</div>
@@ -505,10 +524,8 @@
           <button class="daychip" data-a="s">Day 6<span class="cd">9/9</span></button>
           <button class="daychip" data-a="g">Day 7<span class="cd">9/10</span></button>
         </div>
-
         <div class="strip" id="strip">
-          <!-- DAY 1 -->
-          <article class="day" style="--accent:var(--yunokawa)">
+          <article class="day" style="--accent:var(--c-yuno)">
             <div class="day-top"><span class="day-no">DAY 1</span><span class="day-date">9/4（五）· 湯之川溫泉</span></div>
             <div class="day-h">抵達函館 · 落地就泡湯</div>
             <div class="day-move">✈ IT236 11:30 抵函館空港 → 機場巴士約 15 分到湯之川</div>
@@ -522,9 +539,7 @@
             </div>
             <div class="day-stay">宿：<b>湯元 啄木亭</b> ✅ 附早餐</div>
           </article>
-
-          <!-- DAY 2 -->
-          <article class="day" style="--accent:var(--yunokawa)">
+          <article class="day" style="--accent:var(--c-yuno)">
             <div class="day-top"><span class="day-no">DAY 2</span><span class="day-date">9/5（六）· 湯之川溫泉</span></div>
             <div class="day-h">函館精華日 · 朝市與五稜郭</div>
             <div class="day-move">◎ 定點日，行李不動</div>
@@ -537,9 +552,7 @@
             </div>
             <div class="day-stay">宿：<b>湯元 啄木亭</b> ✅ 連泊第 2 晚</div>
           </article>
-
-          <!-- DAY 3 -->
-          <article class="day" style="--accent:var(--toya)">
+          <article class="day" style="--accent:var(--c-toya)">
             <div class="day-top"><span class="day-no">DAY 3</span><span class="day-date">9/6（日）· 洞爺湖</span></div>
             <div class="day-h">移動洞爺湖 · 湖上花火</div>
             <div class="day-move">🚆 特急北斗 函館→洞爺 約 1h50 ＋ 巴士 20 分</div>
@@ -553,9 +566,7 @@
             </div>
             <div class="day-stay">宿：<b>洞爺 湖畔亭</b> ✅ 湖側素泊</div>
           </article>
-
-          <!-- DAY 4 -->
-          <article class="day" style="--accent:var(--toya)">
+          <article class="day" style="--accent:var(--c-toya)">
             <div class="day-top"><span class="day-no">DAY 4</span><span class="day-date">9/7（一）· 洞爺湖</span></div>
             <div class="day-h">火山深度日 · 有珠山與昭和新山</div>
             <div class="day-move">◎ 連泊日，行李不動</div>
@@ -568,9 +579,7 @@
             </div>
             <div class="day-stay">宿：<b>洞爺 湖畔亭</b> ✅ 連泊第 2 晚</div>
           </article>
-
-          <!-- DAY 5 -->
-          <article class="day" style="--accent:var(--nobo)">
+          <article class="day" style="--accent:var(--c-nobo)">
             <div class="day-top"><span class="day-no">DAY 5</span><span class="day-date">9/8（二）· 登別溫泉</span></div>
             <div class="day-h">登別名湯 · 地獄谷</div>
             <div class="day-move">🚆 洞爺→登別 約 40 分 ＋ 巴士 15 分</div>
@@ -584,9 +593,7 @@
             </div>
             <div class="day-stay">宿：<b>adex inn</b> ✅ 附早餐 · 免費泡第一滝本館</div>
           </article>
-
-          <!-- DAY 6 -->
-          <article class="day" style="--accent:var(--sapporo)">
+          <article class="day" style="--accent:var(--c-sapp)">
             <div class="day-top"><span class="day-no">DAY 6</span><span class="day-date">9/9（三）· 札幌</span></div>
             <div class="day-h">札幌美食高潮日</div>
             <div class="day-move">🚆 特急 登別→札幌 約 1h10</div>
@@ -599,9 +606,7 @@
             </div>
             <div class="day-stay">宿：<b>Dormy Inn PREMIUM 札幌</b> ✅</div>
           </article>
-
-          <!-- DAY 7 -->
-          <article class="day" style="--accent:#888780">
+          <article class="day" style="--accent:#7d828b">
             <div class="day-top"><span class="day-no">DAY 7</span><span class="day-date">9/10（四）· 回程</span></div>
             <div class="day-h">最後一餐 · 返桃園</div>
             <div class="day-move">✈ IT235 新千歲 12:05 起飛 ｜ JR 快速約 37 分</div>
@@ -615,126 +620,116 @@
         </div>
       </section>
 
-      <!-- ========== PANEL 3: STAY ========== -->
+      <!-- ===== PANEL 3: STAY ===== -->
       <section class="panel">
         <div class="panel-head">
           <div class="eyebrow">Lodging</div>
           <h1 class="p-title">住宿</h1>
           <p class="p-sub">四站全數訂妥。條件：一人・館內溫泉・大眾運輸方便・泡湯優先。</p>
         </div>
-
-        <div class="stay-block">
-          <div class="stay-h" style="--accent:var(--yunokawa)"><span class="chk">✅ 已訂</span>湯之川 · 2 晚（9/4–9/6）</div>
-          <div class="lodge" style="--accent:var(--yunokawa)">
-            <div class="area">湯之川溫泉</div>
-            <div class="nm">湯元 啄木亭</div>
-            <div class="desc">附早餐，連泊 2 晚。11 樓空中大浴場＋空中露天＋展望桑拿，泡湯看函館山夜景與漁火（湯之川泡湯視野最強）。氯化物泉。市電站步行 4 分，門口有藥妝店。</div>
-            <div class="pick">◆ 泡湯優先的最佳解，退房 10:00 接洞爺湖剛好</div>
+        <div class="stagger">
+          <div class="stay-block">
+            <div class="stay-h" style="--accent:var(--c-yuno)"><span class="chk">✅ 已訂</span>湯之川 · 2 晚（9/4–9/6）</div>
+            <div class="lodge" style="--accent:var(--c-yuno)">
+              <div class="area">湯之川溫泉</div><div class="nm">湯元 啄木亭</div>
+              <div class="desc">附早餐，連泊 2 晚。11 樓空中大浴場＋空中露天＋展望桑拿，泡湯看函館山夜景與漁火（湯之川泡湯視野最強）。氯化物泉。市電站步行 4 分，門口有藥妝店。</div>
+              <div class="pick">◆ 泡湯優先的最佳解，退房 10:00 接洞爺湖剛好</div>
+            </div>
           </div>
-        </div>
-
-        <div class="stay-block">
-          <div class="stay-h" style="--accent:var(--toya)"><span class="chk">✅ 已訂</span>洞爺湖 · 2 晚（9/6–9/8）</div>
-          <div class="lodge" style="--accent:var(--toya)">
-            <div class="area">洞爺湖</div>
-            <div class="nm">絕景の湯宿 洞爺 湖畔亭</div>
-            <div class="desc">素泊 2 晚。9 樓空中露天風呂看湖看花火（泡湯視野溫泉街數一數二），全客室湖側。JR 洞爺駅巴士 20 分、下車即到。</div>
-            <div class="pick">◆ 晚餐靠超商：花火前先買好（溫泉街超商約 20–21 時收）</div>
+          <div class="stay-block">
+            <div class="stay-h" style="--accent:var(--c-toya)"><span class="chk">✅ 已訂</span>洞爺湖 · 2 晚（9/6–9/8）</div>
+            <div class="lodge" style="--accent:var(--c-toya)">
+              <div class="area">洞爺湖</div><div class="nm">絕景の湯宿 洞爺 湖畔亭</div>
+              <div class="desc">素泊 2 晚。9 樓空中露天風呂看湖看花火（泡湯視野溫泉街數一數二），全客室湖側。JR 洞爺駅巴士 20 分、下車即到。</div>
+              <div class="pick">◆ 晚餐靠超商：花火前先買好（溫泉街超商約 20–21 時收）</div>
+            </div>
           </div>
-        </div>
-
-        <div class="stay-block">
-          <div class="stay-h" style="--accent:var(--nobo)"><span class="chk">✅ 已訂</span>登別 · 1 晚（9/8–9/9）</div>
-          <div class="lodge" style="--accent:var(--nobo)">
-            <div class="area">登別溫泉</div>
-            <div class="nm">adex inn</div>
-            <div class="desc">附早餐。第一滝本館姊妹館（正對面步行約 2 分）。住客免費泡第一滝本館大浴場（5 泉質 35 浴池，單獨入浴要 ¥2,250）＋自家硫磺泉。一人 single use。JR 登別駅巴士 15 分＋步行 2 分。</div>
-            <div class="pick">◆ 用商務價泡到登別頂級湯；泡湯動線見「交通」頁</div>
+          <div class="stay-block">
+            <div class="stay-h" style="--accent:var(--c-nobo)"><span class="chk">✅ 已訂</span>登別 · 1 晚（9/8–9/9）</div>
+            <div class="lodge" style="--accent:var(--c-nobo)">
+              <div class="area">登別溫泉</div><div class="nm">adex inn</div>
+              <div class="desc">附早餐。第一滝本館姊妹館（正對面步行約 2 分）。住客免費泡第一滝本館大浴場（5 泉質 35 浴池，單獨入浴要 ¥2,250）＋自家硫磺泉。一人 single use。JR 登別駅巴士 15 分＋步行 2 分。</div>
+              <div class="pick">◆ 用商務價泡到登別頂級湯；泡湯動線見「交通」頁</div>
+            </div>
           </div>
-        </div>
-
-        <div class="stay-block">
-          <div class="stay-h" style="--accent:var(--sapporo)"><span class="chk">✅ 已訂</span>札幌 · 1 晚（9/9–9/10）</div>
-          <div class="lodge" style="--accent:var(--sapporo)">
-            <div class="area">札幌</div>
-            <div class="nm">Dormy Inn PREMIUM 札幌</div>
-            <div class="desc">2 樓「石狩之湯」大浴場：內湯＋半露天（壺風呂・檜木）＋高溫桑拿＋冷水池，開到隔天 10:00，可跨 ANNEX 館湯めぐり。狸小路 4 丁目步行 3 分、薄野 5 分。</div>
-            <div class="pick">◆ 免費宵夜拉麵 21:30–23:00｜早餐 6:30–9:30（海鮮丼吃到飽）</div>
+          <div class="stay-block">
+            <div class="stay-h" style="--accent:var(--c-sapp)"><span class="chk">✅ 已訂</span>札幌 · 1 晚（9/9–9/10）</div>
+            <div class="lodge" style="--accent:var(--c-sapp)">
+              <div class="area">札幌</div><div class="nm">Dormy Inn PREMIUM 札幌</div>
+              <div class="desc">2 樓「石狩之湯」大浴場：內湯＋半露天（壺風呂・檜木）＋高溫桑拿＋冷水池，開到隔天 10:00，可跨 ANNEX 館湯めぐり。狸小路 4 丁目步行 3 分、薄野 5 分。</div>
+              <div class="pick">◆ 免費宵夜拉麵 21:30–23:00｜早餐 6:30–9:30（海鮮丼吃到飽）</div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ========== PANEL 4: FOOD ========== -->
+      <!-- ===== PANEL 4: FOOD ===== -->
       <section class="panel">
         <div class="panel-head">
           <div class="eyebrow">Food</div>
           <h1 class="p-title">美食</h1>
           <p class="p-sub">三大願望：日式燒肉（牛豬）· 拉麵三種不重複 · 在地居酒屋。全部一人友善。</p>
         </div>
-        <div class="food-grid">
-          <div class="food" style="--accent:var(--yunokawa)"><div class="fcat">塩拉麵 · Day 1 午餐</div><div class="fnm">あじさい本店 <span class="star">★</span></div><div class="fd">函館＝塩拉麵發源地。清澈鹽湯、叉燒，吧台一人自在。</div></div>
-          <div class="food" style="--accent:var(--yunokawa)"><div class="fcat">海鮮丼 · Day 2 早餐</div><div class="fnm">函館朝市·きくよ食堂 <span class="star">★</span></div><div class="fd">元祖巴丼：海膽＋鮭魚卵＋帆立。</div></div>
-          <div class="food" style="--accent:var(--yunokawa)"><div class="fcat">居酒屋 · Day 2 晚餐</div><div class="fnm">湯之川在地居酒屋 <span class="star">★</span></div><div class="fd">烏賊刺身、烤物配道產酒，一人坐吧台最對味。</div></div>
-          <div class="food" style="--accent:var(--yunokawa)"><div class="fcat">在地漢堡 · Day 1 晚</div><div class="fnm">ラッキーピエロ</div><div class="fd">函館限定傳奇小丑漢堡，一人隨意快吃。</div></div>
-          <div class="food" style="--accent:var(--nobo)"><div class="fcat">地獄拉麵 · Day 5 午餐</div><div class="fnm">味の大王（登別）<span class="star">★</span></div><div class="fd">登別限定辣味噌「地獄拉麵」。</div></div>
-          <div class="food" style="--accent:var(--sapporo)"><div class="fcat">湯咖哩 · Day 6 午餐</div><div class="fnm">GARAKU / Suage+ <span class="star">★</span></div><div class="fd">札幌名物。Suage+ 有生羊肉炭烤款；愛肉者選這間。</div></div>
-          <div class="food" style="--accent:var(--sapporo)"><div class="fcat">日式燒肉 · Day 6 晚餐</div><div class="fnm">二代目ばんばん（牛豬）<span class="star">★</span></div><div class="fd">薄野，1–4 人吧台席、除味好、營業至深夜。小奢華備案：つばめ／きゅうた。</div></div>
-          <div class="food" style="--accent:var(--sapporo)"><div class="fcat">味噌拉麵 · Day 6 宵夜〆</div><div class="fnm">彩未 / すみれ <span class="star">★</span></div><div class="fd">札幌正宗味噌拉麵，濃厚系。</div></div>
-          <div class="food" style="--accent:var(--sapporo)"><div class="fcat">收尾聖代 · Day 6 下午</div><div class="fnm">シメパフェ</div><div class="fd">札幌獨有的深夜甜點文化，逛街中途來一份。</div></div>
+        <div class="food-grid stagger">
+          <div class="food" style="--accent:var(--c-yuno)"><div class="fcat">塩拉麵 · Day 1 午餐</div><div class="fnm">あじさい本店 <span class="star">★</span></div><div class="fd">函館＝塩拉麵發源地。清澈鹽湯、叉燒，吧台一人自在。</div></div>
+          <div class="food" style="--accent:var(--c-yuno)"><div class="fcat">海鮮丼 · Day 2 早餐</div><div class="fnm">函館朝市·きくよ食堂 <span class="star">★</span></div><div class="fd">元祖巴丼：海膽＋鮭魚卵＋帆立。</div></div>
+          <div class="food" style="--accent:var(--c-yuno)"><div class="fcat">居酒屋 · Day 2 晚餐</div><div class="fnm">湯之川在地居酒屋 <span class="star">★</span></div><div class="fd">烏賊刺身、烤物配道產酒，一人坐吧台最對味。</div></div>
+          <div class="food" style="--accent:var(--c-yuno)"><div class="fcat">在地漢堡 · Day 1 晚</div><div class="fnm">ラッキーピエロ</div><div class="fd">函館限定傳奇小丑漢堡，一人隨意快吃。</div></div>
+          <div class="food" style="--accent:var(--c-nobo)"><div class="fcat">地獄拉麵 · Day 5 午餐</div><div class="fnm">味の大王（登別）<span class="star">★</span></div><div class="fd">登別限定辣味噌「地獄拉麵」。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">湯咖哩 · Day 6 午餐</div><div class="fnm">GARAKU / Suage+ <span class="star">★</span></div><div class="fd">札幌名物。Suage+ 有生羊肉炭烤款；愛肉者選這間。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">日式燒肉 · Day 6 晚餐</div><div class="fnm">二代目ばんばん（牛豬）<span class="star">★</span></div><div class="fd">薄野，1–4 人吧台席、除味好、營業至深夜。小奢華備案：つばめ／きゅうた。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">味噌拉麵 · Day 6 宵夜〆</div><div class="fnm">彩未 / すみれ <span class="star">★</span></div><div class="fd">札幌正宗味噌拉麵，濃厚系。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">收尾聖代 · Day 6 下午</div><div class="fnm">シメパフェ</div><div class="fd">札幌獨有的深夜甜點文化，逛街中途來一份。</div></div>
         </div>
-        <div class="callout">
-          <b>拉麵集章：</b>Day 1 函館塩 → Day 5 登別地獄味噌 → Day 6 札幌正宗味噌，一趟集滿北海道拉麵光譜，三種不重複。&nbsp;&nbsp;<b>燒肉走牛豬：</b>已跳過羊肉（成吉思汗）；若哪天想淺嚐羊，「焼肉たいはーら」去腥好、牛豬也有，是安全牌備案。
-        </div>
+        <div class="callout"><b>拉麵集章：</b>Day 1 函館塩 → Day 5 登別地獄味噌 → Day 6 札幌正宗味噌，一趟集滿北海道拉麵光譜，三種不重複。&nbsp;&nbsp;<b>燒肉走牛豬：</b>已跳過羊肉（成吉思汗）；若想淺嚐羊，「焼肉たいはーら」去腥好、牛豬也有，是安全牌備案。</div>
       </section>
 
-      <!-- ========== PANEL 5: TRANSPORT ========== -->
+      <!-- ===== PANEL 5: TRANSPORT ===== -->
       <section class="panel">
         <div class="panel-head">
           <div class="eyebrow">Transport</div>
           <h1 class="p-title">交通</h1>
           <p class="p-sub">全程 JR 特急北斗一線串連，決定<b>買單程票</b>（比周遊券省約 ¥4,400）。北斗號全車指定席、無自由席，每段都要劃位。</p>
         </div>
+        <div class="stagger">
+          <div class="sub-h" style="margin-top:4px;">JR 特急各段（單程・指定席）</div>
+          <table class="jr-table">
+            <thead><tr><th>日期</th><th>區間</th><th>特急</th><th>車資</th></tr></thead>
+            <tbody>
+              <tr><td class="day-lbl">Day 3 · 9/6</td><td class="seg">函館 → 洞爺</td><td>北斗 · 約 1h50</td><td class="fare">¥6,270</td></tr>
+              <tr><td class="day-lbl">Day 5 · 9/8</td><td class="seg">洞爺 → 登別</td><td>北斗 · 約 40 分</td><td class="fare">¥3,630</td></tr>
+              <tr><td class="day-lbl">Day 6 · 9/9</td><td class="seg">登別 → 札幌</td><td>北斗 · 約 1h10</td><td class="fare">¥4,780</td></tr>
+              <tr><td class="day-lbl">Day 7 · 9/10</td><td class="seg">札幌 → 新千歲</td><td>快速 Airport · 37 分</td><td class="fare">¥1,910</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">單程票合計（vs 周遊券 ¥21,000）</td><td class="fare">約 ¥16,590</td></tr></tfoot>
+          </table>
+          <p style="font-size:12px;color:var(--ink-3);margin-top:9px;">車資為 JR 北海道 2026 年費率，出發前以官方為準。白天班次約 1 小時 1–2 班，悠閒行程免擔心銜接。</p>
 
-        <div class="sub-h" style="margin-top:4px;">JR 特急各段（單程・指定席）</div>
-        <table class="jr-table">
-          <thead><tr><th>日期</th><th>區間</th><th>特急</th><th style="text-align:right;">車資</th></tr></thead>
-          <tbody>
-            <tr><td class="day-lbl">Day 3<br>9/6</td><td class="seg">函館 → 洞爺</td><td>北斗 · 約 1h50</td><td class="fare">¥6,270</td></tr>
-            <tr><td class="day-lbl">Day 5<br>9/8</td><td class="seg">洞爺 → 登別</td><td>北斗 · 約 40 分</td><td class="fare">¥3,630</td></tr>
-            <tr><td class="day-lbl">Day 6<br>9/9</td><td class="seg">登別 → 札幌</td><td>北斗 · 約 1h10</td><td class="fare">¥4,780</td></tr>
-            <tr><td class="day-lbl">Day 7<br>9/10</td><td class="seg">札幌 → 新千歲</td><td>快速 Airport · 37 分</td><td class="fare">¥1,910</td></tr>
-          </tbody>
-          <tfoot><tr><td colspan="3">單程票合計（vs 周遊券 ¥21,000）</td><td class="fare">約 ¥16,590</td></tr></tfoot>
-        </table>
-        <p style="font-size:12px;color:var(--ink-faint);margin-top:8px;">車資為 JR 北海道 2026 年費率，出發前以官方為準。白天班次約 1 小時 1–2 班，悠閒行程免擔心銜接。</p>
+          <div class="callout"><b>省錢＋劃位：</b>最長最貴的 <b>函館→洞爺（¥6,270）</b>建議上 JR 東日本「<b>えきねっと</b>」訂「特急トクだ值」網路早鳥票，北斗號可折 10–30%（乘車前一天 23:50 前購入）。其他短段直接在車站券売機買。北斗號<b>無自由席</b>，每段上車前先劃位。</div>
 
-        <div class="callout">
-          <b>省錢＋劃位：</b>最長最貴的 <b>函館→洞爺（¥6,270）</b>建議上 JR 東日本「<b>えきねっと</b>」訂「特急トクだ值」網路早鳥票，北斗號可折 10–30%（乘車前一天 23:50 前購入）。其他短段直接在車站券売機買。北斗號<b>無自由席</b>，每段上車前先劃位。
+          <div class="sub-h">車站 ↔ 溫泉街 ＋ 機場・市電</div>
+          <div class="leg-list">
+            <div class="leg" style="--accent:var(--c-yuno)"><div class="lh">✈ Day 1｜函館空港 → 湯之川</div><div class="lb">帝產巴士約 <b>15 分</b>、¥300 上下，「湯の川溫泉」站下車。比進函館駅還近。</div></div>
+            <div class="leg" style="--accent:var(--c-yuno)"><div class="lh">🚋 Day 1–2｜湯之川 ↔ 函館市區</div><div class="lb"><b>函館市電</b>約 <b>25 分</b>、¥260 上下。看夜景當晚回程留意末班市電。</div></div>
+            <div class="leg" style="--accent:var(--c-toya)"><div class="lh">🚌 Day 3｜洞爺駅 → 溫泉街</div><div class="lb">道南巴士約 <b>20 分</b>、¥340 上下，「洞爺湖溫泉」下車，湖畔亭步行即到。</div></div>
+            <div class="leg" style="--accent:var(--c-toya)"><div class="lh">🌋 Day 4｜洞爺湖火山日</div><div class="lb">有珠山纜車、昭和新山靠當地巴士或計程車；西山火口在溫泉街步行可及。這天以散策為主。</div></div>
+            <div class="leg" style="--accent:var(--c-nobo)"><div class="lh">🚌 Day 5｜登別駅 → 溫泉街</div><div class="lb">道南巴士約 <b>15 分</b>、¥350 上下，「登別溫泉」總站下車，adex inn 步行 2 分。</div></div>
+            <div class="leg" style="--accent:var(--c-nobo)"><div class="lh">♨ Day 5 夜｜adex inn → 第一滝本館</div><div class="lb">正對面步行 <b>2 分</b>。大浴場約開放至 <b>22:00</b>，別太晚去；自家浴場開到隔天 10:00。毛巾房內有、浴場禁用手機。Check-in 先問櫃檯通行方式（可能需專用卡）。</div></div>
+            <div class="leg" style="--accent:var(--c-sapp)"><div class="lh">🚌 Day 6｜溫泉街 → 登別駅</div><div class="lb">同段巴士反向回登別駅（約 15 分），轉特急北斗往札幌。</div></div>
+            <div class="leg" style="--accent:#7d828b"><div class="lh">✈ Day 7｜札幌 → 新千歲</div><div class="lb"><b>JR 快速 Airport</b> 約 <b>37 分</b>、¥1,910，約 15 分一班。08:00 出發、08:40 抵機場，離 12:05 留 3.5 小時。</div></div>
+          </div>
+
+          <div class="callout" style="background:rgba(46,124,138,0.09);color:#1f5c68;"><b>帶一張 IC 卡（Kitaca／Suica 等）</b>或用手機感應，市電、巴士、JR 快速都能刷，省去每段買票。特急指定席仍需另外劃位購票。</div>
+
+          <div class="sub-h">重點提醒</div>
+          <div class="notes-grid">
+            <div class="note"><h4>國定假日</h4><p>行程完全避開日本國定假日。白銀週連假在 9/19–9/23（你回國後），這段是平日淡季：人少、房價平、交通不擠。</p></div>
+            <div class="note"><h4>回程時間（很從容）</h4><p>吃完 Dormy Inn 早餐約 8:00 從札幌駅搭 JR，08:40 抵新千歲，離 12:05 起飛有 3.5 小時。不必趕早，也不用再排二条市場。</p></div>
+            <div class="note"><h4>天氣（9 月初）</h4><p>白天約 20–24°C、早晚 15°C 上下，濕度低少雨。紅葉未開（要 9 月下旬），優勢是氣候穩定、海鮮肥美。</p></div>
+            <div class="note"><h4>可再微調</h4><p>①Day 6 燒肉選中間路線（ばんばん）還是小奢華（つばめ／きゅうた）②是否加小樽（需札幌多一天）③函館→洞爺 えきねっと 早鳥開賣後訂票。</p></div>
+          </div>
+          <div class="callout paper" style="margin-top:18px;"><b>機票・住宿・交通全數定案 ✅</b>　湯之川啄木亭・洞爺湖畔亭・登別 adex inn・札幌 Dormy Inn；JR 單程票。此檔為初稿，可自由編輯調整。</div>
         </div>
-
-        <div class="sub-h">車站 ↔ 溫泉街 ＋ 機場・市電</div>
-        <div class="leg-list">
-          <div class="leg" style="--accent:var(--yunokawa)"><div class="lh">✈ Day 1｜函館空港 → 湯之川</div><div class="lb">帝產巴士約 <b>15 分</b>、¥300 上下，「湯の川溫泉」站下車。比進函館駅還近。</div></div>
-          <div class="leg" style="--accent:var(--yunokawa)"><div class="lh">🚋 Day 1–2｜湯之川 ↔ 函館市區</div><div class="lb"><b>函館市電</b>約 <b>25 分</b>、¥260 上下。看夜景當晚回程留意<b>末班市電</b>。</div></div>
-          <div class="leg" style="--accent:var(--toya)"><div class="lh">🚌 Day 3｜洞爺駅 → 溫泉街</div><div class="lb">道南巴士約 <b>20 分</b>、¥340 上下，「洞爺湖溫泉」下車，湖畔亭步行即到。</div></div>
-          <div class="leg" style="--accent:var(--toya)"><div class="lh">🌋 Day 4｜洞爺湖火山日</div><div class="lb">有珠山纜車、昭和新山靠當地巴士或計程車；西山火口在溫泉街步行可及。這天以散策為主。</div></div>
-          <div class="leg" style="--accent:var(--nobo)"><div class="lh">🚌 Day 5｜登別駅 → 溫泉街</div><div class="lb">道南巴士約 <b>15 分</b>、¥350 上下，「登別溫泉」總站下車，adex inn 步行 2 分。</div></div>
-          <div class="leg" style="--accent:var(--nobo)"><div class="lh">♨ Day 5 夜｜adex inn → 第一滝本館</div><div class="lb">正對面步行 <b>2 分</b>。大浴場約開放至 <b>22:00</b>，別太晚去；自家浴場開到隔天 10:00。毛巾房內有、浴場禁用手機。Check-in 先問櫃檯通行方式（可能需專用卡）。</div></div>
-          <div class="leg" style="--accent:var(--sapporo)"><div class="lh">🚌 Day 6｜溫泉街 → 登別駅</div><div class="lb">同段巴士反向回登別駅（約 15 分），轉特急北斗往札幌。</div></div>
-          <div class="leg" style="--accent:#888780"><div class="lh">✈ Day 7｜札幌 → 新千歲</div><div class="lb"><b>JR 快速 Airport</b> 約 <b>37 分</b>、¥1,910，約 15 分一班。08:00 出發、08:40 抵機場，離 12:05 留 3.5 小時。</div></div>
-        </div>
-
-        <div class="callout" style="background:var(--steam);"><b>帶一張 IC 卡（Kitaca／Suica 等）</b>或用手機感應，市電、巴士、JR 快速都能刷，省去每段買票。特急指定席仍需另外劃位購票。</div>
-
-        <div class="sub-h">重點提醒</div>
-        <div class="notes-grid">
-          <div class="note"><h4>國定假日</h4><p>行程完全避開日本國定假日。白銀週連假在 9/19–9/23（你回國後），這段是平日淡季：人少、房價平、交通不擠。</p></div>
-          <div class="note"><h4>回程時間（很從容）</h4><p>吃完 Dormy Inn 早餐約 8:00 從札幌駅搭 JR，08:40 抵新千歲，離 12:05 起飛有 3.5 小時。不必趕早，也不用再排二条市場。</p></div>
-          <div class="note"><h4>天氣（9 月初）</h4><p>白天約 20–24°C、早晚 15°C 上下，濕度低少雨。紅葉未開（要 9 月下旬），優勢是氣候穩定、海鮮肥美。</p></div>
-          <div class="note"><h4>可再微調</h4><p>①Day 6 燒肉選中間路線（ばんばん）還是小奢華（つばめ／きゅうた）②是否加小樽（需札幌多一天）③函館→洞爺 えきねっと 早鳥開賣後訂票。</p></div>
-        </div>
-
-        <div class="callout paper" style="margin-top:18px;"><b>機票・住宿・交通全數定案 ✅</b>　湯之川啄木亭・洞爺湖畔亭・登別 adex inn・札幌 Dormy Inn；JR 單程票。此檔為初稿，可自由編輯調整。</div>
       </section>
 
     </div>
@@ -744,52 +739,46 @@
 <script>
 (function(){
   var app   = document.getElementById('app');
-  var track = document.getElementById('track');
   var tabs  = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   var panels= Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var stage = document.getElementById('stage');
   var detailbar = document.getElementById('detailbar');
   var dtitleText = document.getElementById('dtitle-text');
-  var dtitle = document.getElementById('dtitle');
+  var dtitle = detailbar.querySelector('.dtitle');
   var backBtn = document.getElementById('back');
   var dprev = document.getElementById('dprev');
   var dnext = document.getElementById('dnext');
   var idx = 0;
 
   var SECTIONS = [
-    { name:'總覽',     accent:'#b8863a' },
-    { name:'逐日行程', accent:'#3f7d8c' },
-    { name:'住宿',     accent:'#2f8f6a' },
-    { name:'美食',     accent:'#c65a37' },
-    { name:'交通',     accent:'#6b5aa8' }
+    { name:'總覽',     accent:'#A8792B' },
+    { name:'逐日行程', accent:'#2E7C8A' },
+    { name:'住宿',     accent:'#2C8B5D' },
+    { name:'美食',     accent:'#C4542C' },
+    { name:'交通',     accent:'#5A53AD' }
   ];
 
   function go(i){
-    idx = Math.max(0, Math.min(panels.length-1, i));
-    track.style.transform = 'translateX(' + (-idx*100) + '%)';
+    i = Math.max(0, Math.min(panels.length-1, i));
+    if(i===idx && panels[i].classList.contains('active')) { return; }
+    idx = i;
+    panels.forEach(function(p,k){ p.classList.toggle('active', k===idx); });
     tabs.forEach(function(t,k){ t.classList.toggle('on', k===idx); });
-    // 首頁 vs 詳情模式
     if(idx===0){
       app.classList.add('home'); app.classList.remove('detail');
     } else {
       app.classList.add('detail'); app.classList.remove('home');
       dtitleText.textContent = SECTIONS[idx].name;
-      detailbar.style.setProperty('--accent', SECTIONS[idx].accent);
+      dtitle.style.setProperty('--accent', SECTIONS[idx].accent);
       dprev.disabled = (idx<=1);
       dnext.disabled = (idx>=panels.length-1);
     }
     if(panels[idx]) panels[idx].scrollTop = 0;
-    window.scrollTo(0,0);
   }
   tabs.forEach(function(t,i){ t.addEventListener('click', function(){ go(i); }); });
-
-  // 返回首頁
   backBtn.addEventListener('click', function(){ go(0); });
-  // 詳情模式的上一個 / 下一個區塊
   dprev.addEventListener('click', function(){ if(idx>1) go(idx-1); });
   dnext.addEventListener('click', function(){ if(idx<panels.length-1) go(idx+1); });
 
-  // 首頁「展開查看」選單
   Array.prototype.slice.call(document.querySelectorAll('.entry')).forEach(function(b){
     b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-goto'),10)); });
   });
@@ -800,53 +789,43 @@
     else if(e.key==='Escape' && idx!==0) go(0);
   });
 
-  // 註：分頁間的左右滑動切換已移除，避免與逐日行程的日程膠捲橫向滑動衝突。
-  // 切換分頁改用：首頁選單、返回箭頭、詳情列的 ‹ › 、鍵盤方向鍵／Esc。
-
-  // day filmstrip <-> day chips
+  /* ——— 逐日行程：日膠捲 ↔ 日膠囊（分頁滑動已移除，無手勢衝突） ——— */
   var strip = document.getElementById('strip');
   var chips = Array.prototype.slice.call(document.querySelectorAll('.daychip'));
   var days  = Array.prototype.slice.call(document.querySelectorAll('.day'));
-
-  var lockChip = false; // 點膠囊時鎖定，避免滾動監聽的邊界規則搶走高亮
+  var lockChip = false;
 
   function setChip(i){ chips.forEach(function(cc,k){ cc.classList.toggle('on', k===i); }); }
 
   function scrollToDay(i){
     if(!strip || !days[i]) return;
-    lockChip = true;                    // 鎖定：接下來的程式化捲動不改高亮
+    lockChip = true;
     setChip(i);
-    // 用可視座標的相對差計算：不受 offsetParent 影響
     var left = strip.scrollLeft + (days[i].getBoundingClientRect().left - strip.getBoundingClientRect().left) - 2;
     if(strip.scrollTo) strip.scrollTo({left: left, behavior: 'smooth'});
     else strip.scrollLeft = left;
   }
 
-  // 首頁溫泉站 → 進入逐日行程並捲到對應天
   Array.prototype.slice.call(document.querySelectorAll('.stop')).forEach(function(s){
     s.addEventListener('click', function(){
       var d = parseInt(s.getAttribute('data-day'),10) || 0;
       go(1);
-      setTimeout(function(){ scrollToDay(d); }, 60);
+      setTimeout(function(){ scrollToDay(d); }, 80);
     });
   });
+  chips.forEach(function(c,i){ c.addEventListener('click', function(){ scrollToDay(i); }); });
 
-  chips.forEach(function(c,i){
-    c.addEventListener('click', function(){ scrollToDay(i); });
-  });
   if(strip){
-    // 使用者手動操作膠捲時解鎖，交還高亮控制權
     ['wheel','touchstart','pointerdown','mousedown'].forEach(function(ev){
       strip.addEventListener(ev, function(){ lockChip = false; }, {passive:true});
     });
     var raf=null;
     strip.addEventListener('scroll', function(){
-      if(lockChip) return;            // 鎖定期間不搶高亮
+      if(lockChip) return;
       if(raf) return;
       raf = requestAnimationFrame(function(){
         raf=null;
         var sl=strip.scrollLeft, best=0, bd=1e9;
-        // 捲到最右：強制高亮最後一天；最左：第一天（僅手動滑動時生效）
         if(sl + strip.clientWidth >= strip.scrollWidth - 4){ best = days.length-1; }
         else if(sl <= 2){ best = 0; }
         else {
