@@ -337,6 +337,16 @@
   .leg .lh { font-weight: 800; font-size: 14px; margin-bottom: 4px; }
   .leg .lb { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
   .leg .lb b { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 12px; }
+
+  .gmap { display:inline-flex; align-items:center; gap:4px; margin-left:6px; padding:1px 7px; border-radius:999px; background:var(--surface-2); color:var(--accent, var(--c-sapp)); font-size:11px; font-weight:800; text-decoration:none; box-shadow: var(--sh-1); white-space:nowrap; }
+  .gmap:hover { background:#fff; }
+  .step-list { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+  .step { background:var(--surface); border-radius:var(--r); padding:13px 15px; box-shadow:var(--sh-1); position:relative; overflow:hidden; }
+  .step::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background:var(--accent); }
+  .step .st { font-family:var(--mono); font-size:11px; font-weight:700; color:var(--accent); letter-spacing:.02em; }
+  .step .sd { font-size:13px; color:var(--ink); line-height:1.65; margin-top:3px; }
+  .step .sd b { color:var(--ink); }
+  .step .ss { font-size:11.5px; color:var(--ink-3); line-height:1.55; margin-top:5px; }
   .sub-h { font-size: 15px; font-weight: 800; margin: 26px 0 11px; }
 
   /* ============ SHARED ============ */
@@ -536,6 +546,7 @@
               <div class="row"><div class="row-when">14:20</div><div class="row-what"><span class="tag t-see">彈性加點</span>時間與體力都夠再去 <b>湯倉神社</b> 短暫參拜、看兔子籤詩；若想買御守／抽籤，建議 18:00 前完成</div></div>
               <div class="row"><div class="row-when">15:00</div><div class="row-what"><span class="tag t-onsen">泡湯①</span>入住啄木亭，泡 11 樓空中露天看漁火，先休息再出門晚餐</div></div>
               <div class="row"><div class="row-when">17:45</div><div class="row-what"><span class="tag t-eat">燒肉</span><span class="star">★</span> 焼肉金太郎 — 湯之川溫泉電停旁，一人燒肉動線順（木曜休・單人經營要有耐心）</div></div>
+              <div class="row"><div class="row-when">晚餐後</div><div class="row-what"><span class="tag t-eat">超商補給</span>回飯店前順路去 <b>ローソン 函館湯の川温泉店</b> 買飲料、零食或隔天小補給（啄木亭徒歩約 3 分）</div></div>
               <div class="row"><div class="row-when">夜</div><div class="row-what"><span class="tag t-onsen">泡湯②</span>回啄木亭再泡一次，結束抵達日</div></div>
             </div>
             <div class="day-stay">宿：<b>湯元 啄木亭</b> ✅ 附早餐</div>
@@ -553,7 +564,8 @@
               <div class="row"><div class="row-when">16:40</div><div class="row-what"><span class="tag t-move">纜車</span>從灣區／十字街一帶慢慢步行到函館山纜車山麓駅，提前排隊與買票</div></div>
               <div class="row"><div class="row-when">17:20</div><div class="row-what"><span class="tag t-see">夜景</span><span class="star">★</span> 搭函館山纜車上山卡位；9/5 日落約 18:05，18:35–18:45 夜景成形，纜車是今晚主菜</div></div>
               <div class="row"><div class="row-when">19:10</div><div class="row-what"><span class="tag t-eat">漢堡</span>下山後回 <b>ラッキーピエロ ベイエリア本店</b> 吃招牌漢堡（LO 20:30，若下山排隊拖太久就改外帶或跳過）</div></div>
-              <div class="row"><div class="row-when">夜</div><div class="row-what"><span class="tag t-onsen">泡湯</span>十字街搭市電回湯之川，回啄木亭泡湯（留意末班市電）</div></div>
+              <div class="row"><div class="row-when">回飯店前</div><div class="row-what"><span class="tag t-eat">超商補給</span>湯之川下車後先去 <b>ローソン 函館湯の川温泉店</b> 買飲料／零食，再回啄木亭泡湯（留意末班市電）</div></div>
+              <div class="row"><div class="row-when">夜</div><div class="row-what"><span class="tag t-onsen">泡湯</span>回啄木亭泡湯，連泊最後一晚好好休息</div></div>
             </div>
             <div class="day-stay">宿：<b>湯元 啄木亭</b> ✅ 連泊第 2 晚</div>
           </article>
@@ -568,6 +580,7 @@
               <div class="row"><div class="row-when">15:00</div><div class="row-what"><span class="tag t-onsen">Check-in</span>入住 <b>洞爺 湖畔亭</b>（湖側・附早餐），先泡湖景溫泉休息</div></div>
               <div class="row"><div class="row-when">晚餐</div><div class="row-what"><span class="tag t-eat">彈性</span>優先詢問湖畔亭晚餐加購；若不能加購，改 <b>炭火ダイニング アペコロ</b>（炭火肉類・豚丼，花火前吃完）</div></div>
               <div class="row"><div class="row-when">20:45</div><div class="row-what"><span class="tag t-see">花火</span><span class="star">★</span> 洞爺湖 Long Run 花火 20:45–21:05 — 湖畔／房間直接看</div></div>
+              <div class="row"><div class="row-when">花火後</div><div class="row-what"><span class="tag t-eat">超商補給</span>回湖畔亭前順路去 <b>セブンイレブン 洞爺湖温泉店</b>，買隔天火山日的水、飯糰／小零食</div></div>
             </div>
             <div class="day-stay">宿：<b>洞爺 湖畔亭</b> ✅ 湖側・附早餐</div>
           </article>
@@ -588,6 +601,7 @@
               <div class="row"><div class="row-when">傍晚</div><div class="row-what"><span class="tag t-onsen">泡湯</span>回湖畔亭泡湖景溫泉，休息後再出門晚餐</div></div>
               <div class="row"><div class="row-when">晚餐</div><div class="row-what"><span class="tag t-eat">彈性</span><b>めしどころ松前屋</b> 或湖畔亭晚餐加購；以不影響 20:45 花火為優先</div></div>
               <div class="row"><div class="row-when">20:45</div><div class="row-what"><span class="tag t-see">花火</span>第二晚洞爺湖 Long Run 花火，天氣好就湖畔再看一次</div></div>
+              <div class="row"><div class="row-when">回飯店前</div><div class="row-what"><span class="tag t-eat">超商補給</span>最後一晚洞爺湖，順路去 <b>セブンイレブン 洞爺湖温泉店</b> 買隔天移動飲料／早餐外的小點</div></div>
             </div>
             <div class="day-stay">宿：<b>洞爺 湖畔亭</b> ✅ 連泊第 2 晚・附早餐</div>
           </article>
@@ -602,27 +616,34 @@
               <div class="row"><div class="row-when">13:30</div><div class="row-what"><span class="tag t-see">火山</span><span class="star">★</span> 飯店步行約 7–10 分到<b>地獄谷</b> → 木棧道散策（噴氣孔、紅褐岩壁）</div></div>
               <div class="row"><div class="row-when">14:20</div><div class="row-what"><span class="tag t-see">火山</span>森林步道 → <b>大湯沼</b>（灰藍硫磺熱池）→ <span class="star">★</span> <b>日和山展望台</b>俯瞰火山口（今日散步高潮）</div></div>
               <div class="row"><div class="row-when">15:40</div><div class="row-what"><span class="tag t-move">步行</span>原路悠閒走回溫泉街</div></div>
+              <div class="row"><div class="row-when">16:05</div><div class="row-what"><span class="tag t-eat">霜淇淋</span><span class="star">★</span> <b>ミルキィーハウス Milky House</b> — 登別溫泉街冰淇淋，晚餐前小甜點（地址：登別温泉町60）</div></div>
               <div class="row"><div class="row-when">16:30</div><div class="row-what"><span class="tag t-onsen">Check-in</span>入住 <b>adex inn</b>；櫃檯確認去第一滝本館泡湯的通行方式</div></div>
               <div class="row"><div class="row-when">17:30</div><div class="row-what"><span class="tag t-onsen">泡湯①</span>先泡 adex inn 自家硫磺泉，洗掉一下午疲勞</div></div>
               <div class="row"><div class="row-when">18:30</div><div class="row-what"><span class="tag t-eat">居酒屋</span><span class="star">★</span> <b>えんま坂</b> — 成吉思汗・炸雞 ザンギ・下酒菜，一人自在（溫泉街收得早，別拖太晚）</div></div>
               <div class="row"><div class="row-when">20:00</div><div class="row-what"><span class="tag t-onsen">泡湯②</span><span class="star">★</span> 走對面<b>第一滝本館</b>泡 5 泉質 35 浴池大浴場 —<b> 22:00 前泡完</b>（浴場禁用手機）</div></div>
+              <div class="row"><div class="row-when">回飯店前</div><div class="row-what"><span class="tag t-eat">超商補給</span>回 adex inn 前到 <b>セブンイレブン 登別温泉店</b> 買隔天往札幌移動的飲料／點心（24 小時）</div></div>
             </div>
             <div class="day-stay">宿：<b>adex inn</b> ✅ 附早餐 · 免費泡第一滝本館</div>
           </article>
           <article class="day" style="--accent:var(--c-sapp)">
             <div class="day-top"><span class="day-no">DAY 6</span><span class="day-date">9/9（三）· 札幌</span></div>
-            <div class="day-h">札幌美食高潮日</div>
-            <div class="day-move">🚌🚆 09:43 巴士 → 10:05 登別駅 → 10:15 北斗 3 號 → 11:29 札幌（早班備案 すずらん 5 號 09:46→11:00）</div>
+            <div class="day-h">札幌悠閒逛街 · 湯咖哩與燒肉收尾</div>
+            <div class="day-move">🚌🚆 09:43 巴士 → 10:05 登別駅 → 10:15 北斗 3 號 → 11:29 札幌；今天不排硬景點，重點是狸小路、大通、甜點、藥妝與最後一晚燒肉</div>
             <div class="rows">
               <div class="row"><div class="row-when">6:30–8:00</div><div class="row-what"><span class="tag t-eat">早餐</span>adex inn 早餐（附早餐）</div></div>
               <div class="row"><div class="row-when">退房前</div><div class="row-what"><span class="tag t-onsen">晨湯</span>再泡一次 adex inn 自家湯（自家浴場開到 10:00，退房前泡剛好）</div></div>
               <div class="row"><div class="row-when">~9:35</div><div class="row-what"><span class="tag t-move">前往巴士站</span>退房，Adex Inn 步行 2–3 分到「登別溫泉」巴士總站</div></div>
               <div class="row"><div class="row-when">09:43</div><div class="row-what"><span class="tag t-move">巴士</span>道南巴士「登別溫泉」發 → <b>10:05 抵「登別駅前」</b></div></div>
               <div class="row"><div class="row-when">10:15</div><div class="row-what"><span class="tag t-move">特急</span><b>北斗 3 號 登別→札幌</b> 10:15→11:29（指定席，先劃位；10 分轉乘緩衝剛好）</div></div>
-              <div class="row"><div class="row-when">午餐</div><div class="row-what"><span class="tag t-eat">湯咖哩</span><span class="star">★</span> GARAKU 或 Suage+ — 札幌名物湯咖哩</div></div>
-              <div class="row"><div class="row-when">下午</div><div class="row-what"><span class="tag t-see">逛街</span>大通公園、狸小路；中途「シメパフェ」聖代</div></div>
-              <div class="row"><div class="row-when">晚餐</div><div class="row-what"><span class="tag t-eat">日式燒肉</span><span class="star">★</span> 二代目ばんばん（牛豬・吧台席）<br><span class="sub">小奢華備案：つばめ／きゅうた（道產和牛）</span></div></div>
-              <div class="row"><div class="row-when">宵夜</div><div class="row-what"><span class="tag t-onsen">泡湯＋〆</span>回 Dormy Inn 泡石狩之湯，21:30 後免費宵夜拉麵</div></div>
+              <div class="row"><div class="row-when">11:50</div><div class="row-what"><span class="tag t-move">寄放行李</span>到 <b>Dormy Inn PREMIUM 札幌</b> 寄放行李，輕裝開始札幌逛街日</div></div>
+              <div class="row"><div class="row-when">12:15</div><div class="row-what"><span class="tag t-eat">湯咖哩</span><span class="star">★</span> <b>SOUP CURRY KING セントラル店</b> — 豚骨・鶏ガラ濃厚湯底，點 Pork Curry／Pork Vegetable Curry</div></div>
+              <div class="row"><div class="row-when">13:30</div><div class="row-what"><span class="tag t-see">逛街</span>大通公園、狸小路慢慢逛；順路先買一輪藥妝，不要晚上一次扛太多</div></div>
+              <div class="row"><div class="row-when">14:30</div><div class="row-what"><span class="tag t-eat">甜點</span><span class="star">★</span> <b>Majisand</b> — 狸小路 1 丁目水果三明治，下午去比較不怕熱門口味賣完</div></div>
+              <div class="row"><div class="row-when">15:30</div><div class="row-what"><span class="tag t-onsen">休息</span>Check-in Dormy Inn，回房整理、休息，晚餐前可再補一輪藥妝</div></div>
+              <div class="row"><div class="row-when">18:30</div><div class="row-what"><span class="tag t-eat">日式燒肉</span><span class="star">★</span> <b>和牛焼肉 二代目ばんばん</b> — 預算抓 ¥5,500–8,000，作為整趟最後一晚收尾</div></div>
+              <div class="row"><div class="row-when">20:30</div><div class="row-what"><span class="tag t-eat">冰淇淋</span><span class="star">★</span> <b>Milk Mura</b> — 札幌薄野冰淇淋 Bar，週三 17:00 後營業，晚餐後去剛好</div></div>
+              <div class="row"><div class="row-when">21:30+</div><div class="row-what"><span class="tag t-see">採買</span>狸小路／MEGA 唐吉訶德最後補貨；回 Dormy Inn 前可順路補 <b>ファミリーマート 札幌狸小路6丁目店</b> 或 <b>セイコーマート 狸小路6丁目店</b></div></div>
+              <div class="row"><div class="row-when">夜</div><div class="row-what"><span class="tag t-onsen">泡湯</span>回 Dormy Inn 泡湯，整理藥妝與行李，明早直接前往機場</div></div>
             </div>
             <div class="day-stay">宿：<b>Dormy Inn PREMIUM 札幌</b> ✅</div>
           </article>
@@ -699,12 +720,14 @@
           <div class="food" style="--accent:var(--c-toya)"><div class="fcat">炭火料理 · Day 3 晚餐備案</div><div class="fnm">炭火ダイニング アペコロ</div><div class="fd">若湖畔亭晚餐不能加購，就改這間。主打炭火肉類、豚丼與近郊食材，花火前吃完最剛好。</div></div>
           <div class="food" style="--accent:var(--c-toya)"><div class="fcat">定食 · Day 4 晚餐備案</div><div class="fnm">めしどころ松前屋</div><div class="fd">Day 4 火山日回來後的晚餐備案；若飯店能加購晚餐則留在湖畔亭吃，兩者都以 20:45 花火前回到湖邊為原則。</div></div>
           <div class="food" style="--accent:var(--c-nobo)"><div class="fcat">辣味拉麵 · Day 5 午餐</div><div class="fnm">麺や極楽／閻魔軒 Enmaken</div><div class="fd">登別溫泉街二選一，吃完接極樂通り、地獄谷與大湯沼散策。</div></div>
+          <div class="food" style="--accent:var(--c-nobo)"><div class="fcat">霜淇淋 · Day 5 晚餐前</div><div class="fnm">ミルキィーハウス Milky House</div><div class="fd">登別溫泉街小甜點，地址登別温泉町60；放在地獄谷散策回來、えんま坂晚餐前最順。</div></div>
           <div class="food" style="--accent:var(--c-nobo)"><div class="fcat">居酒屋 · Day 5 晚餐</div><div class="fnm">えんま坂 <span class="star">★</span></div><div class="fd">成吉思汗、ザンギ與下酒菜，一人自在；溫泉街收得早，別拖太晚。</div></div>
-          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">湯咖哩 · Day 6 午餐</div><div class="fnm">GARAKU／Suage+ <span class="star">★</span></div><div class="fd">札幌名物湯咖哩，抵達札幌後作為美食高潮第一餐。</div></div>
-          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">收尾聖代 · Day 6 下午</div><div class="fnm">シメパフェ</div><div class="fd">大通公園、狸小路逛街中途加點，補上札幌甜點文化。</div></div>
-          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">日式燒肉 · Day 6 晚餐</div><div class="fnm">二代目ばんばん <span class="star">★</span></div><div class="fd">牛豬吧台席。小奢華備案：つばめ／きゅうた（道產和牛）。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">湯咖哩 · Day 6 午餐</div><div class="fnm">SOUP CURRY KING セントラル店 <span class="star">★</span></div><div class="fd">豚骨・鶏ガラ濃厚湯底，抵達札幌後第一餐；Pork Curry／Pork Vegetable Curry 最符合需求。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">水果三明治 · Day 6 下午</div><div class="fnm">Majisand</div><div class="fd">狸小路 1 丁目水果三明治，當逛街中段甜點；下午去比晚上保險。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">日式燒肉 · Day 6 晚餐</div><div class="fnm">和牛焼肉 二代目ばんばん <span class="star">★</span></div><div class="fd">最後一晚燒肉收尾，預算抓 ¥5,500–8,000；若要升級再看つばめ。</div></div>
+          <div class="food" style="--accent:var(--c-sapp)"><div class="fcat">冰淇淋 Bar · Day 6 晚餐後</div><div class="fnm">Milk Mura</div><div class="fd">薄野大人系冰淇淋 Bar，週三 17:00 後營業；晚餐後作為札幌最後甜點。</div></div>
         </div>
-        <div class="callout"><b>美食欄已改成跟逐日行程一致：</b>Day 1 麺や一文字＋焼肉金太郎；Day 2 五島軒五稜郭タワー店＋Lucky Pierrot；Day 3 望羊蹄＋アペコロ備案；Day 4 松前屋／飯店加購；Day 5 登別辣味拉麵＋えんま坂；Day 6 湯咖哩、シメパフェ、燒肉。飯店早餐與飯店免費宵夜不列入美食清單。</div>
+        <div class="callout"><b>美食欄已改成跟逐日行程一致：</b>Day 1 麺や一文字＋焼肉金太郎；Day 2 五島軒五稜郭タワー店＋Lucky Pierrot；Day 3 望羊蹄＋アペコロ備案；Day 4 松前屋／飯店加購；Day 5 登別辣味拉麵＋Milky House＋えんま坂；Day 6 SOUP CURRY KING、Majisand、二代目ばんばん、Milk Mura。飯店早餐與飯店免費宵夜不列入美食清單。</div>
       </section>
 
       <!-- ===== PANEL 5: TRANSPORT ===== -->
@@ -712,7 +735,7 @@
         <div class="panel-head">
           <div class="eyebrow">Transport</div>
           <h1 class="p-title">交通</h1>
-          <p class="p-sub">全程 JR 特急北斗一線串連，決定<b>買單程票</b>（比周遊券省約 ¥4,400）。北斗號全車指定席、無自由席，每段都要劃位。</p>
+          <p class="p-sub">逐日行程只保留概略；這裡改成「到時照著走」的移動明細。每個主要點都放 Google Maps 圖示，點開即可看位置或臨時重查路線。特急與巴士時刻仍請出發前用官方／Google Maps 最後確認一次。</p>
         </div>
         <div class="stagger">
           <div class="sub-h" style="margin-top:4px;">JR 特急各段（單程・指定席）</div>
@@ -726,32 +749,57 @@
             </tbody>
             <tfoot><tr><td colspan="3">單程票合計（vs 周遊券 ¥21,000）</td><td class="fare">約 ¥16,590</td></tr></tfoot>
           </table>
-          <p style="font-size:12px;color:var(--ink-3);margin-top:9px;">車資為 JR 北海道 2026 年費率，出發前以官方為準。白天班次約 1 小時 1–2 班，悠閒行程免擔心銜接。</p>
+          <div class="callout"><b>地圖使用方式：</b>每個 🗺️ 都是 Google Maps 搜尋連結；行程當天可再按「路線」讓 Google 依即時班次重算。特急北斗請先劃指定席；市電、道南巴士與札幌地鐵多數可刷 IC 卡。</div>
+          <div class="callout paper"><b>每日回飯店前補給：</b>啄木亭＝ローソン函館湯の川温泉店；湖畔亭＝セブンイレブン洞爺湖温泉店；adex inn＝セブンイレブン登別温泉店；札幌 Dormy Inn＝FamilyMart／Seicomart 狸小路6丁目店。建議買水、隔天車上飲料、飯糰／小點與泡湯後飲料。</div>
 
-          <div class="callout"><b>省錢＋劃位：</b>最長最貴的 <b>函館→洞爺（¥6,270）</b>建議上 JR 東日本「<b>えきねっと</b>」訂「特急トクだ值」網路早鳥票，北斗號可折 10–30%（乘車前一天 23:50 前購入）。其他短段直接在車站券売機買。北斗號<b>無自由席</b>，每段上車前先劃位。</div>
-
-          <div class="sub-h">車站 ↔ 溫泉街 ＋ 機場・市電</div>
-          <div class="leg-list">
-            <div class="leg" style="--accent:var(--c-yuno)"><div class="lh">✈ Day 1｜函館空港 → 湯之川</div><div class="lb">空港連絡巴士約 <b>15 分</b>、¥300 上下，「湯の川溫泉」站下車。比進函館駅還近。Day 1 純待湯之川，午餐・海岸散步・神社備案・燒肉全在徒步圈內，不必進市區。</div></div>
-            <div class="leg" style="--accent:var(--c-yuno)"><div class="lh">🚋 Day 2｜湯之川 ↔ 函館市區</div><div class="lb"><b>函館市電</b>湯之川↔五稜郭公園前↔十字街，單程約 <b>25–30 分</b>、¥260 上下。當日兩趟主要市電移動：早上到五稜郭，五稜郭塔店午餐後再往十字街；其餘元町・灣區・纜車全靠步行。看完夜景下山回程<b>留意末班市電</b>（約 22:30 前）。買市電一日券（¥600）當天更划算。</div></div>
-            <div class="leg" style="--accent:var(--c-toya)"><div class="lh">🚌 Day 3｜洞爺駅 → 溫泉街</div><div class="lb">道南巴士約 <b>20 分</b>、¥340 上下，「洞爺湖溫泉」下車，湖畔亭步行即到。</div></div>
-            <div class="leg" style="--accent:var(--c-toya)"><div class="lh">🌋 Day 4｜洞爺湖火山日</div><div class="lb">上午道南巴士 <b>09:15 洞爺湖溫泉→09:30 昭和新山</b>。有珠山纜車是 <b>昭和新山山麓駅⇄有珠山山頂駅</b> 來回，山頂下車走展望台後再搭下山。抓 <b>11:45 昭和新山→12:01 洞爺湖溫泉</b> 回程，超商午餐後 <b>13:31 洞爺湖溫泉→13:34 西山遊歩道</b>，回程抓 <b>15:06→15:17</b> 或延到 <b>16:51→17:02</b>。</div></div>
-            <div class="leg" style="--accent:var(--c-nobo)"><div class="lh">🚌 Day 5｜登別駅 → 溫泉街</div><div class="lb">道南巴士約 <b>15 分</b>、¥350 上下，「登別溫泉」總站下車，adex inn 步行 2 分。</div></div>
-            <div class="leg" style="--accent:var(--c-nobo)"><div class="lh">♨ Day 5 夜｜adex inn → 第一滝本館</div><div class="lb">正對面步行 <b>2 分</b>。大浴場約開放至 <b>22:00</b>，別太晚去；自家浴場開到隔天 10:00。毛巾房內有、浴場禁用手機。Check-in 先問櫃檯通行方式（可能需專用卡）。</div></div>
-            <div class="leg" style="--accent:var(--c-sapp)"><div class="lh">🚌 Day 6｜溫泉街 → 登別駅 → 札幌</div><div class="lb">Adex Inn 步行 2–3 分到巴士總站。<b>09:43</b> 道南巴士「登別溫泉」發 → <b>10:05</b> 登別駅前 → <b>10:15</b> 特急北斗 3 號 → <b>11:29</b> 札幌。</div></div>
-            <div class="leg" style="--accent:#7d828b"><div class="lh">✈ Day 7｜札幌 → 新千歲</div><div class="lb"><b>JR 快速 Airport</b> 約 <b>37 分</b>、¥1,910，約 15 分一班。08:00 出發、08:40 抵機場，離 12:05 留 3.5 小時。</div></div>
+          <div class="sub-h">Day 1｜函館空港 → 湯之川溫泉</div>
+          <div class="step-list">
+            <div class="step" style="--accent:var(--c-yuno)"><div class="st">11:30 抵達</div><div class="sd"><b>函館空港</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E7%A9%BA%E6%B8%AF">🗺️</a> → 空港連絡巴士／計程車 → <b>湯元 啄木亭</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E5%85%83+%E5%95%84%E6%9C%A8%E4%BA%AD+%E5%87%BD%E9%A4%A8">🗺️</a> 寄放行李。</div><div class="ss">地址提示：啄木亭位於湯之川溫泉街；先放行李再吃午餐，不拖行李移動。</div></div>
+            <div class="step" style="--accent:var(--c-yuno)"><div class="st">午餐後散步</div><div class="sd">啄木亭 → <b>麺や一文字 本店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E9%BA%BA%E3%82%84%E4%B8%80%E6%96%87%E5%AD%97+%E6%9C%AC%E5%BA%97+%E5%87%BD%E9%A4%A8">🗺️</a> → <b>湯之川海岸／啄木小公園</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%95%84%E6%9C%A8%E5%B0%8F%E5%85%AC%E5%9C%92+%E5%87%BD%E9%A4%A8">🗺️</a> → 可加 <b>湯倉神社</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E5%80%89%E7%A5%9E%E7%A4%BE+%E5%87%BD%E9%A4%A8">🗺️</a> → 啄木亭 Check-in。</div><div class="ss">全部在湯之川徒步圈內；神社若要御守／抽籤建議 18:00 前。</div></div>
+            <div class="step" style="--accent:var(--c-yuno)"><div class="st">晚餐</div><div class="sd">啄木亭 → <b>焼肉金太郎</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E8%82%89%E9%87%91%E5%A4%AA%E9%83%8E+%E5%87%BD%E9%A4%A8+%E6%B9%AF%E5%B7%9D">🗺️</a> → <b>ローソン 函館湯の川温泉店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3+%E5%87%BD%E9%A4%A8%E6%B9%AF%E3%81%AE%E5%B7%9D%E6%B8%A9%E6%B3%89%E5%BA%97">🗺️</a> → 啄木亭。</div><div class="ss">啄木亭官方 FAQ 寫附近有徒歩約 3 分的ローソン；晚餐後買飲料再回飯店泡湯。</div></div>
           </div>
 
-          <div class="callout" style="background:rgba(46,124,138,0.09);color:#1f5c68;"><b>帶一張 IC 卡（Kitaca／Suica 等）</b>或用手機感應，市電、巴士、JR 快速都能刷，省去每段買票。特急指定席仍需另外劃位購票。</div>
-
-          <div class="sub-h">重點提醒</div>
-          <div class="notes-grid">
-            <div class="note"><h4>國定假日</h4><p>行程完全避開日本國定假日。白銀週連假在 9/19–9/23（你回國後），這段是平日淡季：人少、房價平、交通不擠。</p></div>
-            <div class="note"><h4>回程時間（很從容）</h4><p>吃完 Dormy Inn 早餐約 8:00 從札幌駅搭 JR，08:40 抵新千歲，離 12:05 起飛有 3.5 小時。不必趕早，也不用再排二条市場。</p></div>
-            <div class="note"><h4>天氣（9 月初）</h4><p>白天約 20–24°C、早晚 15°C 上下，濕度低少雨。紅葉未開（要 9 月下旬），優勢是氣候穩定、海鮮肥美。</p></div>
-            <div class="note"><h4>可再微調</h4><p>①Day 6 燒肉選中間路線（ばんばん）還是小奢華（つばめ／きゅうた）②是否加小樽（需札幌多一天）③函館→洞爺 えきねっと 早鳥開賣後訂票。</p></div>
+          <div class="sub-h">Day 2｜湯之川 → 五稜郭 → 元町 → 函館山夜景</div>
+          <div class="step-list">
+            <div class="step" style="--accent:var(--c-yuno)"><div class="st">08:15 出發</div><div class="sd"><b>湯の川温泉 電停</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E3%81%AE%E5%B7%9D%E6%B8%A9%E6%B3%89+%E9%9B%BB%E5%81%9C+%E5%87%BD%E9%A4%A8">🗺️</a> 搭函館市電 → <b>五稜郭公園前 電停</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%85%AC%E5%9C%92%E5%89%8D+%E9%9B%BB%E5%81%9C">🗺️</a> → 步行到 <b>五稜郭塔</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94">🗺️</a>。</div><div class="ss">市電約 25–30 分；電停到塔再步行約 15 分。</div></div>
+            <div class="step" style="--accent:var(--c-yuno)"><div class="st">午餐與元町</div><div class="sd">五稜郭塔 2F <b>五島軒 函館カレーEXPRESS 五稜郭タワー店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E5%B3%B6%E8%BB%92+%E5%87%BD%E9%A4%A8%E3%82%AB%E3%83%AC%E3%83%BCEXPRESS+%E4%BA%94%E7%A8%9C%E9%83%AD%E3%82%BF%E3%83%AF%E3%83%BC%E5%BA%97">🗺️</a> → 五稜郭公園前搭市電到 <b>十字街 電停</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%81%E5%AD%97%E8%A1%97+%E9%9B%BB%E5%81%9C+%E5%87%BD%E9%A4%A8">🗺️</a> → 步行元町。</div><div class="ss">元町路線：<b>函館ハリストス正教会</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E3%83%8F%E3%83%AA%E3%82%B9%E3%83%88%E3%82%B9%E6%AD%A3%E6%95%99%E4%BC%9A">🗺️</a> → <b>カトリック元町教会</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E5%85%83%E7%94%BA%E6%95%99%E4%BC%9A+%E5%87%BD%E9%A4%A8">🗺️</a> → <b>八幡坂</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%85%AB%E5%B9%A1%E5%9D%82+%E5%87%BD%E9%A4%A8">🗺️</a>。</div></div>
+            <div class="step" style="--accent:var(--c-yuno)"><div class="st">傍晚夜景優先</div><div class="sd">元町／灣區 → <b>金森赤レンガ倉庫</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E8%B5%A4%E3%83%AC%E3%83%B3%E3%82%AC%E5%80%89%E5%BA%AB+%E5%87%BD%E9%A4%A8">🗺️</a> → 步行到 <b>函館山ロープウェイ 山麓駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E3%83%AD%E3%83%BC%E3%83%97%E3%82%A6%E3%82%A7%E3%82%A4+%E5%B1%B1%E9%BA%93%E9%A7%85">🗺️</a> → 上山看日落與夜景。</div><div class="ss">漢堡放夜景後：下山 → <b>ラッキーピエロ ベイエリア本店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%83%94%E3%82%A8%E3%83%AD+%E3%83%99%E3%82%A4%E3%82%A8%E3%83%AA%E3%82%A2%E6%9C%AC%E5%BA%97">🗺️</a> → 十字街市電回湯之川 → <b>ローソン 函館湯の川温泉店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3+%E5%87%BD%E9%A4%A8%E6%B9%AF%E3%81%AE%E5%B7%9D%E6%B8%A9%E6%B3%89%E5%BA%97">🗺️</a> → 啄木亭。</div></div>
           </div>
-          <div class="callout paper" style="margin-top:18px;"><b>機票・住宿・交通全數定案 ✅</b>　湯之川啄木亭・洞爺湖畔亭・登別 adex inn・札幌 Dormy Inn；JR 單程票。此檔已更新 Day 1–5 主要動線；Day 3–4 洞爺湖段以早餐方案、花火、火山日大眾運輸銜接為準。</div>
+
+          <div class="sub-h">Day 3｜湯之川／函館 → 洞爺湖</div>
+          <div class="step-list">
+            <div class="step" style="--accent:var(--c-toya)"><div class="st">上午移動</div><div class="sd">啄木亭 → 市電／巴士到 <b>JR 函館駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E5%87%BD%E9%A4%A8%E9%A7%85">🗺️</a> → 特急北斗 → <b>JR 洞爺駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E6%B4%9E%E7%88%BA%E9%A7%85">🗺️</a>。</div><div class="ss">特急約 1h50，建議指定席；抵洞爺駅後接道南巴士往洞爺湖溫泉。</div></div>
+            <div class="step" style="--accent:var(--c-toya)"><div class="st">抵達洞爺湖</div><div class="sd">JR 洞爺駅 → 道南巴士到 <b>洞爺湖温泉 バスターミナル</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B4%9E%E7%88%BA%E6%B9%96%E6%B8%A9%E6%B3%89+%E3%83%90%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">🗺️</a> → <b>洞爺 湖畔亭</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B4%9E%E7%88%BA+%E6%B9%96%E7%95%94%E4%BA%AD">🗺️</a> 寄放／入住。</div><div class="ss">午餐：<b>望羊蹄</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%9C%9B%E7%BE%8A%E8%B9%84+%E6%B4%9E%E7%88%BA%E6%B9%96">🗺️</a>；下午走 <b>洞爺湖畔雕刻公園</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B4%9E%E7%88%BA%E6%B9%96%E7%95%94%E5%BD%AB%E5%88%BB%E5%85%AC%E5%9C%92">🗺️</a>，20:45 看花火。</div></div>
+            <div class="step" style="--accent:var(--c-toya)"><div class="st">晚餐備案</div><div class="sd">優先問湖畔亭能否加購晚餐；不可加購 → <b>炭火ダイニング アペコロ</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%82%AD%E7%81%AB%E3%83%80%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0+%E3%82%A2%E3%83%9A%E3%82%B3%E3%83%AD+%E6%B4%9E%E7%88%BA%E6%B9%96">🗺️</a> → <b>セブンイレブン 洞爺湖温泉店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%83%96%E3%83%B3%E3%82%A4%E3%83%AC%E3%83%96%E3%83%B3+%E6%B4%9E%E7%88%BA%E6%B9%96%E6%B8%A9%E6%B3%89%E5%BA%97">🗺️</a> → 回湖畔亭／湖畔看花火。</div><div class="ss">花火 20:45–21:05，晚餐避免排太晚；湖畔亭 FAQ 寫徒歩約 3 分有 7-11。</div></div>
+          </div>
+
+          <div class="sub-h">Day 4｜洞爺湖火山日：昭和新山・有珠山纜車・西山火口</div>
+          <div class="step-list">
+            <div class="step" style="--accent:var(--c-toya)"><div class="st">09:15–12:01 上午主線</div><div class="sd"><b>洞爺湖温泉 バスターミナル</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B4%9E%E7%88%BA%E6%B9%96%E6%B8%A9%E6%B3%89+%E3%83%90%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">🗺️</a> 09:15 → 道南巴士 → 09:30 <b>昭和新山</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%98%AD%E5%92%8C%E6%96%B0%E5%B1%B1">🗺️</a>。步行到 <b>有珠山ロープウェイ 山麓駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%9C%89%E7%8F%A0%E5%B1%B1%E3%83%AD%E3%83%BC%E3%83%97%E3%82%A6%E3%82%A7%E3%82%A4+%E5%B1%B1%E9%BA%93%E9%A7%85">🗺️</a>。</div><div class="ss">纜車是「昭和新山山麓駅 ⇄ 有珠山山頂駅」來回；山頂下車看展望台，再搭纜車回原本的昭和新山山麓站。</div></div>
+            <div class="step" style="--accent:var(--c-toya)"><div class="st">11:45 回洞爺湖溫泉</div><div class="sd">昭和新山 11:45 → 道南巴士 → 12:01 洞爺湖溫泉。回溫泉街 <b>セブンイレブン 洞爺湖温泉店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%83%96%E3%83%B3%E3%82%A4%E3%83%AC%E3%83%96%E3%83%B3+%E6%B4%9E%E7%88%BA%E6%B9%96%E6%B8%A9%E6%B3%89%E5%BA%97">🗺️</a> 簡餐／補水。</div><div class="ss">不排噴火亭，才有時間接下午西山火口。</div></div>
+            <div class="step" style="--accent:var(--c-toya)"><div class="st">13:31–15:17 西山火口</div><div class="sd">洞爺湖溫泉 13:31 → 13:34 <b>西山遊歩道</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E5%B1%B1%E9%81%8A%E6%AD%A9%E9%81%93+%E6%B4%9E%E7%88%BA%E6%B9%96">🗺️</a> → <b>西山山麓火口散策路</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E5%B1%B1%E5%B1%B1%E9%BA%93%E7%81%AB%E5%8F%A3%E6%95%A3%E7%AD%96%E8%B7%AF">🗺️</a> → 西山遊歩道 15:06 → 15:17 洞爺湖溫泉。</div><div class="ss">想多走可延到 16:51 → 17:02 回程。晚餐：<b>めしどころ松前屋</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%81%E3%81%97%E3%81%A9%E3%81%93%E3%82%8D%E6%9D%BE%E5%89%8D%E5%B1%8B+%E6%B4%9E%E7%88%BA%E6%B9%96">🗺️</a> 或湖畔亭加購；回飯店前可再繞 7-11。</div></div>
+          </div>
+
+          <div class="sub-h">Day 5｜洞爺湖 → 登別溫泉</div>
+          <div class="step-list">
+            <div class="step" style="--accent:var(--c-nobo)"><div class="st">上午城市移動</div><div class="sd">湖畔亭 → 洞爺湖温泉巴士 → <b>JR 洞爺駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E6%B4%9E%E7%88%BA%E9%A7%85">🗺️</a> → 特急北斗 → <b>JR 登別駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E7%99%BB%E5%88%A5%E9%A7%85">🗺️</a> → 道南巴士 → <b>登別温泉 バスターミナル</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BB%E5%88%A5%E6%B8%A9%E6%B3%89+%E3%83%90%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">🗺️</a> → <b>adex inn</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=adex+inn+%E7%99%BB%E5%88%A5">🗺️</a> 寄放行李。</div><div class="ss">登別駅到溫泉街約 15 分；adex inn 離巴士總站步行 2–3 分。</div></div>
+            <div class="step" style="--accent:var(--c-nobo)"><div class="st">午後徒步圈</div><div class="sd">午餐 <b>麺や極楽</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E9%BA%BA%E3%82%84%E6%A5%B5%E6%A5%BD+%E7%99%BB%E5%88%A5">🗺️</a>／<b>閻魔軒 Enmaken</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E9%96%BB%E9%AD%94%E8%BB%92+%E7%99%BB%E5%88%A5">🗺️</a> → <b>極楽通り</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%A5%B5%E6%A5%BD%E9%80%9A%E3%82%8A+%E7%99%BB%E5%88%A5%E6%B8%A9%E6%B3%89">🗺️</a> → <b>地獄谷</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BB%E5%88%A5+%E5%9C%B0%E7%8D%84%E8%B0%B7">🗺️</a> → <b>大湯沼</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BB%E5%88%A5+%E5%A4%A7%E6%B9%AF%E6%B2%BC">🗺️</a> → <b>日和山展望台</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E5%92%8C%E5%B1%B1%E5%B1%95%E6%9C%9B%E5%8F%B0+%E7%99%BB%E5%88%A5">🗺️</a>。</div><div class="ss">下午不搭車，全程以步行串起火山景點。</div></div>
+            <div class="step" style="--accent:var(--c-nobo)"><div class="st">晚餐前後</div><div class="sd">回溫泉街 → <b>ミルキィーハウス Milky House</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%9F%E3%83%AB%E3%82%AD%E3%82%A3%E3%83%BC%E3%83%8F%E3%82%A6%E3%82%B9+%E7%99%BB%E5%88%A5%E6%B8%A9%E6%B3%89%E7%94%BA60">🗺️</a> → adex inn Check-in／泡湯 → <b>えんま坂</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%81%88%E3%82%93%E3%81%BE%E5%9D%82+%E7%99%BB%E5%88%A5">🗺️</a> → <b>第一滝本館</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%AC%AC%E4%B8%80%E6%BB%9D%E6%9C%AC%E9%A4%A8+%E7%99%BB%E5%88%A5">🗺️</a> 大浴場 → <b>セブンイレブン 登別温泉店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%83%96%E3%83%B3%E3%82%A4%E3%83%AC%E3%83%96%E3%83%B3+%E7%99%BB%E5%88%A5%E6%B8%A9%E6%B3%89%E5%BA%97">🗺️</a> → adex inn。</div><div class="ss">Milky House 放 16:00 左右最安全；7-11 登別温泉店為 24 小時，適合隔天移動前補給。</div></div>
+          </div>
+
+          <div class="sub-h">Day 6｜登別 → 札幌：逛街・湯咖哩・甜點・燒肉</div>
+          <div class="step-list">
+            <div class="step" style="--accent:var(--c-sapp)"><div class="st">09:43–11:29 進札幌</div><div class="sd">adex inn → 登別温泉巴士總站 09:43 → 10:05 JR 登別駅 → 10:15 特急北斗 3 號 → 11:29 <b>JR 札幌駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E6%9C%AD%E5%B9%8C%E9%A7%85">🗺️</a>。</div><div class="ss">抵札幌後先到 <b>Dormy Inn PREMIUM 札幌</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Dormy+Inn+PREMIUM+%E6%9C%AD%E5%B9%8C">🗺️</a> 寄放行李。</div></div>
+            <div class="step" style="--accent:var(--c-sapp)"><div class="st">午餐與下午甜點</div><div class="sd">Dormy Inn → <b>SOUP CURRY KING セントラル店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SOUP+CURRY+KING+%E3%82%BB%E3%83%B3%E3%83%88%E3%83%A9%E3%83%AB%E5%BA%97+%E6%9C%AD%E5%B9%8C">🗺️</a> → <b>大通公園</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%80%9A%E5%85%AC%E5%9C%92+%E6%9C%AD%E5%B9%8C">🗺️</a>／<b>狸小路商店街</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E7%8B%B8%E5%B0%8F%E8%B7%AF%E5%95%86%E5%BA%97%E8%A1%97">🗺️</a> → <b>Majisand</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Majisand+%E6%9C%AD%E5%B9%8C">🗺️</a>。</div><div class="ss">湯咖哩吃豚骨・鶏ガラ濃厚湯底；Majisand 放 14:30 左右。</div></div>
+            <div class="step" style="--accent:var(--c-sapp)"><div class="st">晚餐與最後採買</div><div class="sd">Dormy Inn → <b>和牛焼肉 二代目ばんばん</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%92%8C%E7%89%9B%E7%84%BC%E8%82%89+%E4%BA%8C%E4%BB%A3%E7%9B%AE%E3%81%B0%E3%82%93%E3%81%B0%E3%82%93+%E6%9C%AD%E5%B9%8C%E3%81%99%E3%81%99%E3%81%8D%E3%81%AE%E5%BA%97">🗺️</a> → <b>Milk Mura</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A0Bar+HOKKAIDO+%E3%83%9F%E3%83%AB%E3%82%AF%E6%9D%91">🗺️</a> → <b>MEGA 唐吉訶德 札幌狸小路本店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=MEGA%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86+%E6%9C%AD%E5%B9%8C%E7%8B%B8%E5%B0%8F%E8%B7%AF%E6%9C%AC%E5%BA%97">🗺️</a> → <b>ファミリーマート 札幌狸小路6丁目店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%95%E3%82%A1%E3%83%9F%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%BC%E3%83%88+%E6%9C%AD%E5%B9%8C%E7%8B%B8%E5%B0%8F%E8%B7%AF6%E4%B8%81%E7%9B%AE%E5%BA%97">🗺️</a>／<b>セイコーマート 狸小路6丁目店</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%82%A4%E3%82%B3%E3%83%BC%E3%83%9E%E3%83%BC%E3%83%88+%E7%8B%B8%E5%B0%8F%E8%B7%AF6%E4%B8%81%E7%9B%AE%E5%BA%97">🗺️</a> → Dormy Inn。</div><div class="ss">Milk Mura 週三 17:00 後營業；FamilyMart 札幌狸小路6丁目店 24 小時，Seicomart 狸小路6丁目店 06:00–00:00。</div></div>
+          </div>
+
+          <div class="sub-h">Day 7｜札幌 → 新千歲機場</div>
+          <div class="step-list">
+            <div class="step" style="--accent:#7d828b"><div class="st">08:00 前後出發</div><div class="sd">Dormy Inn → <b>JR 札幌駅</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E6%9C%AD%E5%B9%8C%E9%A7%85">🗺️</a> → JR 快速 Airport → <b>新千歳空港</b><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%8D%83%E6%AD%B3%E7%A9%BA%E6%B8%AF">🗺️</a>。</div><div class="ss">約 37 分；08:40 抵機場，離 12:05 起飛約 3.5 小時。</div></div>
+          </div>
+
+          <div class="callout paper" style="margin-top:18px;"><b>使用提醒：</b>地圖連結無法取代當日即時導航；遇到天候、臨時改點或巴士班次異動時，以 Google Maps 即時計算、JR 北海道、道南巴士與各店官方公告為準。</div>
         </div>
       </section>
 
