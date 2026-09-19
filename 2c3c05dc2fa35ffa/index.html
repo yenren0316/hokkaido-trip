@@ -6,6 +6,11 @@
 <meta name="color-scheme" content="light only">
 <meta name="robots" content="noindex,nofollow">
 <title>輕井澤 5 天 4 夜 ｜ 2026.11.23–11.27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+      media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"></noscript>
 <style>
   :root{
     color-scheme: light only;
@@ -31,9 +36,9 @@
     --maxw:980px;
     --ease:cubic-bezier(.22,.61,.36,1);
     --ease-soft:cubic-bezier(.4,0,.2,1);
-    --serif:"Hiragino Mincho ProN","Noto Serif TC","Noto Serif CJK TC","Source Han Serif TC","Songti TC","Yu Mincho","MS Mincho","Times New Roman",serif;
-    --sans:"Hiragino Sans","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
-    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+    --sans:"Manrope","PingFang TC","Hiragino Sans","Noto Sans TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+    --disp:var(--sans);
+    --mono:var(--sans);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -44,6 +49,8 @@
     overflow-x:hidden;
   }
   button{font-family:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+  .m-kick,.mf .c,.mf .t,.eyebrow,.label,.sp .s,.c-tag,.c-when,.fl .c,.fl .t,.dno,.tl-t,
+  .l-chk,.l-area,.step-t,.tbl .lbl,.tbl .num,.dc-no,.dc-date,.sheet-no,.sheet-date{font-variant-numeric:tabular-nums}
   b{font-weight:700}
   .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
   .star{color:var(--gold);font-weight:700}
@@ -62,7 +69,7 @@
   }
   .mast>*{position:relative;z-index:1}
   .m-kick{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:#93AABE;font-weight:500}
-  .m-title{font-family:var(--serif);font-size:46px;font-weight:600;letter-spacing:.16em;line-height:1.08;margin:14px 0 8px}
+  .m-title{font-family:var(--disp);font-size:44px;font-weight:800;letter-spacing:.06em;line-height:1.1;margin:14px 0 8px}
   .m-sub{font-size:13px;color:#BBCADA;letter-spacing:.05em}
   .m-rule{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,.02));margin:22px 0 18px}
   .m-flights{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -94,7 +101,7 @@
   }
 
   /* ========== 視圖切換 ========== */
-  .main{padding:34px 0 76px;overflow-anchor:none}
+  .main{padding-block:34px 76px;overflow-anchor:none}
   .view{display:none;opacity:1;transform:none;transition:opacity .3s var(--ease-soft), transform .3s var(--ease-soft)}
   .view.on{display:block}
   .view.pre{opacity:0;transform:translateY(10px)}
@@ -105,10 +112,10 @@
   /* ========== 標題區 ========== */
   .v-head{margin-bottom:28px}
   .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
-  .v-title{font-family:var(--serif);font-size:33px;font-weight:600;letter-spacing:.08em;margin:11px 0 0;line-height:1.25}
+  .v-title{font-family:var(--disp);font-size:32px;font-weight:800;letter-spacing:.02em;margin:11px 0 0;line-height:1.25}
   .lede{font-size:14.5px;color:var(--ink-2);margin-top:13px;max-width:64ch}
   .hint{font-size:12.5px;color:var(--ink-3);margin-top:11px}
-  .sec-h{font-family:var(--serif);font-size:19.5px;font-weight:600;letter-spacing:.06em;margin:38px 0 15px}
+  .sec-h{font-family:var(--disp);font-size:19px;font-weight:800;letter-spacing:.02em;margin:38px 0 15px}
   .sec-h:first-child{margin-top:0}
   .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin:36px 0 14px}
 
@@ -139,7 +146,7 @@
   .card:active{border-color:#C4CDD4}
   .c-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--a)}
   .c-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--a)}
-  .card h3{font-family:var(--serif);font-size:18.5px;font-weight:600;letter-spacing:.03em;margin:10px 0 3px}
+  .card h3{font-family:var(--disp);font-size:18px;font-weight:800;letter-spacing:.01em;margin:10px 0 3px}
   .c-when{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.03em}
   .c-body{font-size:12.5px;color:var(--ink-2);line-height:1.65;margin-top:11px}
   .c-foot{font-size:11.5px;font-weight:700;color:var(--a);margin-top:auto;padding-top:11px;border-top:1px solid var(--line-soft);width:100%}
@@ -150,7 +157,7 @@
   .flights{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
   .fl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:17px 19px}
   .fl .c{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--indigo);font-weight:600}
-  .fl .r{font-family:var(--serif);font-size:19px;font-weight:600;margin:7px 0 4px;letter-spacing:.04em}
+  .fl .r{font-family:var(--disp);font-size:18.5px;font-weight:800;margin:7px 0 4px;letter-spacing:.02em}
   .fl .t{font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
 
   /* ========== 提示框 ========== */
@@ -167,30 +174,68 @@
   .note p{font-size:12.5px;color:var(--ink-2);line-height:1.65}
 
   /* ========== 每日行程 ========== */
-  .daybar{
-    position:sticky;top:calc(var(--navh) - 1px);z-index:20;
-    display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
-    margin:0 -26px 26px;padding:11px 26px;
-    background:rgba(251,251,249,.92);
-    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line-soft);
+  /* 每日索引卡 */
+  .daystore{display:none}
+  .dlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+  .dcard{
+    display:flex;flex-direction:column;align-items:flex-start;text-align:left;width:100%;font:inherit;cursor:pointer;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;
+    transition:border-color .28s var(--ease-soft), box-shadow .3s var(--ease-soft), transform .3s var(--ease);
   }
-  .daybar::-webkit-scrollbar{display:none}
-  .chip{
-    flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;
-    padding:6px 14px;font-size:12.5px;font-weight:600;color:var(--ink-2);cursor:pointer;white-space:nowrap;
-    transition:background .26s var(--ease-soft), color .26s var(--ease-soft), border-color .26s var(--ease-soft);
+  @media (hover:hover) and (pointer:fine){
+    .dcard:hover{border-color:#CBD3D9;box-shadow:0 8px 26px rgba(16,32,46,.075);transform:translateY(-2px)}
+    .dcard:hover .dc-go{color:var(--a)}
   }
-  .chip .cd{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px;transition:color .26s var(--ease-soft)}
-  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
-  .chip.on .cd{color:rgba(255,255,255,.6)}
+  .dcard:active{border-color:#C4CDD4}
+  .dc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .dc-no{font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#fff;background:var(--a);padding:4px 10px;border-radius:5px}
+  .dc-date{font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.02em}
+  .dc-title{font-family:var(--disp);font-size:17.5px;font-weight:800;letter-spacing:.01em;margin:12px 0 6px;line-height:1.5}
+  .dc-line{font-size:12.5px;color:var(--ink-2);line-height:1.7}
+  .dc-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+    margin-top:auto;padding-top:12px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-3)}
+  .dc-go{font-weight:800;color:var(--ink-3);white-space:nowrap;transition:color .26s var(--ease-soft)}
 
-  .day{scroll-margin-top:120px;padding-bottom:36px}
-  .day+.day{border-top:1px solid var(--line);padding-top:32px}
+  .day{padding-bottom:36px}
+
+  /* 滿版單日 */
+  .sheet{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;background:var(--paper);
+    opacity:0;transform:translateY(14px);
+    transition:opacity .26s var(--ease-soft), transform .3s var(--ease)}
+  .sheet.open{opacity:1;transform:none}
+  .sheet[hidden]{display:none}
+  body.locked{overflow:hidden}
+  .sheet-bar{flex:0 0 auto;display:flex;align-items:center;gap:12px;
+    padding:calc(11px + env(safe-area-inset-top,0px)) 18px 11px;
+    background:rgba(251,251,249,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line)}
+  .sheet-x{display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:38px;height:38px;
+    border:1px solid var(--line);background:var(--card);border-radius:50%;cursor:pointer;
+    transition:background .24s var(--ease-soft), border-color .24s var(--ease-soft)}
+  .sheet-x svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round}
+  @media (hover:hover) and (pointer:fine){.sheet-x:hover{background:var(--wash);border-color:#CBD3D9}}
+  .sheet-id{display:flex;align-items:center;gap:9px;min-width:0}
+  .sheet-no{font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#fff;background:var(--a);padding:4px 10px;border-radius:5px;white-space:nowrap}
+  .sheet-date{font-size:12.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sheet-nav{margin-left:auto;display:flex;gap:7px;flex:0 0 auto}
+  .sheet-nav button{width:38px;height:38px;border:1px solid var(--line);background:var(--card);border-radius:10px;
+    font-size:17px;font-weight:700;color:var(--ink-2);cursor:pointer;line-height:1;
+    transition:background .24s var(--ease-soft), color .24s var(--ease-soft), opacity .24s var(--ease-soft)}
+  .sheet-nav button:disabled{opacity:.32;cursor:default}
+  @media (hover:hover) and (pointer:fine){.sheet-nav button:not(:disabled):hover{background:var(--wash);color:var(--ink)}}
+  .sheet-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:24px 20px calc(46px + env(safe-area-inset-bottom,0px));
+    opacity:1;transition:opacity .16s var(--ease-soft)}
+  .sheet-body.fade{opacity:0}
+  .sheet-in{max-width:720px;margin:0 auto}
+  .sheet .day{padding-bottom:0}
+  .sheet .dhead{display:none}
+  .sheet .dtitle{margin-top:0;font-size:25px}
+  @media (max-width:760px){.sheet-body{padding:20px 18px calc(40px + env(safe-area-inset-bottom,0px))}.sheet .dtitle{font-size:21px}}
   .dhead{display:flex;flex-wrap:wrap;align-items:center;gap:11px}
   .dno{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--a);padding:4px 10px;border-radius:5px}
   .ddate{font-size:12.5px;font-weight:600;color:var(--ink-3);letter-spacing:.03em}
-  .dtitle{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.04em;margin:13px 0 0}
+  .dtitle{font-family:var(--disp);font-size:23px;font-weight:800;letter-spacing:.01em;margin:13px 0 0}
   .dmove{font-size:13px;color:var(--ink-2);line-height:1.7;margin-top:11px;padding-left:13px;border-left:2px solid var(--a)}
   .tl{list-style:none;position:relative;margin-top:22px}
   .tl::before{content:"";position:absolute;left:66px;top:14px;bottom:14px;width:1px;background:var(--line)}
@@ -214,7 +259,7 @@
   .l-chk{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;color:#fff;background:var(--a);padding:3px 10px;border-radius:999px}
   .l-when{font-size:12.5px;font-weight:600;color:var(--ink-2)}
   .l-area{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--a)}
-  .l-name{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.03em;margin:7px 0 9px}
+  .l-name{font-family:var(--disp);font-size:18.5px;font-weight:800;letter-spacing:.01em;margin:7px 0 9px}
   .l-desc{font-size:13.5px;color:var(--ink-2);line-height:1.75}
   .l-pick{font-size:12px;font-weight:700;color:var(--gold);margin-top:12px}
 
@@ -255,17 +300,15 @@
     :root{--navh:49px}
     .wrap{padding:0 18px}
     .mast{padding-top:calc(26px + env(safe-area-inset-top,0px));padding-bottom:24px}
-    .m-title{font-size:34px;letter-spacing:.12em}
+    .m-title{font-size:33px;letter-spacing:.05em}
     .m-rule{margin:17px 0 14px}
     .m-flights{grid-template-columns:1fr}
     .nav-in{padding:0 18px}
     .nav-i{font-size:13.5px;padding:13px 12px 11px}
-    .main{padding:26px 0 56px}
-    .v-title{font-size:27px}
+    .main{padding-block:26px 56px}
+    .v-title{font-size:26px}
     .flights{grid-template-columns:1fr}
-    .daybar{margin:0 -18px 22px;padding:10px 18px}
-    .dtitle{font-size:21px}
-    .day{scroll-margin-top:112px}
+    .dtitle{font-size:20.5px}
     .tl::before{left:55px}
     .tl li{grid-template-columns:46px 1fr;gap:20px}
     .tl li::after{left:51px}
@@ -312,7 +355,7 @@
       <div class="eyebrow">Overview · Draft</div>
       <h2 class="v-title">行程總覽</h2>
       <p class="lede">成田進出，輕井澤滑三天。首晚住輕井澤站前 APA，中間兩晚住雪場旁的王子大飯店東館；滑完第三天下午直接搭新幹線到上野過夜，隔天 Skyliner 直達成田，回程不用趕。機票與四晚住宿已訂妥，列車班次之後再訂。</p>
-      <p class="hint">點下方任一張卡片，會跳到對應那天的行程</p>
+      <p class="hint">點下方任一張卡片，會直接展開那天的滿版行程</p>
     </div>
 
     <div class="spine">
@@ -390,13 +433,41 @@
       <div class="eyebrow">Itinerary · Draft</div>
       <h2 class="v-title">逐日行程</h2>
     </div>
-    <div class="daybar" id="daybar">
-      <button class="chip on">Day 1<span class="cd">11/23</span></button>
-      <button class="chip">Day 2<span class="cd">11/24</span></button>
-      <button class="chip">Day 3<span class="cd">11/25</span></button>
-      <button class="chip">Day 4<span class="cd">11/26</span></button>
-      <button class="chip">Day 5<span class="cd">11/27</span></button>
+    <p class="hint" style="margin:-8px 0 20px">點任何一天展開滿版行程，手機上看當天最方便；展開後可用左右鍵或上下一天切換。</p>
+    <div class="dlist">
+      <button class="dcard" data-open="0" style="--a:var(--indigo)">
+        <span class="dc-top"><span class="dc-no">DAY 1</span><span class="dc-date">11/23（一）· 抵達</span></span>
+        <span class="dc-title">紅眼抵成田 · 星野區泡湯散步</span>
+        <span class="dc-line">N'EX → 新幹線 → 寄行李 → 星野溫泉・榆樹街小鎮</span>
+        <span class="dc-foot"><span>宿 · APA 輕井澤站前</span><span class="dc-go">展開全天 →</span></span>
+      </button>
+      <button class="dcard" data-open="1" style="--a:var(--teal)">
+        <span class="dc-top"><span class="dc-no">DAY 2</span><span class="dc-date">11/24（二）· 王子東館</span></span>
+        <span class="dc-title">搬到雪場旁 · 租裝備 · 滑雪第 1 天</span>
+        <span class="dc-line">APA 退房 → 東館寄行李 → 租裝備 → 滑雪 → 入住</span>
+        <span class="dc-foot"><span>宿 · 王子大飯店 東館</span><span class="dc-go">展開全天 →</span></span>
+      </button>
+      <button class="dcard" data-open="2" style="--a:var(--teal)">
+        <span class="dc-top"><span class="dc-no">DAY 3</span><span class="dc-date">11/25（三）· 王子東館</span></span>
+        <span class="dc-title">滑雪第 2 天 · 晚上休息泡湯</span>
+        <span class="dc-line">全天在雪場，不用搬家、沒有移動壓力</span>
+        <span class="dc-foot"><span>宿 · 王子大飯店 東館</span><span class="dc-go">展開全天 →</span></span>
+      </button>
+      <button class="dcard" data-open="3" style="--a:var(--plum)">
+        <span class="dc-top"><span class="dc-no">DAY 4</span><span class="dc-date">11/26（四）· 移到上野</span></span>
+        <span class="dc-title">東館退房 · 滑雪第 3 天 · 下午新幹線到上野</span>
+        <span class="dc-line">14:30 還裝備更衣 → 取行李 → 16 點多新幹線 → 上野</span>
+        <span class="dc-foot"><span>宿 · APA 京成上野站前南</span><span class="dc-go">展開全天 →</span></span>
+      </button>
+      <button class="dcard" data-open="4" style="--a:var(--slate)">
+        <span class="dc-top"><span class="dc-no">DAY 5</span><span class="dc-date">11/27（五）· 返程</span></span>
+        <span class="dc-title">Skyliner 直達成田 · 返桃園</span>
+        <span class="dc-line">09:15 Skyliner → 10:00 抵第一航廈 → 12:55 起飛</span>
+        <span class="dc-foot"><span>16:15 抵桃園</span><span class="dc-go">展開全天 →</span></span>
+      </button>
     </div>
+
+    <div class="daystore" id="daystore">
 
     <article class="day" style="--a:var(--indigo)">
       <div class="dhead"><span class="dno">DAY 1</span><span class="ddate">11/23（一）· 抵達</span></div>
@@ -479,6 +550,7 @@
       </ul>
       <div class="dfoot">今日返台，行程完成 ✈</div>
     </article>
+    </div>
   </section>
 
   <!-- ===== 03 住宿 ===== -->
@@ -594,6 +666,20 @@
 
 </main>
 
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="單日行程" hidden>
+  <header class="sheet-bar">
+    <button class="sheet-x" id="sheetx" aria-label="關閉">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="sheet-id"><span class="sheet-no" id="sheetno">DAY 1</span><span class="sheet-date" id="sheetdate"></span></div>
+    <div class="sheet-nav">
+      <button id="sprev" aria-label="前一天">‹</button>
+      <button id="snext" aria-label="後一天">›</button>
+    </div>
+  </header>
+  <div class="sheet-body" id="sheetbody"></div>
+</div>
+
 <footer class="foot"><div class="wrap">輕井澤 2026.11.23–11.27 · 行前請以官方公告為準</div></footer>
 
 <script>
@@ -603,12 +689,12 @@
   var ind   = document.getElementById('navind');
   var views = [].slice.call(document.querySelectorAll('.view'));
   var main  = document.getElementById('main');
-  var chips = [].slice.call(document.querySelectorAll('.chip'));
-  var days  = [].slice.call(document.querySelectorAll('.day'));
   var mast  = document.querySelector('.mast');
+  var days  = [].slice.call(document.querySelectorAll('.daystore .day'));
   var idx = 0, busy = false;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- 區塊切換 ---------- */
   function follow(box, el){
     if (!box || !el) return;
     var l = el.offsetLeft, r = l + el.offsetWidth, pad = 18;
@@ -655,40 +741,93 @@
 
   tabs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i); }); });
 
-  document.addEventListener('keydown', function(e){
-    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
-    if (e.key === 'ArrowRight') show(idx + 1);
-    else if (e.key === 'ArrowLeft') show(idx - 1);
-  });
+  /* ---------- 滿版單日 ---------- */
+  var sheet = document.getElementById('sheet');
+  var sbody = document.getElementById('sheetbody');
+  var sno   = document.getElementById('sheetno');
+  var sdate = document.getElementById('sheetdate');
+  var sprev = document.getElementById('sprev');
+  var snext = document.getElementById('snext');
+  var sx    = document.getElementById('sheetx');
+  var open  = -1, pushed = false, lastFocus = null;
 
-  function goDay(d){
+  function fill(d){
+    var src = days[d];
+    sbody.innerHTML = '';
+    var box = document.createElement('div');
+    box.className = 'sheet-in';
+    box.appendChild(src.cloneNode(true));
+    sbody.appendChild(box);
+    sbody.scrollTop = 0;
+    sheet.style.setProperty('--a', src.style.getPropertyValue('--a') || 'var(--indigo)');
+    sno.textContent = src.querySelector('.dno').textContent;
+    sdate.textContent = src.querySelector('.ddate').textContent;
+    sprev.disabled = (d === 0);
+    snext.disabled = (d === days.length - 1);
+    open = d;
+  }
+
+  function openDay(d){
     if (!days[d]) return;
-    setChip(d);
-    days[d].scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
-  }
-  function setChip(d){
-    if (chips[d] && chips[d].classList.contains('on')) return;
-    chips.forEach(function(c, k){ c.classList.toggle('on', k === d); });
-    follow(document.getElementById('daybar'), chips[d]);
+    if (open >= 0){                       /* 已開啟：換天，輕微淡出淡入 */
+      if (d === open) return;
+      if (reduce){ fill(d); return; }
+      sbody.classList.add('fade');
+      setTimeout(function(){ fill(d); sbody.classList.remove('fade'); }, 150);
+      return;
+    }
+    lastFocus = document.activeElement;
+    fill(d);
+    sheet.hidden = false;
+    document.body.classList.add('locked');
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ sheet.classList.add('open'); });
+    });
+    sx.focus({preventScroll: true});
+    try { if (!pushed){ history.pushState({sheet: 1}, ''); pushed = true; } } catch (e) {}
   }
 
-  chips.forEach(function(c, i){ c.addEventListener('click', function(){ goDay(i); }); });
+  function closeDay(fromPop){
+    if (open < 0) return;
+    open = -1;
+    sheet.classList.remove('open');
+    document.body.classList.remove('locked');
+    setTimeout(function(){
+      if (open < 0){ sheet.hidden = true; sbody.innerHTML = ''; }
+    }, reduce ? 0 : 280);
+    if (fromPop) pushed = false;
+    else { try { if (pushed){ pushed = false; history.back(); } } catch (e) {} }
+    if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll: true});
+  }
 
+  [].slice.call(document.querySelectorAll('.dcard[data-open]')).forEach(function(b){
+    b.addEventListener('click', function(){ openDay(parseInt(b.getAttribute('data-open'), 10) || 0); });
+  });
+  sx.addEventListener('click', function(){ closeDay(false); });
+  sprev.addEventListener('click', function(){ if (open > 0) openDay(open - 1); });
+  snext.addEventListener('click', function(){ if (open >= 0 && open < days.length - 1) openDay(open + 1); });
+  window.addEventListener('popstate', function(){ if (open >= 0) closeDay(true); });
+
+  /* 總覽卡片：切到逐日行程並直接展開那天 */
   [].slice.call(document.querySelectorAll('.card[data-day]')).forEach(function(b){
     b.addEventListener('click', function(){
       var d = parseInt(b.getAttribute('data-day'), 10) || 0;
-      show(1, function(){ setTimeout(function(){ goDay(d); }, 60); });
+      show(1, function(){ openDay(d); });
     });
   });
 
-  if ('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if (en.isIntersecting) setChip(days.indexOf(en.target));
-      });
-    }, {rootMargin: '-140px 0px -62% 0px', threshold: 0});
-    days.forEach(function(d){ io.observe(d); });
-  }
+  /* ---------- 鍵盤 ---------- */
+  document.addEventListener('keydown', function(e){
+    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    if (open >= 0){
+      if (e.key === 'Escape') closeDay(false);
+      else if (e.key === 'ArrowRight'){ if (open < days.length - 1) openDay(open + 1); }
+      else if (e.key === 'ArrowLeft'){ if (open > 0) openDay(open - 1); }
+      return;
+    }
+    if (e.key === 'ArrowRight') show(idx + 1);
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+  });
 
   placeInd();
   window.addEventListener('resize', placeInd);
