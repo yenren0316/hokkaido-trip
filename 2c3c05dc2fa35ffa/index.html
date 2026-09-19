@@ -7,858 +7,693 @@
 <meta name="robots" content="noindex,nofollow">
 <title>輕井澤 5 天 4 夜 ｜ 2026.11.23–11.27</title>
 <style>
-  :root {
+  :root{
     color-scheme: light only;
-    /* —— 色彩：冷霧紙感，脫離奶油色預設 —— */
-    --bg: #EDEEEB;
-    --surface: #FBFCFA;
-    --surface-2: #F3F5F1;
-    --ink: #191C21;
-    --ink-2: #565C64;
-    --ink-3: #899099;
-    --hair: rgba(25,28,33,0.09);
-    --hair-soft: rgba(25,28,33,0.055);
-    /* 主題色（初冬雪場：車站街 → 王子東館雪道 → 雪場松綠 → 東京轉乘） */
-    --c-apa: #B8742E;
-    --c-east: #2F6FA8;
-    --c-ski: #2E7D72;
-    --c-tokyo: #6A5BB0;
-    --c-gold: #A8792B;
-    /* 陰影：半透明層疊，取代實線邊框 */
-    --sh-1: 0 1px 2px rgba(18,22,28,0.05), 0 3px 10px rgba(18,22,28,0.045);
-    --sh-2: 0 2px 6px rgba(18,22,28,0.06), 0 12px 30px rgba(18,22,28,0.09);
-    --sh-pop: 0 4px 12px rgba(18,22,28,0.08), 0 20px 48px rgba(18,22,28,0.12);
-    /* Easing：進場 out、退場 in、抽屜曲線 */
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-    --r: 16px; --r-sm: 10px; --r-lg: 22px;
-    --rail-w: 268px;
-    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", monospace;
-    --sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+    /* 紙・雪・夜 */
+    --paper:#FBFBF9;
+    --card:#FFFFFF;
+    --ink:#11171D;
+    --ink-2:#4B555E;
+    --ink-3:#8C959D;
+    --line:#E4E7E5;
+    --line-soft:#EFF1EF;
+    --wash:#F3F6F6;
+    /* 節點色（只在小面積使用） */
+    --indigo:#2C5282;
+    --teal:#1D6E86;
+    --pine:#2F6B52;
+    --copper:#A0643A;
+    --plum:#6A4E88;
+    --slate:#77828C;
+    --gold:#8A6A2F;
+    --r:12px;
+    --navh:53px;
+    --maxw:980px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --ease-soft:cubic-bezier(.4,0,.2,1);
+    --serif:"Hiragino Mincho ProN","Noto Serif TC","Noto Serif CJK TC","Source Han Serif TC","Songti TC","Yu Mincho","MS Mincho","Times New Roman",serif;
+    --sans:"Hiragino Sans","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
   }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:15px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  button{font-family:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+  b{font-weight:700}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .star{color:var(--gold);font-weight:700}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; background: var(--bg); }
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow: hidden;
+  /* ========== 報頭 ========== */
+  .mast{
+    background:linear-gradient(168deg,#0D1B27 0%,#14293C 52%,#1C334A 100%);
+    color:#fff;position:relative;overflow:hidden;
+    padding:calc(36px + env(safe-area-inset-top,0px)) 0 30px;
   }
-  button { font-family: inherit; }
-
-  /* ============ APP SHELL ============ */
-  .app { display: grid; height: 100dvh; }
-  .app.home {
-    grid-template-columns: var(--rail-w) 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "brand stage" "tabs stage";
-  }
-  .app.detail {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "dbar" "stage";
-  }
-  .brandbar  { grid-area: brand; }
-  .tabs      { grid-area: tabs; }
-  .stage     { grid-area: stage; }
-  .detailbar { grid-area: dbar; }
-  .app.home .detailbar { display: none; }
-  .app.detail .brandbar, .app.detail .tabs { display: none; }
-
-  /* ============ BRAND ============ */
-  .brandbar {
-    background: linear-gradient(155deg, #2F6FA8 0%, #2E7D72 40%, #6A5BB0 72%, #B8742E 100%);
-    color: #fff; padding: 26px 24px 22px; position: relative; overflow: hidden;
-  }
-  .brandbar::after {
-    content:""; position:absolute; inset:0;
+  .mast::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
     background:
-      radial-gradient(140% 90% at 12% 20%, rgba(255,255,255,0.20) 0, transparent 45%),
-      radial-gradient(120% 80% at 92% 84%, rgba(255,255,255,0.12) 0, transparent 42%);
-    pointer-events:none;
+      radial-gradient(120% 80% at 8% 0%, rgba(255,255,255,.10) 0, transparent 52%),
+      radial-gradient(100% 70% at 96% 100%, rgba(120,190,220,.12) 0, transparent 48%);
   }
-  .brandbar > * { position: relative; z-index: 1; }
-  .brand-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.92; font-weight: 500; }
-  .brand-title { font-size: 33px; font-weight: 800; letter-spacing: 0.04em; margin: 10px 0 3px; line-height: 1.08; }
-  .brand-sub { font-size: 12px; font-weight: 600; opacity: 0.95; letter-spacing: 0.03em; }
-  .brand-flt { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
-  .brand-flt .f {
-    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 12px; padding: 10px 13px; backdrop-filter: blur(4px);
-  }
-  .brand-flt .fc { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; font-weight: 600; color: #ffe6c4; }
-  .brand-flt .fr { font-size: 14px; font-weight: 700; margin-top: 2px; }
-  .brand-flt .ft { font-family: var(--mono); font-size: 11px; opacity: 0.92; letter-spacing: 0.02em; }
+  .mast>*{position:relative;z-index:1}
+  .m-kick{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:#93AABE;font-weight:500}
+  .m-title{font-family:var(--serif);font-size:46px;font-weight:600;letter-spacing:.16em;line-height:1.08;margin:14px 0 8px}
+  .m-sub{font-size:13px;color:#BBCADA;letter-spacing:.05em}
+  .m-rule{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,.02));margin:22px 0 18px}
+  .m-flights{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mf{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.045);border-radius:10px;padding:13px 15px}
+  .mf .c{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#E2B877;font-weight:600}
+  .mf .r{font-size:14.5px;font-weight:700;margin:5px 0 2px;letter-spacing:.02em}
+  .mf .t{font-family:var(--mono);font-size:12px;color:#A9BACA}
 
-  /* ============ TABS ============ */
-  .tabs {
-    background: transparent; display: flex; flex-direction: column; gap: 4px;
-    padding: 16px 14px; overflow-y: auto;
+  /* ========== 導覽 ========== */
+  .nav{
+    position:sticky;top:0;z-index:30;
+    background:rgba(251,251,249,.88);
+    -webkit-backdrop-filter:saturate(1.5) blur(14px);backdrop-filter:saturate(1.5) blur(14px);
+    border-bottom:1px solid var(--line);
   }
-  .tab {
-    display: flex; align-items: center; gap: 12px; font-size: 14.5px; font-weight: 700;
-    color: var(--ink-2); background: transparent; border: none; text-align: left; cursor: pointer;
-    padding: 12px 14px; border-radius: 12px; white-space: nowrap;
-    transition: background .2s var(--ease-out), color .2s var(--ease-out), transform .12s var(--ease-out);
-    -webkit-tap-highlight-color: transparent;
+  .nav-in{position:relative;display:flex;gap:2px;max-width:var(--maxw);margin:0 auto;padding:0 26px;overflow-x:auto;scrollbar-width:none}
+  .nav-in::-webkit-scrollbar{display:none}
+  .nav-i{
+    position:relative;z-index:1;flex:0 0 auto;border:0;background:none;cursor:pointer;
+    font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--ink-3);
+    padding:15px 14px 13px;white-space:nowrap;
+    transition:color .26s var(--ease-soft);
   }
-  .tab .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent, var(--ink-3)); flex-shrink: 0; transition: transform .2s var(--ease-out); }
-  .tab .tn { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-left: auto; letter-spacing: .04em; transition: color .2s; }
-  .tab:active { transform: scale(0.975); }
-  .tab.on { background: var(--ink); color: #fff; box-shadow: var(--sh-1); }
-  .tab.on .dot { transform: scale(1.15); }
-  .tab.on .tn { color: rgba(255,255,255,0.55); }
-  @media (hover: hover) and (pointer: fine) {
-    .tab:hover { background: rgba(25,28,33,0.05); color: var(--ink); }
-    .tab.on:hover { background: var(--ink); }
+  .nav-i.on{color:var(--ink)}
+  @media (hover:hover) and (pointer:fine){.nav-i:hover{color:var(--ink-2)}}
+  .nav-ind{
+    position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ink);border-radius:2px;
+    transition:transform .38s var(--ease), width .38s var(--ease);
   }
 
-  /* ============ DETAIL BAR ============ */
-  .detailbar {
-    display: flex; align-items: center; gap: 14px; padding: 14px 22px;
-    background: rgba(251,252,250,0.86); backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--hair); animation: barIn .4s var(--ease-out);
-  }
-  @keyframes barIn { from { opacity:0; transform: translateY(-6px);} to {opacity:1; transform:none;} }
-  .detailbar .back {
-    display: flex; align-items: center; justify-content: center; width: 42px; height: 42px;
-    border-radius: 50%; border: none; background: var(--surface-2); box-shadow: var(--sh-1);
-    cursor: pointer; flex: 0 0 auto; padding: 0; -webkit-tap-highlight-color: transparent;
-    transition: transform .18s var(--ease-out), box-shadow .2s var(--ease-out), background .2s;
-  }
-  .detailbar .back svg { width: 21px; height: 21px; stroke: var(--ink); }
-  .detailbar .back:active { transform: scale(0.9); }
-  @media (hover: hover) and (pointer: fine) {
-    .detailbar .back:hover { background: #fff; box-shadow: var(--sh-2); transform: translateX(-1px); }
-  }
-  .detailbar .dtitle { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 11px; letter-spacing: .01em; }
-  .detailbar .dtitle .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--accent, var(--c-gold)); }
-  .detailbar .dnav { margin-left: auto; display: flex; gap: 7px; }
-  .detailbar .dnav button {
-    font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--ink-2);
-    background: var(--surface-2); border: none; border-radius: 10px; padding: 8px 13px;
-    cursor: pointer; box-shadow: var(--sh-1); -webkit-tap-highlight-color: transparent;
-    transition: transform .16s var(--ease-out), box-shadow .2s, color .2s, opacity .2s;
-  }
-  .detailbar .dnav button:active { transform: scale(0.92); }
-  .detailbar .dnav button:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
-  @media (hover: hover) and (pointer: fine) {
-    .detailbar .dnav button:not(:disabled):hover { background:#fff; color: var(--ink); box-shadow: var(--sh-2); }
-  }
+  /* ========== 視圖切換 ========== */
+  .main{padding:34px 0 76px;overflow-anchor:none}
+  .view{display:none;opacity:1;transform:none;transition:opacity .3s var(--ease-soft), transform .3s var(--ease-soft)}
+  .view.on{display:block}
+  .view.pre{opacity:0;transform:translateY(10px)}
+  .view.out{opacity:0;transform:translateY(-5px)}
+  @keyframes bootIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .boot{animation:bootIn .55s var(--ease) both}
 
-  /* ============ STAGE / STACKED PANELS ============ */
-  .stage { position: relative; overflow: hidden; }
-  .panels { position: relative; height: 100%; }
-  .panel {
-    position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: 34px 38px 64px; opacity: 0; visibility: hidden;
-    transform: translateY(12px) scale(0.994); pointer-events: none;
-    transition: opacity .26s var(--ease-in), transform .26s var(--ease-in), visibility 0s linear .26s;
+  /* ========== 標題區 ========== */
+  .v-head{margin-bottom:28px}
+  .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .v-title{font-family:var(--serif);font-size:33px;font-weight:600;letter-spacing:.08em;margin:11px 0 0;line-height:1.25}
+  .lede{font-size:14.5px;color:var(--ink-2);margin-top:13px;max-width:64ch}
+  .hint{font-size:12.5px;color:var(--ink-3);margin-top:11px}
+  .sec-h{font-family:var(--serif);font-size:19.5px;font-weight:600;letter-spacing:.06em;margin:38px 0 15px}
+  .sec-h:first-child{margin-top:0}
+  .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin:36px 0 14px}
+
+  /* ========== 路線脊線 ========== */
+  .spine{display:flex;margin:28px 0 26px}
+  .sp{flex:1;text-align:center;position:relative;padding-top:24px}
+  .sp::before{content:"";position:absolute;top:6px;left:-50%;width:100%;height:1px;background:var(--line)}
+  .sp:first-child::before{display:none}
+  .sp .d{position:absolute;top:0;left:50%;margin-left:-6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--a)}
+  .sp .n{display:block;font-size:13px;font-weight:700;letter-spacing:.02em}
+  .sp .s{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-top:2px}
+
+  /* ========== 條件標籤 ========== */
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+  .facts span{font-size:12.5px;color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:5px 13px;background:var(--card)}
+
+  /* ========== 卡片 ========== */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:14px}
+  .card{
+    display:flex;flex-direction:column;align-items:flex-start;text-align:left;width:100%;font:inherit;cursor:pointer;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;
+    transition:border-color .28s var(--ease-soft), box-shadow .3s var(--ease-soft), transform .3s var(--ease);
   }
-  .panel.active {
-    opacity: 1; visibility: visible; transform: none; pointer-events: auto;
-    transition: opacity .42s var(--ease-out), transform .42s var(--ease-out);
+  @media (hover:hover) and (pointer:fine){
+    .card:hover{border-color:#CBD3D9;box-shadow:0 8px 26px rgba(16,32,46,.075);transform:translateY(-2px)}
+    .card:hover .go{opacity:1}
   }
-  .panel-head { margin-bottom: 24px; }
-  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
-  .p-title { font-size: 27px; font-weight: 800; margin-top: 7px; letter-spacing: .01em; }
-  .p-sub { font-size: 14px; color: var(--ink-2); margin-top: 8px; max-width: 62ch; }
-  .p-hint { margin-top: 14px; font-weight: 600; color: var(--ink-3); font-size: 13px; }
-  .star { color: var(--c-gold); font-weight: 700; }
+  .card:active{border-color:#C4CDD4}
+  .c-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--a)}
+  .c-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--a)}
+  .card h3{font-family:var(--serif);font-size:18.5px;font-weight:600;letter-spacing:.03em;margin:10px 0 3px}
+  .c-when{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.03em}
+  .c-body{font-size:12.5px;color:var(--ink-2);line-height:1.65;margin-top:11px}
+  .c-foot{font-size:11.5px;font-weight:700;color:var(--a);margin-top:auto;padding-top:11px;border-top:1px solid var(--line-soft);width:100%}
+  .c-body{margin-bottom:12px}
+  .go{font-size:11px;font-weight:700;color:var(--ink-3);margin-top:8px;opacity:0;transition:opacity .26s var(--ease-soft)}
 
-  /* stagger 進場 */
-  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  .panel.active .stagger > * { animation: rise .5s var(--ease-out) both; }
-  .panel.active .stagger > *:nth-child(1){animation-delay:.02s}
-  .panel.active .stagger > *:nth-child(2){animation-delay:.06s}
-  .panel.active .stagger > *:nth-child(3){animation-delay:.10s}
-  .panel.active .stagger > *:nth-child(4){animation-delay:.14s}
-  .panel.active .stagger > *:nth-child(5){animation-delay:.18s}
-  .panel.active .stagger > *:nth-child(6){animation-delay:.22s}
-  .panel.active .stagger > *:nth-child(7){animation-delay:.26s}
-  .panel.active .stagger > *:nth-child(8){animation-delay:.30s}
-  .panel.active .stagger > *:nth-child(9){animation-delay:.34s}
-  .panel.active .stagger > *:nth-child(n+10){animation-delay:.38s}
+  /* ========== 航班 ========== */
+  .flights{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .fl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:17px 19px}
+  .fl .c{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--indigo);font-weight:600}
+  .fl .r{font-family:var(--serif);font-size:19px;font-weight:600;margin:7px 0 4px;letter-spacing:.04em}
+  .fl .t{font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
 
-  /* ============ OVERVIEW ============ */
-  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-  .fact { font-size: 12.5px; font-weight: 600; background: var(--surface); color: var(--ink-2); padding: 7px 14px; border-radius: 100px; box-shadow: var(--sh-1); }
+  /* ========== 提示框 ========== */
+  .box{background:var(--wash);border-radius:var(--r);padding:16px 19px;font-size:13px;line-height:1.75;color:#33444F;margin-top:18px}
+  .box b{color:#16242E}
+  .box.plain{background:var(--card);border:1px solid var(--line);color:var(--ink-2)}
+  .box.plain b{color:var(--ink)}
 
-  /* 北斗線 路線圖 signature */
-  .routemap { display: flex; margin: 4px 0 22px; padding: 6px 0; }
-  .rm-node { flex: 1; text-align: center; position: relative; padding-top: 20px; }
-  .rm-node::before {
-    content: ""; position: absolute; top: 10px; left: -50%; width: 100%; height: 2px;
-    background: var(--hair); z-index: 0;
+  /* ========== 待辦 ========== */
+  .notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:13px}
+  .note{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+  .note h4{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .note h4::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+  .note p{font-size:12.5px;color:var(--ink-2);line-height:1.65}
+
+  /* ========== 每日行程 ========== */
+  .daybar{
+    position:sticky;top:calc(var(--navh) - 1px);z-index:20;
+    display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    margin:0 -26px 26px;padding:11px 26px;
+    background:rgba(251,251,249,.92);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line-soft);
   }
-  .rm-node:first-child::before { display: none; }
-  .rm-node .rm-dot {
-    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
-    width: 15px; height: 15px; border-radius: 50%; background: var(--c);
-    box-shadow: 0 0 0 4px var(--bg), var(--sh-1); z-index: 1;
+  .daybar::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;
+    padding:6px 14px;font-size:12.5px;font-weight:600;color:var(--ink-2);cursor:pointer;white-space:nowrap;
+    transition:background .26s var(--ease-soft), color .26s var(--ease-soft), border-color .26s var(--ease-soft);
   }
-  .rm-node .rm-name { display: block; font-size: 13px; font-weight: 800; color: var(--ink); }
-  .rm-node .rm-n { display: block; font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 1px; }
+  .chip .cd{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px;transition:color .26s var(--ease-soft)}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .chip.on .cd{color:rgba(255,255,255,.6)}
 
-  .rail-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(184px,1fr)); gap: 13px; }
-  .stop {
-    background: var(--surface); border: none; border-radius: var(--r);
-    padding: 17px 19px; cursor: pointer; text-align: left; width: 100%;
-    box-shadow: var(--sh-1); position: relative; overflow: hidden;
-    transition: transform .22s var(--ease-out), box-shadow .28s var(--ease-out);
+  .day{scroll-margin-top:120px;padding-bottom:36px}
+  .day+.day{border-top:1px solid var(--line);padding-top:32px}
+  .dhead{display:flex;flex-wrap:wrap;align-items:center;gap:11px}
+  .dno{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--a);padding:4px 10px;border-radius:5px}
+  .ddate{font-size:12.5px;font-weight:600;color:var(--ink-3);letter-spacing:.03em}
+  .dtitle{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.04em;margin:13px 0 0}
+  .dmove{font-size:13px;color:var(--ink-2);line-height:1.7;margin-top:11px;padding-left:13px;border-left:2px solid var(--a)}
+  .tl{list-style:none;position:relative;margin-top:22px}
+  .tl::before{content:"";position:absolute;left:66px;top:14px;bottom:14px;width:1px;background:var(--line)}
+  .tl li{position:relative;display:grid;grid-template-columns:54px 1fr;gap:26px;padding:9px 0}
+  .tl li::after{content:"";position:absolute;left:62px;top:18px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:1.5px solid var(--a);opacity:.55}
+  .tl-t{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ink-3);text-align:right;padding-top:4px;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:break-word}
+  .tl-b{font-size:14.5px;line-height:1.75}
+  .k{display:inline-block;font-size:11px;font-weight:700;padding:1.5px 8px;border-radius:5px;margin-right:8px;vertical-align:2px;letter-spacing:.02em}
+  .k-move{background:rgba(44,82,130,.1);color:#24476F}
+  .k-eat{background:rgba(160,100,58,.12);color:#8A5330}
+  .k-see{background:rgba(47,107,82,.12);color:#265A45}
+  .k-ski{background:rgba(29,110,134,.12);color:#175C71}
+  .k-stay{background:rgba(119,130,140,.14);color:#5C666F}
+  .dfoot{margin-top:20px;padding-top:14px;border-top:1px solid var(--line-soft);font-size:12.5px;color:var(--ink-2)}
+  .dfoot b{color:var(--a)}
+
+  /* ========== 住宿 ========== */
+  .lodges{display:grid;gap:14px}
+  .lodge{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px}
+  .l-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
+  .l-chk{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;color:#fff;background:var(--a);padding:3px 10px;border-radius:999px}
+  .l-when{font-size:12.5px;font-weight:600;color:var(--ink-2)}
+  .l-area{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--a)}
+  .l-name{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.03em;margin:7px 0 9px}
+  .l-desc{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+  .l-pick{font-size:12px;font-weight:700;color:var(--gold);margin-top:12px}
+
+  /* ========== 步驟 ========== */
+  .steps{display:grid;gap:12px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 18px}
+  .step-t{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--a)}
+  .step-d{font-size:13.5px;line-height:1.8;margin-top:6px}
+  .step-n{font-size:12px;color:var(--ink-3);line-height:1.7;margin-top:8px}
+
+  /* ========== 地圖按鈕 ========== */
+  .gmap{
+    display:inline-flex;align-items:center;gap:4px;margin:2px 2px 2px 0;padding:3px 10px;
+    border-radius:6px;background:rgba(44,82,130,.07);color:#24476F;
+    font-size:13px;font-weight:700;text-decoration:none;line-height:1.5;
+    -webkit-tap-highlight-color:transparent;
+    transition:background .24s var(--ease-soft), color .24s var(--ease-soft);
   }
-  .stop::before { content:""; position:absolute; top:0; left:0; width:100%; height:4px; background: var(--accent); border-radius: var(--r) var(--r) 0 0; }
-  .stop:active { transform: scale(0.985); }
-  @media (hover: hover) and (pointer: fine) {
-    .stop:hover { transform: translateY(-3px); box-shadow: var(--sh-pop); }
-  }
-  .stop .place { font-weight: 800; font-size: 17px; margin-top: 4px; }
-  .stop .nights { font-family: var(--mono); font-size: 11px; color: var(--ink-3); font-weight: 500; margin-top: 3px; letter-spacing: .02em; }
-  .stop .info { font-size: 12.5px; color: var(--ink-2); margin-top: 10px; line-height: 1.55; }
-  .stop .hotel { font-size: 11.5px; font-weight: 700; color: var(--accent); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair-soft); }
-  .stop .go-hint { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 7px; opacity: 0; transform: translateX(-4px); transition: opacity .22s var(--ease-out), transform .22s var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .stop:hover .go-hint { opacity: 1; transform: none; } }
+  @media (hover:hover) and (pointer:fine){.gmap:hover{background:rgba(44,82,130,.14);color:#1B3A5E}}
 
-  .enter-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin: 28px 0 13px; }
-  .entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(164px,1fr)); gap: 12px; }
-  .entry {
-    display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer;
-    background: var(--surface); border: none; border-radius: var(--r); padding: 16px 18px;
-    box-shadow: var(--sh-1); position: relative; overflow: hidden;
-    transition: transform .2s var(--ease-out), box-shadow .28s var(--ease-out);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .entry::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
-  .entry:active { transform: scale(0.98); }
-  @media (hover: hover) and (pointer: fine) {
-    .entry:hover { transform: translateY(-2px); box-shadow: var(--sh-pop); }
-    .entry:hover .ar { transform: translateX(3px); }
-  }
-  .entry .ei { font-size: 22px; line-height: 1; }
-  .entry .et { font-size: 15.5px; font-weight: 800; color: var(--ink); }
-  .entry .ed { font-size: 11.5px; color: var(--ink-3); font-weight: 600; margin-top: 1px; }
-  .entry .ar { margin-left: auto; color: var(--ink-3); font-weight: 700; font-size: 18px; transition: transform .2s var(--ease-out); }
+  /* ========== 表格 ========== */
+  .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tbl{width:100%;min-width:520px;border-collapse:collapse;font-size:13.5px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+  .tbl th{text-align:left;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding:12px 16px;background:#F6F8F7;border-bottom:1px solid var(--line)}
+  .tbl th:last-child{text-align:right}
+  .tbl td{padding:13px 16px;border-top:1px solid var(--line-soft);vertical-align:top}
+  .tbl tbody tr:first-child td{border-top:none}
+  .tbl .lbl{font-family:var(--mono);font-size:11px;color:var(--ink-3);white-space:nowrap}
+  .tbl .seg{font-weight:700}
+  .tbl .num{font-family:var(--mono);text-align:right;white-space:nowrap;font-weight:600}
+  .tbl tfoot td{background:#F6F8F7;font-weight:700;border-top:1px solid var(--line)}
 
-  .flight-full { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 26px; }
-  .flight-full .ff { background: var(--ink); color: #fff; border-radius: var(--r); padding: 17px 19px; box-shadow: var(--sh-2); }
-  .flight-full .fc { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: #e7b96a; font-weight: 500; }
-  .flight-full .fr { font-size: 19px; font-weight: 800; margin: 5px 0 3px; }
-  .flight-full .ft { font-family: var(--mono); font-size: 12.5px; color: #b4bac4; letter-spacing: .01em; }
+  /* ========== 頁尾 ========== */
+  .foot{border-top:1px solid var(--line);margin-top:10px;padding:26px 0 calc(34px + env(safe-area-inset-bottom,0px));font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
 
-  /* ============ DAYS ============ */
-  .panel--days { display: flex; flex-direction: column; padding-bottom: 26px; }
-  .daychips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 16px; scrollbar-width: none; }
-  .daychips::-webkit-scrollbar { display: none; }
-  .daychip {
-    flex: 0 0 auto; font-size: 12.5px; font-weight: 700; border: none; background: var(--surface);
-    color: var(--ink-2); padding: 8px 14px; border-radius: 100px; cursor: pointer; white-space: nowrap;
-    box-shadow: var(--sh-1); -webkit-tap-highlight-color: transparent;
-    transition: transform .18s var(--ease-out), box-shadow .22s, color .2s, background .2s;
-  }
-  .daychip .cd { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-left: 6px; font-weight: 500; }
-  .daychip:active { transform: scale(0.94); }
-  .daychip.on { color: #fff; box-shadow: var(--sh-2); transform: translateY(-1px); }
-  .daychip.on .cd { color: rgba(255,255,255,0.72); }
-  .daychip.on[data-a="a"]{ background: var(--c-apa); }
-  .daychip.on[data-a="e"]{ background: var(--c-east); }
-  .daychip.on[data-a="k"]{ background: var(--c-ski); }
-  .daychip.on[data-a="t"]{ background: var(--c-tokyo); }
-  .daychip.on[data-a="g"]{ background: #7d828b; }
-
-  .strip {
-    display: flex; gap: 18px; flex: 1; min-height: 0; overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scroll-padding-left: 2px;
-    padding: 4px 2px 10px;
-  }
-  .strip::after { content: ""; flex: 0 0 10px; }
-  .day {
-    flex: 0 0 min(440px, 88%); scroll-snap-align: start; background: var(--surface);
-    border-radius: var(--r-lg); padding: 22px 24px; height: 100%; overflow-y: auto;
-    -webkit-overflow-scrolling: touch; box-shadow: var(--sh-2); position: relative;
-    transition: box-shadow .3s var(--ease-out), transform .3s var(--ease-out);
-  }
-  .day::before { content:""; position:absolute; top:0; left:0; width:100%; height:5px; background: var(--accent); border-radius: var(--r-lg) var(--r-lg) 0 0; }
-  .day-top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
-  .day-no { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #fff; background: var(--accent); padding: 3px 9px; border-radius: 7px; }
-  .day-date { font-size: 12.5px; color: var(--ink-3); font-weight: 700; }
-  .day-h { font-size: 20px; font-weight: 800; margin: 9px 0 4px; letter-spacing: .01em; }
-  .day-move { font-size: 12.5px; color: var(--accent); font-weight: 600; margin-bottom: 16px; line-height: 1.5; }
-  .rows { display: flex; flex-direction: column; }
-  .row { display: grid; grid-template-columns: 62px 1fr; gap: 13px; padding: 11px 0; border-top: 1px solid var(--hair-soft); }
-  .row:first-child { border-top: none; }
-  .row-when { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--ink-3); padding-top: 3px; letter-spacing: .01em; }
-  .row-what { font-size: 14px; color: var(--ink); }
-  .row-what .sub { color: var(--ink-2); font-size: 12.5px; }
-  .day-stay { font-size: 11.5px; color: var(--ink-2); margin-top: 14px; padding-top: 11px; border-top: 1px solid var(--hair-soft); }
-  .day-stay b { color: var(--accent); }
-
-  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 1.5px 8px; border-radius: 6px; margin-right: 7px; vertical-align: 1.5px; }
-  .t-eat { background: rgba(196,84,44,0.12); color: #9a3f1f; }
-  .t-see { background: rgba(46,125,114,0.13); color: #1c5a52; }
-  .t-ski { background: rgba(47,111,168,0.13); color: #1f4c78; }
-  .t-move { background: rgba(90,83,173,0.12); color: #443a86; }
-
-  /* ============ STAY ============ */
-  .stay-block { margin-bottom: 24px; }
-  .stay-h { font-size: 15px; font-weight: 800; margin: 0 0 13px; display: flex; align-items: center; gap: 9px; }
-  .stay-h .chk { font-family: var(--mono); font-size: 10px; font-weight: 600; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 100px; letter-spacing: .04em; }
-  .lodge { background: var(--surface); border-radius: var(--r); padding: 19px 21px; box-shadow: var(--sh-1); position: relative; overflow: hidden; }
-  .lodge::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
-  .lodge .area { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; }
-  .lodge .nm { font-weight: 800; font-size: 17px; margin: 7px 0 7px; }
-  .lodge .desc { font-size: 13.5px; color: var(--ink-2); line-height: 1.65; }
-  .lodge .pick { font-size: 12px; font-weight: 700; color: var(--c-gold); margin-top: 11px; }
-
-  /* ============ FOOD ============ */
-  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px,1fr)); gap: 13px; }
-  .food { background: var(--surface); border-radius: var(--r); padding: 15px 17px; box-shadow: var(--sh-1); position: relative; overflow: hidden; transition: transform .2s var(--ease-out), box-shadow .26s var(--ease-out); }
-  .food::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
-  @media (hover: hover) and (pointer: fine) { .food:hover { transform: translateY(-2px); box-shadow: var(--sh-2); } }
-  .food .fcat { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
-  .food .fnm { font-weight: 800; font-size: 15px; margin: 5px 0 3px; }
-  .food .fd { font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
-
-  /* ============ TRANSPORT ============ */
-  .jr-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--r); overflow: hidden; font-size: 13.5px; box-shadow: var(--sh-1); }
-  .jr-table th { background: var(--ink); color: #fff; text-align: left; padding: 12px 15px; font-weight: 600; font-size: 12px; }
-  .jr-table th:last-child { text-align: right; }
-  .jr-table td { padding: 12px 15px; border-top: 1px solid var(--hair-soft); vertical-align: top; }
-  .jr-table .seg { font-weight: 700; }
-  .jr-table .day-lbl { font-family: var(--mono); font-size: 11px; color: var(--ink-3); font-weight: 500; }
-  .jr-table .fare { font-family: var(--mono); font-weight: 600; white-space: nowrap; text-align: right; }
-  .jr-table tfoot td { background: var(--surface-2); font-weight: 800; border-top: 2px solid var(--c-east); }
-  .leg-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(304px,1fr)); gap: 13px; margin-top: 16px; }
-  .leg { background: var(--surface); border-radius: var(--r); padding: 14px 17px; box-shadow: var(--sh-1); position: relative; overflow: hidden; }
-  .leg::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background: var(--accent); }
-  .leg .lh { font-weight: 800; font-size: 14px; margin-bottom: 4px; }
-  .leg .lb { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
-  .leg .lb b { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 12px; }
-
-  /* 地點按鈕：整個地點名就是一顆可點按鈕，點開該點 Google Maps */
-  .gmap {
-    display:inline-flex; align-items:center; gap:5px; margin:2px 3px 2px 0; padding:5px 12px;
-    border-radius:999px; background:var(--surface-2); color:var(--accent, var(--c-tokyo));
-    font-size:13.5px; font-weight:800; text-decoration:none; box-shadow:var(--sh-1);
-    line-height:1.3; -webkit-tap-highlight-color:transparent;
-    transition:transform .16s var(--ease-out), box-shadow .2s, background .2s;
-  }
-  .gmap:active { transform:scale(.96); }
-  @media (hover:hover) and (pointer:fine) { .gmap:hover { background:#fff; box-shadow:var(--sh-2); transform:translateY(-1px); } }
-
-  .step-list { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
-  .step { background:var(--surface); border-radius:var(--r); padding:13px 15px; box-shadow:var(--sh-1); position:relative; overflow:hidden; }
-  .step::before { content:""; position:absolute; left:0; top:0; height:100%; width:4px; background:var(--accent); }
-  .step .st { font-family:var(--mono); font-size:11px; font-weight:700; color:var(--accent); letter-spacing:.02em; }
-  .step .sd { font-size:13px; color:var(--ink); line-height:1.65; margin-top:3px; }
-  .step .sd b { color:var(--ink); }
-  .step .ss { font-size:11.5px; color:var(--ink-3); line-height:1.55; margin-top:5px; }
-  .sub-h { font-size: 15px; font-weight: 800; margin: 26px 0 11px; }
-
-  /* ============ SHARED ============ */
-  .callout { background: rgba(44,139,93,0.08); border-radius: var(--r); padding: 16px 19px; font-size: 13px; color: #1c5540; line-height: 1.7; margin-top: 17px; box-shadow: var(--sh-1); }
-  .callout b { color: #123c2e; }
-  .callout.paper { background: var(--surface); color: var(--ink-2); }
-  .callout.paper b { color: var(--ink); }
-  .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(244px,1fr)); gap: 13px; }
-  .note { background: var(--surface); border-radius: var(--r); padding: 16px 18px; box-shadow: var(--sh-1); }
-  .note h4 { font-size: 14px; font-weight: 800; margin-bottom: 7px; display: flex; align-items: center; gap: 8px; }
-  .note h4::before { content:""; width: 8px; height: 8px; border-radius: 50%; background: var(--c-gold); }
-  .note p { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
-
-  /* ============ MOBILE ============ */
-  @media (max-width: 899px) {
-    .app.home { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; grid-template-areas: "brand" "tabs" "stage"; }
-    .app.detail { grid-template-columns: 1fr; grid-template-rows: auto 1fr; grid-template-areas: "dbar" "stage"; }
-    .brandbar { padding: 18px 18px 15px; }
-    .brand-title { font-size: 26px; }
-    .brand-flt { flex-direction: row; margin-top: 13px; }
-    .brand-flt .f { flex: 1; }
-    .tabs { flex-direction: row; overflow-x: auto; gap: 7px; padding: 11px 14px; box-shadow: 0 1px 0 var(--hair); scrollbar-width: none; }
-    .tabs::-webkit-scrollbar { display: none; }
-    .tab { padding: 9px 15px; }
-    .tab .tn { display: none; }
-    .tab.on .dot { background: #fff; }
-    .detailbar { padding: 12px 15px; }
-    .detailbar .dtitle { font-size: 17px; }
-    .panel { padding: 22px 18px 46px; }
-    .p-title { font-size: 23px; }
-    .flight-full { grid-template-columns: 1fr; }
-    /* 逐日行程：卡片全寬、自然高度、整頁可上下捲 */
-    .panel--days { display: block; }
-    .strip { flex: none; height: auto; min-height: 0; overflow-x: auto; overflow-y: visible; gap: 15px; }
-    .day { flex-basis: 100%; height: auto; overflow: visible; scroll-snap-align: start; padding: 21px 21px 23px; }
-    .day-h { font-size: 20px; }
-    .row-what { font-size: 14.5px; }
-    .routemap { padding: 4px 0; }
-    .rm-node .rm-name { font-size: 12px; }
-    .swipe-hint {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      font-size: 11.5px; color: var(--ink-3); font-weight: 600; padding: 6px 8px 10px;
-    }
-    .swipe-hint .ar { animation: nudge 1.6s var(--ease-out) infinite; }
-    @keyframes nudge { 0%,100%{transform:translateX(0);opacity:.5} 50%{transform:translateX(4px);opacity:1} }
-  }
-  .swipe-hint { display: none; }
-
-  @media (min-width: 900px) {
-    .day { scroll-snap-align: start; }
-    @media (hover: hover) and (pointer: fine) {
-      .day:hover { box-shadow: var(--sh-pop); transform: translateY(-2px); }
-    }
+  /* ========== 手機 ========== */
+  @media (max-width:760px){
+    :root{--navh:49px}
+    .wrap{padding:0 18px}
+    .mast{padding-top:calc(26px + env(safe-area-inset-top,0px));padding-bottom:24px}
+    .m-title{font-size:34px;letter-spacing:.12em}
+    .m-rule{margin:17px 0 14px}
+    .m-flights{grid-template-columns:1fr}
+    .nav-in{padding:0 18px}
+    .nav-i{font-size:13.5px;padding:13px 12px 11px}
+    .main{padding:26px 0 56px}
+    .v-title{font-size:27px}
+    .flights{grid-template-columns:1fr}
+    .daybar{margin:0 -18px 22px;padding:10px 18px}
+    .dtitle{font-size:21px}
+    .day{scroll-margin-top:112px}
+    .tl::before{left:55px}
+    .tl li{grid-template-columns:46px 1fr;gap:20px}
+    .tl li::after{left:51px}
+    .tl-b{font-size:14px}
+    .spine .n{font-size:12px}
   }
 
-  /* ============ 尊重減少動態偏好 ============ */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-    .panel { transform: none; }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
   }
 </style>
 </head>
 <body>
-<div class="app home" id="app">
 
-  <!-- BRAND -->
-  <header class="brandbar">
-    <div class="brand-kicker">Ski Trip · Karuizawa · 北陸新幹線</div>
-    <div class="brand-title">輕井澤</div>
-    <div class="brand-sub">2026 · 11.23 → 11.27 ｜ 5 天 4 夜 ｜ 滑雪 ×3</div>
-    <div class="brand-flt">
-      <div class="f"><div class="fc">MM620 · 去程 11/23</div><div class="fr">桃園 → 成田</div><div class="ft">02:25 → 06:30</div></div>
-      <div class="f"><div class="fc">MM621 · 回程 11/27</div><div class="fr">成田 → 桃園</div><div class="ft">12:55 → 16:15</div></div>
-    </div>
-  </header>
-
-  <!-- TABS -->
-  <nav class="tabs" id="tabs">
-    <button class="tab on" style="--accent:var(--c-gold)"><span class="dot"></span>總覽<span class="tn">01</span></button>
-    <button class="tab" style="--accent:var(--c-apa)"><span class="dot"></span>逐日行程<span class="tn">02</span></button>
-    <button class="tab" style="--accent:var(--c-east)"><span class="dot"></span>住宿<span class="tn">03</span></button>
-    <button class="tab" style="--accent:var(--c-ski)"><span class="dot"></span>滑雪<span class="tn">04</span></button>
-    <button class="tab" style="--accent:var(--c-tokyo)"><span class="dot"></span>交通<span class="tn">05</span></button>
-  </nav>
-
-  <!-- DETAIL BAR -->
-  <header class="detailbar" id="detailbar">
-    <button class="back" id="back" aria-label="返回首頁">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <div class="dtitle"><span class="dot"></span><span id="dtitle-text">詳情</span></div>
-    <div class="dnav">
-      <button id="dprev" aria-label="上一個區塊">‹</button>
-      <button id="dnext" aria-label="下一個區塊">›</button>
-    </div>
-  </header>
-
-  <!-- STAGE -->
-  <div class="stage">
-    <div class="panels" id="panels">
-
-      <!-- ===== PANEL 1: OVERVIEW ===== -->
-      <section class="panel active">
-        <div class="panel-head">
-          <div class="eyebrow">Overview · Draft</div>
-          <h1 class="p-title">行程總覽</h1>
-          <p class="p-sub">成田進出，輕井澤滑三天。首晚住輕井澤站前 APA，中間兩晚住雪場旁的王子大飯店東館；滑完第三天下午直接搭新幹線到上野過夜，隔天 Skyliner 直達成田，回程不用趕。機票與四晚住宿已訂妥，列車班次之後再訂。</p>
-          <p class="p-hint">👇 點任一項展開全螢幕詳情，左上角箭頭可返回</p>
-        </div>
-
-        <div class="routemap">
-          <div class="rm-node" style="--c:var(--c-apa)"><span class="rm-dot"></span><span class="rm-name">APA 站前</span><span class="rm-n">Day 1</span></div>
-          <div class="rm-node" style="--c:var(--c-east)"><span class="rm-dot"></span><span class="rm-name">王子東館</span><span class="rm-n">Day 2–3</span></div>
-          <div class="rm-node" style="--c:var(--c-tokyo)"><span class="rm-dot"></span><span class="rm-name">上野 APA</span><span class="rm-n">Day 4</span></div>
-          <div class="rm-node" style="--c:#7d828b"><span class="rm-dot"></span><span class="rm-name">返程</span><span class="rm-n">Day 5</span></div>
-        </div>
-
-        <div class="facts">
-          <span class="fact">成田 進 · 成田 出</span>
-          <span class="fact">滑雪 3 天 · 王子雪場</span>
-          <span class="fact">紅眼去 · 午班回</span>
-          <span class="fact">N'EX · 新幹線 · Skyliner</span>
-          <span class="fact">最後一晚宿上野</span>
-          <span class="fact">初雪季 · 人工造雪</span>
-        </div>
-
-        <div class="rail-flow stagger">
-          <button class="stop" style="--accent:var(--c-apa)" data-day="0">
-            <div class="place">抵達 · 輕井澤站前</div>
-            <div class="nights">1 晚 · Day 1</div>
-            <div class="info">紅眼班機清晨到成田，N'EX 到東京站轉新幹線，中午前進輕井澤。寄行李後去星野區：榆樹街小鎮午餐散步、蜻蜓之湯泡湯，早點休息。</div>
-            <div class="hotel">✅ APA 飯店〈輕井澤站前〉（11/23–11/24）</div>
-            <div class="go-hint">看 Day 1 行程 →</div>
-          </button>
-          <button class="stop" style="--accent:var(--c-east)" data-day="1">
-            <div class="place">王子東館 · 滑雪</div>
-            <div class="nights">2 晚連泊 · Day 2–3</div>
-            <div class="info">早上寄行李、租裝備，滑雪第 1、2 天。飯店就在雪場旁，晚上休息泡湯。</div>
-            <div class="hotel">✅ 輕井澤王子大飯店 東館（11/24–11/26）</div>
-            <div class="go-hint">看 Day 2–3 行程 →</div>
-          </button>
-          <button class="stop" style="--accent:var(--c-tokyo)" data-day="3">
-            <div class="place">最後一滑 · 移到上野</div>
-            <div class="nights">1 晚 · Day 4</div>
-            <div class="info">東館退房寄行李，滑雪第 3 天，14:30 還裝備更衣，16 點多新幹線到上野。</div>
-            <div class="hotel">✅ APA 飯店〈京成上野站前南〉（11/26–11/27）</div>
-            <div class="go-hint">看 Day 4 行程 →</div>
-          </button>
-          <button class="stop" style="--accent:#7d828b" data-day="4">
-            <div class="place">返程</div>
-            <div class="nights">Day 5</div>
-            <div class="info">京成上野搭 Skyliner 直達成田第一航廈，約 10:00 抵達；MM621 12:55 起飛，時間寬裕。</div>
-            <div class="hotel">✈ 16:15 抵桃園</div>
-            <div class="go-hint">看 Day 5 行程 →</div>
-          </button>
-        </div>
-
-        <div class="enter-label">展開查看</div>
-        <div class="entry-grid stagger">
-          <button class="entry" style="--accent:var(--c-apa)" data-goto="1"><span class="ei">🗓️</span><span><span class="et">逐日行程</span><span class="ed">Day 1–5 每日安排</span></span><span class="ar">→</span></button>
-          <button class="entry" style="--accent:var(--c-east)" data-goto="2"><span class="ei">🏨</span><span><span class="et">住宿</span><span class="ed">APA 輕井澤・王子東館・APA 上野</span></span><span class="ar">→</span></button>
-          <button class="entry" style="--accent:var(--c-ski)" data-goto="3"><span class="ei">🎿</span><span><span class="et">滑雪</span><span class="ed">雪場・纜車票・租借</span></span><span class="ar">→</span></button>
-          <button class="entry" style="--accent:var(--c-tokyo)" data-goto="4"><span class="ei">🚄</span><span><span class="et">交通</span><span class="ed">N'EX・新幹線・Skyliner</span></span><span class="ar">→</span></button>
-        </div>
-
-        <div class="flight-full">
-          <div class="ff"><div class="fc">MM620 · 去程 11/23（一）</div><div class="fr">桃園 → 成田</div><div class="ft">02:25 起飛 · 06:30 抵達</div></div>
-          <div class="ff"><div class="fc">MM621 · 回程 11/27（五）</div><div class="fr">成田 第一航廈 → 桃園</div><div class="ft">12:55 起飛 · 16:15 抵達</div></div>
-        </div>
-        <div class="callout paper"><b>樂桃航空（LCC）</b>　去程是紅眼班：<b>11/22（日）深夜就要到桃園機場</b>，11/23 清晨落地。回程 12:55 起飛，從上野搭 Skyliner 約 45 分到成田，目標 10:00 前後抵第一航廈，報到、安檢、吃早午餐都來得及。出發前再用樂桃 App 確認一次時刻。</div>
-
-        <div class="enter-label">待辦</div>
-        <div class="notes-grid stagger">
-          <div class="note"><h4>確認舊訂單已取消</h4><p>原本 11/26 的輕井澤 APA，以及上野站前 APA 不需要的那筆訂單，確認都已取消、沒有重複扣款。</p></div>
-          <div class="note"><h4>列車班次之後訂</h4><p>N'EX（成田 → 東京）與 Skyliner（京成上野 → 成田）各買單程。新幹線 Day 1 東京 → 輕井澤、Day 4 輕井澤 → 上野（16 點多）用えきねっと訂指定席。</p></div>
-          <div class="note"><h4>預約三天裝備</h4><p>雪板組 3 日租借先預約；並確認東館退房後寄行李、還裝備後更衣的地方，以及 14:30 前後歸還是否來得及。</p></div>
-          <div class="note"><h4>雪場開放狀況</h4><p>王子雪場往年 11 月初開幕（人工造雪），11 月下旬通常只開部分雪道。11 月中看官網雪道開放數，決定纜車票要買幾天。</p></div>
-          <div class="note"><h4>餐廳</h4><p>Day 1 午餐榆樹街小鎮（川上庵蕎麥麵）。滑雪三天午餐在雪場；Day 4 晚上在上野／阿美橫町，之後補。</p></div>
-          <div class="note"><h4>保險 · 裝備</h4><p>確認旅平險含滑雪；自備護目鏡、手套、防摔褲與暖暖包。</p></div>
-        </div>
-      </section>
-
-      <!-- ===== PANEL 2: DAYS ===== -->
-      <section class="panel panel--days">
-        <div class="panel-head" style="margin-bottom:14px;">
-          <div class="eyebrow">Itinerary · Draft</div>
-          <h1 class="p-title">逐日行程</h1>
-        </div>
-        <div class="swipe-hint"><span>左右滑動看每一天</span><span class="ar">→</span></div>
-        <div class="daychips" id="daychips">
-          <button class="daychip on" data-a="a">Day 1<span class="cd">11/23</span></button>
-          <button class="daychip" data-a="e">Day 2<span class="cd">11/24</span></button>
-          <button class="daychip" data-a="e">Day 3<span class="cd">11/25</span></button>
-          <button class="daychip" data-a="t">Day 4<span class="cd">11/26</span></button>
-          <button class="daychip" data-a="g">Day 5<span class="cd">11/27</span></button>
-        </div>
-        <div class="strip" id="strip">
-
-          <article class="day" style="--accent:var(--c-apa)">
-            <div class="day-top"><span class="day-no">DAY 1</span><span class="day-date">11/23（一）· 抵達</span></div>
-            <div class="day-h">紅眼抵成田 · 星野區泡湯散步</div>
-            <div class="day-move">✈ MM620 02:25 → 06:30 抵成田 → N'EX 到東京站 → 北陸新幹線 → 輕井澤（合計約 2.5–3 小時，班次之後訂）→ 寄行李 → 🚌 北口西武巴士約 17 分到星野溫泉</div>
-            <div class="rows">
-              <div class="row"><div class="row-when">11/22 深夜</div><div class="row-what"><span class="tag t-move">前一晚</span>週日深夜先到桃園機場，02:25 起飛</div></div>
-              <div class="row"><div class="row-when">06:30</div><div class="row-what"><span class="tag t-move">入境</span>成田落地、入境、領行李；買 Suica／確認手機網路</div></div>
-              <div class="row"><div class="row-when">~07:45</div><div class="row-what"><span class="tag t-move">N'EX</span><b>成田 → 東京站</b> 約 60 分（單程票，之後訂）</div></div>
-              <div class="row"><div class="row-when">~09:30</div><div class="row-what"><span class="tag t-move">新幹線</span><b>あさま／はくたか 東京 → 輕井澤</b> 約 65–70 分（班次之後訂）</div></div>
-              <div class="row"><div class="row-when">~11:00</div><div class="row-what"><span class="tag t-move">寄行李</span>到 <b>APA 飯店〈輕井澤站前〉</b> 寄放行李（Check-in 15:00）</div></div>
-              <div class="row"><div class="row-when">~11:30</div><div class="row-what"><span class="tag t-move">巴士</span>輕井澤站<b>北口</b>搭西武觀光巴士（草津・輕井澤線）到「<b>星野温泉トンボの湯</b>」約 17 分、約 ¥470；上車前看目的地牌，不是每班都到</div></div>
-              <div class="row"><div class="row-when">12:00</div><div class="row-what"><span class="tag t-eat">午餐</span><span class="star">★</span> <b>榆樹街小鎮 Harunire Terrace</b>：川上庵蕎麥麵（候位常見，先登記再散步）或其他店家</div></div>
-              <div class="row"><div class="row-when">13:00</div><div class="row-what"><span class="tag t-see">散步</span>榆樹街小鎮沿湯川的木棧道慢慢走，逛 SAWAMURA 麵包、丸山咖啡等（店家多 10:00–18:00）</div></div>
-              <div class="row"><div class="row-when">14:00</div><div class="row-what"><span class="tag t-ski">泡湯</span><span class="star">★</span> <b>星野溫泉 蜻蜓之湯</b>：10:00–22:00，大人 ¥1,550，毛巾可租；紅眼班機後泡個 1–1.5 小時剛好</div></div>
-              <div class="row"><div class="row-when">~15:45</div><div class="row-what"><span class="tag t-move">回車站</span>「星野温泉トンボの湯」站搭巴士回輕井澤站 → APA Check-in、補眠。想看榆樹街小鎮的燈飾（11 月下旬通常有聖誕點燈，待確認）就留到 17:00 天黑後再回</div></div>
-              <div class="row"><div class="row-when">晚</div><div class="row-what"><span class="tag t-eat">晚餐</span>車站周邊（待定），或直接在榆樹街小鎮吃完再回；超商補水與隔天早餐，早睡</div></div>
-            </div>
-            <div class="day-stay">宿：<b>APA 飯店〈輕井澤站前〉</b> ✅</div>
-          </article>
-
-          <article class="day" style="--accent:var(--c-east)">
-            <div class="day-top"><span class="day-no">DAY 2</span><span class="day-date">11/24（二）· 王子東館</span></div>
-            <div class="day-h">搬到雪場旁 · 租裝備 · 滑雪第 1 天</div>
-            <div class="day-move">🚶／🚌 APA 退房 → 車站南口 → 王子東館寄行李（步行約 10–15 分或免費接駁）→ 雪場租借中心</div>
-            <div class="rows">
-              <div class="row"><div class="row-when">~08:30</div><div class="row-what"><span class="tag t-move">退房</span>APA 退房，移動到 <b>王子大飯店 東館</b> 寄放行李（正式 Check-in 15:00，時間待確認）</div></div>
-              <div class="row"><div class="row-when">~09:15</div><div class="row-what"><span class="tag t-ski">租裝備</span>雪場租借中心領取預約的雪板／雪鞋／雪杖（＋雪衣視需要），買纜車票</div></div>
-              <div class="row"><div class="row-when">10:00</div><div class="row-what"><span class="tag t-ski">滑雪 ①</span>初雪季先用開放的初中級雪道熱身，適應裝備</div></div>
-              <div class="row"><div class="row-when">12:30</div><div class="row-what"><span class="tag t-eat">午餐</span>雪場餐廳或 Outlet 美食區</div></div>
-              <div class="row"><div class="row-when">13:30</div><div class="row-what"><span class="tag t-ski">滑雪 ①</span>下午續滑，視體力提早收</div></div>
-              <div class="row"><div class="row-when">15:00+</div><div class="row-what"><span class="tag t-move">Check-in</span>東館入住；裝備放飯店／雪場寄物（待確認）</div></div>
-              <div class="row"><div class="row-when">晚</div><div class="row-what"><span class="tag t-eat">晚餐</span>飯店內或 Outlet（待定）；泡澡放鬆</div></div>
-            </div>
-            <div class="day-stay">宿：<b>輕井澤王子大飯店 東館</b> ✅</div>
-          </article>
-
-          <article class="day" style="--accent:var(--c-east)">
-            <div class="day-top"><span class="day-no">DAY 3</span><span class="day-date">11/25（三）· 王子東館</span></div>
-            <div class="day-h">滑雪第 2 天 · 晚上休息泡湯</div>
-            <div class="day-move">🎿 飯店 ⇄ 雪場步行，全天無移動壓力</div>
-            <div class="rows">
-              <div class="row"><div class="row-when">早</div><div class="row-what"><span class="tag t-eat">早餐</span>東館早餐（是否含早待確認）</div></div>
-              <div class="row"><div class="row-when">09:00</div><div class="row-what"><span class="tag t-ski">滑雪 ②</span>一早上場，人最少、雪況最好</div></div>
-              <div class="row"><div class="row-when">12:30</div><div class="row-what"><span class="tag t-eat">午餐</span>雪場餐廳（待定）</div></div>
-              <div class="row"><div class="row-when">13:30</div><div class="row-what"><span class="tag t-ski">滑雪 ②</span>下午續滑；若累就改逛 Outlet</div></div>
-              <div class="row"><div class="row-when">晚</div><div class="row-what"><span class="tag t-eat">晚餐</span>待定</div></div>
-              <div class="row"><div class="row-when">夜</div><div class="row-what"><span class="tag t-ski">泡湯</span>飯店溫泉放鬆（東館住客可用的溫泉設施待確認）；整理行李，明天要退房</div></div>
-            </div>
-            <div class="day-stay">宿：<b>輕井澤王子大飯店 東館</b> ✅</div>
-          </article>
-
-          <article class="day" style="--accent:var(--c-tokyo)">
-            <div class="day-top"><span class="day-no">DAY 4</span><span class="day-date">11/26（四）· 移到上野</span></div>
-            <div class="day-h">東館退房 · 滑雪第 3 天 · 下午新幹線到上野</div>
-            <div class="day-move">🎿 東館退房寄行李 → 滑雪 → 14:30 還裝備、更衣 → 取行李 → 輕井澤站 → 🚄 16 點多新幹線 → JR 上野站 → APA</div>
-            <div class="rows">
-              <div class="row"><div class="row-when">~09:30</div><div class="row-what"><span class="tag t-move">退房</span>東館退房（時間待確認），行李寄櫃台</div></div>
-              <div class="row"><div class="row-when">10:00</div><div class="row-what"><span class="tag t-ski">滑雪 ③</span>最後一滑，抓到 14:00 左右</div></div>
-              <div class="row"><div class="row-when">12:30</div><div class="row-what"><span class="tag t-eat">午餐</span>雪場或 Outlet</div></div>
-              <div class="row"><div class="row-when">~14:30</div><div class="row-what"><span class="tag t-ski">還裝備</span>租借中心歸還 → 更衣（地點待確認）→ 回東館取行李</div></div>
-              <div class="row"><div class="row-when">~15:30</div><div class="row-what"><span class="tag t-move">往車站</span>接駁或步行到輕井澤站；有空檔就在 Outlet 或站內買伴手禮</div></div>
-              <div class="row"><div class="row-when">16 點多</div><div class="row-what"><span class="tag t-move">新幹線</span><b>あさま 輕井澤 → 上野</b> 約 60 分（班次之後訂）</div></div>
-              <div class="row"><div class="row-when">~17:30</div><div class="row-what"><span class="tag t-move">Check-in</span>JR 上野站 → 步行約 10 分到 <b>APA 飯店〈京成上野站前南〉</b>（上野 2-6-11）入住；有大浴場可泡</div></div>
-              <div class="row"><div class="row-when">晚</div><div class="row-what"><span class="tag t-eat">晚餐</span>上野／阿美橫町（待定）；買隔天早餐，不用早起</div></div>
-            </div>
-            <div class="day-stay">宿：<b>APA 飯店〈京成上野站前南〉</b> ✅</div>
-          </article>
-
-          <article class="day" style="--accent:#7d828b">
-            <div class="day-top"><span class="day-no">DAY 5</span><span class="day-date">11/27（五）· 返程</span></div>
-            <div class="day-h">Skyliner 直達成田 · 返桃園</div>
-            <div class="day-move">🚄 京成上野 → Skyliner 約 45 分 → 成田第一航廈，目標約 10:00 抵達 ｜ ✈ MM621 12:55 → 桃園 16:15</div>
-            <div class="rows">
-              <div class="row"><div class="row-when">~08:30</div><div class="row-what"><span class="tag t-eat">早餐</span>飯店或站前，慢慢吃</div></div>
-              <div class="row"><div class="row-when">~09:00</div><div class="row-what"><span class="tag t-move">退房</span>APA 退房，步行約 5 分到 <b>京成上野站</b></div></div>
-              <div class="row"><div class="row-when">~09:15</div><div class="row-what"><span class="tag t-move">Skyliner</span><b>京成上野 → 成田空港 第一航廈</b> 約 45 分（單程票，之後訂）</div></div>
-              <div class="row"><div class="row-when">~10:00</div><div class="row-what"><span class="tag t-move">報到</span>抵第一航廈，樂桃櫃檯報到、安檢；剩下時間逛免稅、吃午餐</div></div>
-              <div class="row"><div class="row-when">12:55</div><div class="row-what"><span class="tag t-move">起飛</span>MM621 成田 → 桃園，16:15 抵達</div></div>
-            </div>
-            <div class="day-stay">今日返台，行程完成 ✈</div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- ===== PANEL 3: STAY ===== -->
-      <section class="panel">
-        <div class="panel-head">
-          <div class="eyebrow">Lodging</div>
-          <h1 class="p-title">住宿</h1>
-          <p class="p-sub">四晚全數訂妥。第一晚靠輕井澤站方便進出，中間兩晚靠雪場方便滑雪，最後一晚移到上野讓回程不趕。</p>
-        </div>
-        <div class="stagger">
-          <div class="stay-block">
-            <div class="stay-h" style="--accent:var(--c-apa)"><span class="chk">✅ 已訂</span>輕井澤站前 · 1 晚（11/23–11/24）</div>
-            <div class="lodge" style="--accent:var(--c-apa)">
-              <div class="area">輕井澤站</div><div class="nm">APA 飯店〈輕井澤站前〉輕井澤莊</div>
-              <div class="desc">輕井澤站步行約 1 分。抵達日中午先寄行李，15:00 入住；紅眼班機後的補眠站。</div>
-              <div class="pick">◆ 待確認：Check-in 前寄放、早餐有無</div>
-            </div>
-          </div>
-          <div class="stay-block">
-            <div class="stay-h" style="--accent:var(--c-east)"><span class="chk">✅ 已訂</span>雪場旁 · 2 晚連泊（11/24–11/26）</div>
-            <div class="lodge" style="--accent:var(--c-east)">
-              <div class="area">王子雪場</div><div class="nm">輕井澤王子大飯店 東館</div>
-              <div class="desc">緊鄰王子雪場與 Outlet，走路到纜車。車站南口有免費接駁巴士，步行也約 10–15 分。滑雪三天的基地，Day 3 晚上泡湯。</div>
-              <div class="pick">◆ 待確認：Check-in／out 時間、退房後寄行李與更衣、住客纜車票優惠、溫泉設施、是否含早餐</div>
-            </div>
-          </div>
-          <div class="stay-block">
-            <div class="stay-h" style="--accent:var(--c-tokyo)"><span class="chk">✅ 已訂</span>上野 · 1 晚（11/26–11/27）</div>
-            <div class="lodge" style="--accent:var(--c-tokyo)">
-              <div class="area">京成上野站</div><div class="nm">APA 飯店〈京成上野站前南〉</div>
-              <div class="desc">東京都台東区上野 2-6-11，2026 年 8 月新開幕，有大浴場。京成上野站步行約 5 分，隔天 Skyliner 直達成田第一航廈約 45 分。Day 4 從輕井澤搭新幹線到 JR 上野站，步行約 10 分；晚上阿美橫町、上野広小路就在旁邊。</div>
-              <div class="pick">◆ 待辦：確認原本 11/26 輕井澤 APA 與上野站前 APA 不需要的訂單都已取消</div>
-            </div>
-          </div>
-        </div>
-        <div class="callout paper"><b>搬家兩次：</b>Day 2 早上 APA 輕井澤 → 東館（車站到雪場，步行或接駁）；Day 4 下午 東館 → 輕井澤站 → 新幹線 → 上野 APA。Day 4 記得先在東館取行李再去車站。</div>
-      </section>
-
-      <!-- ===== PANEL 4: SKI ===== -->
-      <section class="panel">
-        <div class="panel-head">
-          <div class="eyebrow">Ski</div>
-          <h1 class="p-title">滑雪</h1>
-          <p class="p-sub">三天都在輕井澤王子大飯店滑雪場。初雪季雪道有限，以練習、適應裝備為主，不追求滑完全場。</p>
-        </div>
-        <div class="stagger">
-          <div class="sub-h" style="margin-top:4px;">雪場</div>
-          <div class="step-list">
-            <div class="step" style="--accent:var(--c-ski)"><div class="st">輕井澤王子大飯店滑雪場</div><div class="sd"><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4">📍 軽井沢プリンスホテルスキー場</a> 車站南口步行約 10 分，Outlet 旁。以人工造雪聞名，長野縣內最早開幕的雪場之一。</div><div class="ss">往年 11/1 開幕，開幕初期只開 2 條約 400 m 的短雪道，之後陸續開放，1 月上旬才全開 14 條。11/24–26 預期開放數約 3–6 條（需屆時看官網）。</div></div>
-            <div class="step" style="--accent:var(--c-ski)"><div class="st">纜車票</div><div class="sd">1 日券／多日券價格、王子飯店住客優惠 <b>待確認</b>。Day 2 買票時一次決定三天方案。</div><div class="ss">初雪季部分雪場會以「開放雪道少」推出優惠價，屆時比較。</div></div>
-            <div class="step" style="--accent:var(--c-ski)"><div class="st">裝備租借（3 日，先預約）</div><div class="sd">雪場租借中心：雪板組／雪衣／護目鏡皆可租。<b>Day 2 早上領、Day 4 約 14:30 還</b>，租 3 日。</div><div class="ss">待辦：線上預約三天裝備；確認 Day 4 東館退房後行李寄放、還裝備後更衣的地方。自備：手套、毛帽、護目鏡、防摔褲、厚襪。</div></div>
-          </div>
-
-          <div class="sub-h">三天節奏</div>
-          <table class="jr-table">
-            <thead><tr><th>日期</th><th>住</th><th>安排</th><th>重點</th></tr></thead>
-            <tbody>
-              <tr><td class="day-lbl">Day 2 · 11/24</td><td class="seg">王子東館</td><td>APA 退房、東館寄行李、租裝備，滑雪第 1 天，入住</td><td class="fare">熱身</td></tr>
-              <tr><td class="day-lbl">Day 3 · 11/25</td><td class="seg">王子東館</td><td>滑雪第 2 天，晚上休息泡湯</td><td class="fare">主力日</td></tr>
-              <tr><td class="day-lbl">Day 4 · 11/26</td><td class="seg">上野 APA</td><td>東館退房寄行李，滑雪第 3 天，14:30 還裝備更衣，16 點多新幹線到上野</td><td class="fare">半天收尾</td></tr>
-            </tbody>
-          </table>
-          <div class="callout"><b>雪況備案：</b>若 11 月中官網顯示開放雪道太少，Day 3 或 Day 4 可改半天為輕井澤觀光（舊輕銀座、白絲瀑布、雲場池），纜車票就不要一次買三天。</div>
-        </div>
-      </section>
-
-      <!-- ===== PANEL 5: TRANSPORT ===== -->
-      <section class="panel">
-        <div class="panel-head">
-          <div class="eyebrow">Transport</div>
-          <h1 class="p-title">交通</h1>
-          <p class="p-sub">四段長途：Day 1 成田 → 東京 → 輕井澤，Day 4 輕井澤 → 上野，Day 5 京成上野 → 成田。中間都在輕井澤站與雪場之間步行／接駁。地點名稱都是按鈕，點一下開 Google Maps。時刻與票價為概略，訂票時以官方為準。</p>
-        </div>
-        <div class="stagger">
-          <div class="sub-h" style="margin-top:4px;">列車一覽（各買單程）</div>
-          <table class="jr-table">
-            <thead><tr><th>日期</th><th>區間</th><th>列車</th><th>車資</th></tr></thead>
-            <tbody>
-              <tr><td class="day-lbl">Day 1 · 11/23</td><td class="seg">成田空港 → 東京</td><td>N'EX 成田特快 約 60 分（單程，之後訂）</td><td class="fare">約 ¥3,070</td></tr>
-              <tr><td class="day-lbl">Day 1 · 11/23</td><td class="seg">東京 → 輕井澤</td><td>北陸新幹線 あさま／はくたか 約 65–70 分（之後訂）</td><td class="fare">約 ¥5,490</td></tr>
-              <tr><td class="day-lbl">Day 4 · 11/26</td><td class="seg">輕井澤 → 上野</td><td>北陸新幹線 あさま 16 點多發，約 60 分（之後訂）</td><td class="fare">約 ¥5,300</td></tr>
-              <tr><td class="day-lbl">Day 5 · 11/27</td><td class="seg">京成上野 → 成田 第一航廈</td><td>Skyliner 約 45 分（單程，之後訂）</td><td class="fare">約 ¥2,570</td></tr>
-            </tbody>
-            <tfoot><tr><td colspan="3">長途合計（概估）</td><td class="fare">約 ¥16,400</td></tr></tfoot>
-          </table>
-          <div class="callout paper"><b>訂票方式：</b>新幹線兩段用 JR 東日本「えきねっと」訂指定席（Day 4 選 16 點多、有停上野的あさま）。N'EX 可在成田到站後現場買或事先網購；Skyliner 網路購買預售票比較便宜，各買單程即可，不需要套票。JR Tokyo Wide Pass 無法同時涵蓋 11/23 與 11/26，不划算。</div>
-
-          <div class="sub-h">Day 1｜成田 → 東京站 → 輕井澤</div>
-          <div class="step-list">
-            <div class="step" style="--accent:var(--c-tokyo)"><div class="st">06:30 抵達</div><div class="sd"><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF+%E7%AC%AC1%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">📍 成田空港 第1ターミナル</a> → N'EX → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E6%9D%B1%E4%BA%AC%E9%A7%85">📍 JR 東京駅</a>。</div><div class="ss">落地後買 Suica 或用手機 Suica；N'EX 需另購特急券。東京站 N'EX 到站的地下月台走到新幹線月台約 10–15 分，轉乘留 30 分。</div></div>
-            <div class="step" style="--accent:var(--c-apa)"><div class="st">新幹線</div><div class="sd">東京 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85">📍 JR 軽井沢駅</a>，あさま／はくたか 約 65–70 分。</div><div class="ss">北口出站 1 分即 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%91%E3%83%9B%E3%83%86%E3%83%AB+%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85%E5%89%8D">📍 アパホテル〈軽井沢駅前〉</a> 寄行李；南口是 Outlet 與雪場方向。</div></div>
-            <div class="step" style="--accent:var(--c-ski)"><div class="st">~11:30 → 星野區</div><div class="sd"><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85+%E5%8C%97%E5%8F%A3+%E3%83%90%E3%82%B9%E4%B9%97%E3%82%8A%E5%A0%B4">📍 軽井沢駅 北口バス乗り場</a> 搭西武觀光巴士（草津・輕井沢線）約 17 分 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%98%9F%E9%87%8E%E6%B8%A9%E6%B3%89+%E3%83%88%E3%83%B3%E3%83%9C%E3%81%AE%E6%B9%AF">📍 星野温泉 トンボの湯</a> 巴士站下車，<a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%AB%E3%83%8B%E3%83%AC%E3%83%86%E3%83%A9%E3%82%B9+%E8%BB%BD%E4%BA%95%E6%B2%A2">📍 ハルニレテラス</a> 與蜻蜓之湯步行 1–3 分。午餐 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%B7%9D%E4%B8%8A%E5%BA%B5+%E3%83%8F%E3%83%AB%E3%83%8B%E3%83%AC%E3%83%86%E3%83%A9%E3%82%B9">📍 川上庵 ハルニレテラス店</a>。</div><div class="ss">約 ¥470，可刷 Suica（行前確認）；約每小時 1–2 班，上車前看目的地牌是否寫「星野温泉トンボの湯」。星野區的免費接駁車只給星のや住客，不能搭。替代：しなの鉄道到中軽井沢駅 4 分，再步行約 15–20 分；計程車約 15 分、約 ¥2,800。回程在同一站搭回輕井澤站，行前查好下午與傍晚班次。</div></div>
-          </div>
-
-          <div class="sub-h">Day 2｜車站 → 王子東館 → 雪場</div>
-          <div class="step-list">
-            <div class="step" style="--accent:var(--c-east)"><div class="st">站前 → 東館</div><div class="sd">APA → 車站南口 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%A4%E3%83%BC%E3%82%B9%E3%83%88">📍 軽井沢プリンスホテル イースト</a>：步行約 10–15 分或南口免費接駁巴士。</div><div class="ss">接駁時刻待確認；行李多就等接駁。</div></div>
-            <div class="step" style="--accent:var(--c-ski)"><div class="st">東館 → 雪場</div><div class="sd">東館 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4">📍 軽井沢プリンスホテルスキー場</a> 租借中心與纜車，步行即到。</div><div class="ss">Day 2–4 每天都是這段。</div></div>
-          </div>
-
-          <div class="sub-h">Day 4｜雪場 → 東館取行李 → 輕井澤站 → 上野</div>
-          <div class="step-list">
-            <div class="step" style="--accent:var(--c-ski)"><div class="st">~14:30 還裝備</div><div class="sd">租借中心歸還 → 更衣 → 回 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%A4%E3%83%BC%E3%82%B9%E3%83%88">📍 軽井沢プリンスホテル イースト</a> 取行李 → 接駁或步行到 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85">📍 JR 軽井沢駅</a>。</div><div class="ss">從還裝備到上車抓 1.5–2 小時很寬裕；更衣地點與退房後行李寄放待跟東館確認。</div></div>
-            <div class="step" style="--accent:var(--c-tokyo)"><div class="st">16 點多 新幹線</div><div class="sd">あさま 輕井澤 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E4%B8%8A%E9%87%8E%E9%A7%85">📍 JR 上野駅</a> 約 60 分 → 步行到 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%91%E3%83%9B%E3%83%86%E3%83%AB+%E4%BA%AC%E6%88%90%E4%B8%8A%E9%87%8E%E9%A7%85%E5%89%8D%E5%8D%97+%E5%8F%B0%E6%9D%B1%E5%8C%BA%E4%B8%8A%E9%87%8E2-6-11">📍 アパホテル〈京成上野駅前南〉</a>。</div><div class="ss">上野站新幹線月台在地下深處，出站到飯店（上野 2-6-11）步行約 10 分。訂票時挑有停上野的班次（大多數あさま都停）。</div></div>
-          </div>
-
-          <div class="sub-h">Day 5｜京成上野 → 成田第一航廈</div>
-          <div class="step-list">
-            <div class="step" style="--accent:#7d828b"><div class="st">~09:15 Skyliner</div><div class="sd">APA 步行約 5 分 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E6%88%90%E4%B8%8A%E9%87%8E%E9%A7%85">📍 京成上野駅</a> → Skyliner 約 45 分 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF+%E7%AC%AC1%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">📍 成田空港 第1ターミナル</a>。</div><div class="ss">Skyliner 先停第二航廈再到第一航廈，坐到終點。目標約 10:00 抵達，離 12:55 起飛近 3 小時，報到、安檢、免稅都寬裕。</div></div>
-          </div>
-
-          <div class="callout paper" style="margin-top:18px;"><b>使用提醒：</b>本頁為草案，列車班次尚未購買；票價、雪道開放數行前以 JR 東日本、京成電鐵、王子飯店官網確認，航班以樂桃 App 為準。</div>
-        </div>
-      </section>
-
+<header class="mast">
+  <div class="wrap">
+    <div class="m-kick">Ski Trip · Karuizawa · 北陸新幹線</div>
+    <h1 class="m-title">輕井澤</h1>
+    <div class="m-sub">2026 · 11.23 → 11.27 ｜ 5 天 4 夜 ｜ 滑雪 ×3</div>
+    <div class="m-rule"></div>
+    <div class="m-flights">
+      <div class="mf"><div class="c">MM620 · 去程 11/23</div><div class="r">桃園 → 成田</div><div class="t">02:25 → 06:30</div></div>
+      <div class="mf"><div class="c">MM621 · 回程 11/27</div><div class="r">成田 → 桃園</div><div class="t">12:55 → 16:15</div></div>
     </div>
   </div>
-</div>
+</header>
+
+<nav class="nav">
+  <div class="nav-in" id="navin" role="tablist">
+    <button class="nav-i on" role="tab" aria-selected="true">總覽</button>
+    <button class="nav-i" role="tab" aria-selected="false">逐日行程</button>
+    <button class="nav-i" role="tab" aria-selected="false">住宿</button>
+    <button class="nav-i" role="tab" aria-selected="false">滑雪</button>
+    <button class="nav-i" role="tab" aria-selected="false">交通</button>
+    <span class="nav-ind" id="navind"></span>
+  </div>
+</nav>
+
+<main class="main wrap boot" id="main">
+
+  <!-- ===== 01 總覽 ===== -->
+  <section class="view on">
+    <div class="v-head">
+      <div class="eyebrow">Overview · Draft</div>
+      <h2 class="v-title">行程總覽</h2>
+      <p class="lede">成田進出，輕井澤滑三天。首晚住輕井澤站前 APA，中間兩晚住雪場旁的王子大飯店東館；滑完第三天下午直接搭新幹線到上野過夜，隔天 Skyliner 直達成田，回程不用趕。機票與四晚住宿已訂妥，列車班次之後再訂。</p>
+      <p class="hint">點下方任一張卡片，會跳到對應那天的行程</p>
+    </div>
+
+    <div class="spine">
+      <div class="sp" style="--a:var(--indigo)"><span class="d"></span><span class="n">APA 站前</span><span class="s">Day 1</span></div>
+      <div class="sp" style="--a:var(--teal)"><span class="d"></span><span class="n">王子東館</span><span class="s">Day 2–3</span></div>
+      <div class="sp" style="--a:var(--plum)"><span class="d"></span><span class="n">上野 APA</span><span class="s">Day 4</span></div>
+      <div class="sp" style="--a:var(--slate)"><span class="d"></span><span class="n">返程</span><span class="s">Day 5</span></div>
+    </div>
+
+    <div class="facts">
+      <span>成田 進 · 成田 出</span>
+      <span>滑雪 3 天 · 王子雪場</span>
+      <span>紅眼去 · 午班回</span>
+      <span>N'EX · 新幹線 · Skyliner</span>
+      <span>最後一晚宿上野</span>
+      <span>初雪季 · 人工造雪</span>
+    </div>
+
+    <div class="cards">
+      <button class="card" style="--a:var(--indigo)" data-day="0">
+        <span class="c-tag">Day 1</span>
+        <h3>抵達 · 輕井澤站前</h3>
+        <div class="c-when">1 晚 · 11/23（一）</div>
+        <div class="c-body">紅眼班機清晨到成田，N'EX 到東京站轉新幹線，中午前進輕井澤。寄行李後去星野區：榆樹街小鎮午餐散步、蜻蜓之湯泡湯，早點休息。</div>
+        <div class="c-foot">✅ APA 飯店〈輕井澤站前〉（11/23–11/24）</div>
+        <div class="go">看 Day 1 行程 →</div>
+      </button>
+      <button class="card" style="--a:var(--teal)" data-day="1">
+        <span class="c-tag">Day 2–3</span>
+        <h3>王子東館 · 滑雪</h3>
+        <div class="c-when">2 晚連泊 · 11/24–11/25</div>
+        <div class="c-body">早上寄行李、租裝備，滑雪第 1、2 天。飯店就在雪場旁，晚上休息泡湯。</div>
+        <div class="c-foot">✅ 輕井澤王子大飯店 東館（11/24–11/26）</div>
+        <div class="go">看 Day 2–3 行程 →</div>
+      </button>
+      <button class="card" style="--a:var(--plum)" data-day="3">
+        <span class="c-tag">Day 4</span>
+        <h3>最後一滑 · 移到上野</h3>
+        <div class="c-when">1 晚 · 11/26（四）</div>
+        <div class="c-body">東館退房寄行李，滑雪第 3 天，14:30 還裝備更衣，16 點多新幹線到上野。</div>
+        <div class="c-foot">✅ APA 飯店〈京成上野站前南〉（11/26–11/27）</div>
+        <div class="go">看 Day 4 行程 →</div>
+      </button>
+      <button class="card" style="--a:var(--slate)" data-day="4">
+        <span class="c-tag">Day 5</span>
+        <h3>返程</h3>
+        <div class="c-when">11/27（五）</div>
+        <div class="c-body">京成上野搭 Skyliner 直達成田第一航廈，約 10:00 抵達；MM621 12:55 起飛，時間寬裕。</div>
+        <div class="c-foot">✈ 16:15 抵桃園</div>
+        <div class="go">看 Day 5 行程 →</div>
+      </button>
+    </div>
+
+    <div class="label">航班</div>
+    <div class="flights" style="margin-top:0">
+      <div class="fl"><div class="c">MM620 · 去程 11/23（一）</div><div class="r">桃園 → 成田</div><div class="t">02:25 起飛 · 06:30 抵達</div></div>
+      <div class="fl"><div class="c">MM621 · 回程 11/27（五）</div><div class="r">成田 第一航廈 → 桃園</div><div class="t">12:55 起飛 · 16:15 抵達</div></div>
+    </div>
+    <div class="box plain"><b>樂桃航空（LCC）</b>　去程是紅眼班：<b>11/22（日）深夜就要到桃園機場</b>，11/23 清晨落地。回程 12:55 起飛，從上野搭 Skyliner 約 45 分到成田，目標 10:00 前後抵第一航廈，報到、安檢、吃早午餐都來得及。出發前再用樂桃 App 確認一次時刻。</div>
+
+    <div class="label">待辦</div>
+    <div class="notes">
+      <div class="note"><h4>確認舊訂單已取消</h4><p>原本 11/26 的輕井澤 APA，以及上野站前 APA 不需要的那筆訂單，確認都已取消、沒有重複扣款。</p></div>
+      <div class="note"><h4>列車班次之後訂</h4><p>N'EX（成田 → 東京）與 Skyliner（京成上野 → 成田）各買單程。新幹線 Day 1 東京 → 輕井澤、Day 4 輕井澤 → 上野（16 點多）用えきねっと訂指定席。</p></div>
+      <div class="note"><h4>預約三天裝備</h4><p>雪板組 3 日租借先預約；並確認東館退房後寄行李、還裝備後更衣的地方，以及 14:30 前後歸還是否來得及。</p></div>
+      <div class="note"><h4>雪場開放狀況</h4><p>王子雪場往年 11 月初開幕（人工造雪），11 月下旬通常只開部分雪道。11 月中看官網雪道開放數，決定纜車票要買幾天。</p></div>
+      <div class="note"><h4>餐廳</h4><p>Day 1 午餐榆樹街小鎮（川上庵蕎麥麵）。滑雪三天午餐在雪場；Day 4 晚上在上野／阿美橫町，之後補。</p></div>
+      <div class="note"><h4>保險 · 裝備</h4><p>確認旅平險含滑雪；自備護目鏡、手套、防摔褲與暖暖包。</p></div>
+    </div>
+  </section>
+
+  <!-- ===== 02 逐日行程 ===== -->
+  <section class="view">
+    <div class="v-head" style="margin-bottom:18px">
+      <div class="eyebrow">Itinerary · Draft</div>
+      <h2 class="v-title">逐日行程</h2>
+    </div>
+    <div class="daybar" id="daybar">
+      <button class="chip on">Day 1<span class="cd">11/23</span></button>
+      <button class="chip">Day 2<span class="cd">11/24</span></button>
+      <button class="chip">Day 3<span class="cd">11/25</span></button>
+      <button class="chip">Day 4<span class="cd">11/26</span></button>
+      <button class="chip">Day 5<span class="cd">11/27</span></button>
+    </div>
+
+    <article class="day" style="--a:var(--indigo)">
+      <div class="dhead"><span class="dno">DAY 1</span><span class="ddate">11/23（一）· 抵達</span></div>
+      <h3 class="dtitle">紅眼抵成田 · 星野區泡湯散步</h3>
+      <p class="dmove">✈ MM620 02:25 → 06:30 抵成田 → N'EX 到東京站 → 北陸新幹線 → 輕井澤（合計約 2.5–3 小時，班次之後訂）→ 寄行李 → 🚌 北口西武巴士約 17 分到星野溫泉</p>
+      <ul class="tl">
+        <li><div class="tl-t">11/22 深夜</div><div class="tl-b"><span class="k k-move">前一晚</span>週日深夜先到桃園機場，02:25 起飛</div></li>
+        <li><div class="tl-t">06:30</div><div class="tl-b"><span class="k k-move">入境</span>成田落地、入境、領行李；買 Suica／確認手機網路</div></li>
+        <li><div class="tl-t">~07:45</div><div class="tl-b"><span class="k k-move">N'EX</span><b>成田 → 東京站</b> 約 60 分（單程票，之後訂）</div></li>
+        <li><div class="tl-t">~09:30</div><div class="tl-b"><span class="k k-move">新幹線</span><b>あさま／はくたか 東京 → 輕井澤</b> 約 65–70 分（班次之後訂）</div></li>
+        <li><div class="tl-t">~11:00</div><div class="tl-b"><span class="k k-move">寄行李</span>到 <b>APA 飯店〈輕井澤站前〉</b> 寄放行李（Check-in 15:00）</div></li>
+        <li><div class="tl-t">~11:30</div><div class="tl-b"><span class="k k-move">巴士</span>輕井澤站<b>北口</b>搭西武觀光巴士（草津・輕井澤線）到「<b>星野温泉トンボの湯</b>」約 17 分、約 ¥470；上車前看目的地牌，不是每班都到</div></li>
+        <li><div class="tl-t">12:00</div><div class="tl-b"><span class="k k-eat">午餐</span><span class="star">★</span> <b>榆樹街小鎮 Harunire Terrace</b>：川上庵蕎麥麵（候位常見，先登記再散步）或其他店家</div></li>
+        <li><div class="tl-t">13:00</div><div class="tl-b"><span class="k k-see">散步</span>榆樹街小鎮沿湯川的木棧道慢慢走，逛 SAWAMURA 麵包、丸山咖啡等（店家多 10:00–18:00）</div></li>
+        <li><div class="tl-t">14:00</div><div class="tl-b"><span class="k k-ski">泡湯</span><span class="star">★</span> <b>星野溫泉 蜻蜓之湯</b>：10:00–22:00，大人 ¥1,550，毛巾可租；紅眼班機後泡個 1–1.5 小時剛好</div></li>
+        <li><div class="tl-t">~15:45</div><div class="tl-b"><span class="k k-move">回車站</span>「星野温泉トンボの湯」站搭巴士回輕井澤站 → APA Check-in、補眠。想看榆樹街小鎮的燈飾（11 月下旬通常有聖誕點燈，待確認）就留到 17:00 天黑後再回</div></li>
+        <li><div class="tl-t">晚</div><div class="tl-b"><span class="k k-eat">晚餐</span>車站周邊（待定），或直接在榆樹街小鎮吃完再回；超商補水與隔天早餐，早睡</div></li>
+      </ul>
+      <div class="dfoot">宿：<b>APA 飯店〈輕井澤站前〉</b> ✅</div>
+    </article>
+
+    <article class="day" style="--a:var(--teal)">
+      <div class="dhead"><span class="dno">DAY 2</span><span class="ddate">11/24（二）· 王子東館</span></div>
+      <h3 class="dtitle">搬到雪場旁 · 租裝備 · 滑雪第 1 天</h3>
+      <p class="dmove">🚶／🚌 APA 退房 → 車站南口 → 王子東館寄行李（步行約 10–15 分或免費接駁）→ 雪場租借中心</p>
+      <ul class="tl">
+        <li><div class="tl-t">~08:30</div><div class="tl-b"><span class="k k-move">退房</span>APA 退房，移動到 <b>王子大飯店 東館</b> 寄放行李（正式 Check-in 15:00，時間待確認）</div></li>
+        <li><div class="tl-t">~09:15</div><div class="tl-b"><span class="k k-ski">租裝備</span>雪場租借中心領取預約的雪板／雪鞋／雪杖（＋雪衣視需要），買纜車票</div></li>
+        <li><div class="tl-t">10:00</div><div class="tl-b"><span class="k k-ski">滑雪 ①</span>初雪季先用開放的初中級雪道熱身，適應裝備</div></li>
+        <li><div class="tl-t">12:30</div><div class="tl-b"><span class="k k-eat">午餐</span>雪場餐廳或 Outlet 美食區</div></li>
+        <li><div class="tl-t">13:30</div><div class="tl-b"><span class="k k-ski">滑雪 ①</span>下午續滑，視體力提早收</div></li>
+        <li><div class="tl-t">15:00+</div><div class="tl-b"><span class="k k-move">Check-in</span>東館入住；裝備放飯店／雪場寄物（待確認）</div></li>
+        <li><div class="tl-t">晚</div><div class="tl-b"><span class="k k-eat">晚餐</span>飯店內或 Outlet（待定）；泡澡放鬆</div></li>
+      </ul>
+      <div class="dfoot">宿：<b>輕井澤王子大飯店 東館</b> ✅</div>
+    </article>
+
+    <article class="day" style="--a:var(--teal)">
+      <div class="dhead"><span class="dno">DAY 3</span><span class="ddate">11/25（三）· 王子東館</span></div>
+      <h3 class="dtitle">滑雪第 2 天 · 晚上休息泡湯</h3>
+      <p class="dmove">🎿 飯店 ⇄ 雪場步行，全天無移動壓力</p>
+      <ul class="tl">
+        <li><div class="tl-t">早</div><div class="tl-b"><span class="k k-eat">早餐</span>東館早餐（是否含早待確認）</div></li>
+        <li><div class="tl-t">09:00</div><div class="tl-b"><span class="k k-ski">滑雪 ②</span>一早上場，人最少、雪況最好</div></li>
+        <li><div class="tl-t">12:30</div><div class="tl-b"><span class="k k-eat">午餐</span>雪場餐廳（待定）</div></li>
+        <li><div class="tl-t">13:30</div><div class="tl-b"><span class="k k-ski">滑雪 ②</span>下午續滑；若累就改逛 Outlet</div></li>
+        <li><div class="tl-t">晚</div><div class="tl-b"><span class="k k-eat">晚餐</span>待定</div></li>
+        <li><div class="tl-t">夜</div><div class="tl-b"><span class="k k-ski">泡湯</span>飯店溫泉放鬆（東館住客可用的溫泉設施待確認）；整理行李，明天要退房</div></li>
+      </ul>
+      <div class="dfoot">宿：<b>輕井澤王子大飯店 東館</b> ✅</div>
+    </article>
+
+    <article class="day" style="--a:var(--plum)">
+      <div class="dhead"><span class="dno">DAY 4</span><span class="ddate">11/26（四）· 移到上野</span></div>
+      <h3 class="dtitle">東館退房 · 滑雪第 3 天 · 下午新幹線到上野</h3>
+      <p class="dmove">🎿 東館退房寄行李 → 滑雪 → 14:30 還裝備、更衣 → 取行李 → 輕井澤站 → 🚄 16 點多新幹線 → JR 上野站 → APA</p>
+      <ul class="tl">
+        <li><div class="tl-t">~09:30</div><div class="tl-b"><span class="k k-move">退房</span>東館退房（時間待確認），行李寄櫃台</div></li>
+        <li><div class="tl-t">10:00</div><div class="tl-b"><span class="k k-ski">滑雪 ③</span>最後一滑，抓到 14:00 左右</div></li>
+        <li><div class="tl-t">12:30</div><div class="tl-b"><span class="k k-eat">午餐</span>雪場或 Outlet</div></li>
+        <li><div class="tl-t">~14:30</div><div class="tl-b"><span class="k k-ski">還裝備</span>租借中心歸還 → 更衣（地點待確認）→ 回東館取行李</div></li>
+        <li><div class="tl-t">~15:30</div><div class="tl-b"><span class="k k-move">往車站</span>接駁或步行到輕井澤站；有空檔就在 Outlet 或站內買伴手禮</div></li>
+        <li><div class="tl-t">16 點多</div><div class="tl-b"><span class="k k-move">新幹線</span><b>あさま 輕井澤 → 上野</b> 約 60 分（班次之後訂）</div></li>
+        <li><div class="tl-t">~17:30</div><div class="tl-b"><span class="k k-move">Check-in</span>JR 上野站 → 步行約 10 分到 <b>APA 飯店〈京成上野站前南〉</b>（上野 2-6-11）入住；有大浴場可泡</div></li>
+        <li><div class="tl-t">晚</div><div class="tl-b"><span class="k k-eat">晚餐</span>上野／阿美橫町（待定）；買隔天早餐，不用早起</div></li>
+      </ul>
+      <div class="dfoot">宿：<b>APA 飯店〈京成上野站前南〉</b> ✅</div>
+    </article>
+
+    <article class="day" style="--a:var(--slate)">
+      <div class="dhead"><span class="dno">DAY 5</span><span class="ddate">11/27（五）· 返程</span></div>
+      <h3 class="dtitle">Skyliner 直達成田 · 返桃園</h3>
+      <p class="dmove">🚄 京成上野 → Skyliner 約 45 分 → 成田第一航廈，目標約 10:00 抵達 ｜ ✈ MM621 12:55 → 桃園 16:15</p>
+      <ul class="tl">
+        <li><div class="tl-t">~08:30</div><div class="tl-b"><span class="k k-eat">早餐</span>飯店或站前，慢慢吃</div></li>
+        <li><div class="tl-t">~09:00</div><div class="tl-b"><span class="k k-move">退房</span>APA 退房，步行約 5 分到 <b>京成上野站</b></div></li>
+        <li><div class="tl-t">~09:15</div><div class="tl-b"><span class="k k-move">Skyliner</span><b>京成上野 → 成田空港 第一航廈</b> 約 45 分（單程票，之後訂）</div></li>
+        <li><div class="tl-t">~10:00</div><div class="tl-b"><span class="k k-move">報到</span>抵第一航廈，樂桃櫃檯報到、安檢；剩下時間逛免稅、吃午餐</div></li>
+        <li><div class="tl-t">12:55</div><div class="tl-b"><span class="k k-move">起飛</span>MM621 成田 → 桃園，16:15 抵達</div></li>
+      </ul>
+      <div class="dfoot">今日返台，行程完成 ✈</div>
+    </article>
+  </section>
+
+  <!-- ===== 03 住宿 ===== -->
+  <section class="view">
+    <div class="v-head">
+      <div class="eyebrow">Lodging</div>
+      <h2 class="v-title">住宿</h2>
+      <p class="lede">四晚全數訂妥。第一晚靠輕井澤站方便進出，中間兩晚靠雪場方便滑雪，最後一晚移到上野讓回程不趕。</p>
+    </div>
+    <div class="lodges">
+      <div class="lodge" style="--a:var(--indigo)">
+        <div class="l-top"><span class="l-chk">✅ 已訂</span><span class="l-when">輕井澤站前 · 1 晚（11/23–11/24）</span></div>
+        <div class="l-area">輕井澤站</div>
+        <div class="l-name">APA 飯店〈輕井澤站前〉輕井澤莊</div>
+        <div class="l-desc">輕井澤站步行約 1 分。抵達日中午先寄行李，15:00 入住；紅眼班機後的補眠站。</div>
+        <div class="l-pick">◆ 待確認：Check-in 前寄放、早餐有無</div>
+      </div>
+      <div class="lodge" style="--a:var(--teal)">
+        <div class="l-top"><span class="l-chk">✅ 已訂</span><span class="l-when">雪場旁 · 2 晚連泊（11/24–11/26）</span></div>
+        <div class="l-area">王子雪場</div>
+        <div class="l-name">輕井澤王子大飯店 東館</div>
+        <div class="l-desc">緊鄰王子雪場與 Outlet，走路到纜車。車站南口有免費接駁巴士，步行也約 10–15 分。滑雪三天的基地，Day 3 晚上泡湯。</div>
+        <div class="l-pick">◆ 待確認：Check-in／out 時間、退房後寄行李與更衣、住客纜車票優惠、溫泉設施、是否含早餐</div>
+      </div>
+      <div class="lodge" style="--a:var(--plum)">
+        <div class="l-top"><span class="l-chk">✅ 已訂</span><span class="l-when">上野 · 1 晚（11/26–11/27）</span></div>
+        <div class="l-area">京成上野站</div>
+        <div class="l-name">APA 飯店〈京成上野站前南〉</div>
+        <div class="l-desc">東京都台東区上野 2-6-11，2026 年 8 月新開幕，有大浴場。京成上野站步行約 5 分，隔天 Skyliner 直達成田第一航廈約 45 分。Day 4 從輕井澤搭新幹線到 JR 上野站，步行約 10 分；晚上阿美橫町、上野広小路就在旁邊。</div>
+        <div class="l-pick">◆ 待辦：確認原本 11/26 輕井澤 APA 與上野站前 APA 不需要的訂單都已取消</div>
+      </div>
+    </div>
+    <div class="box plain"><b>搬家兩次：</b>Day 2 早上 APA 輕井澤 → 東館（車站到雪場，步行或接駁）；Day 4 下午 東館 → 輕井澤站 → 新幹線 → 上野 APA。Day 4 記得先在東館取行李再去車站。</div>
+  </section>
+
+  <!-- ===== 04 滑雪 ===== -->
+  <section class="view">
+    <div class="v-head">
+      <div class="eyebrow">Ski</div>
+      <h2 class="v-title">滑雪</h2>
+      <p class="lede">三天都在輕井澤王子大飯店滑雪場。初雪季雪道有限，以練習、適應裝備為主，不追求滑完全場。</p>
+    </div>
+    <h3 class="sec-h">雪場</h3>
+    <div class="steps">
+      <div class="step" style="--a:var(--teal)"><div class="step-t">輕井澤王子大飯店滑雪場</div><div class="step-d"><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4">📍 軽井沢プリンスホテルスキー場</a> 車站南口步行約 10 分，Outlet 旁。以人工造雪聞名，長野縣內最早開幕的雪場之一。</div><div class="step-n">往年 11/1 開幕，開幕初期只開 2 條約 400 m 的短雪道，之後陸續開放，1 月上旬才全開 14 條。11/24–26 預期開放數約 3–6 條（需屆時看官網）。</div></div>
+      <div class="step" style="--a:var(--teal)"><div class="step-t">纜車票</div><div class="step-d">1 日券／多日券價格、王子飯店住客優惠 <b>待確認</b>。Day 2 買票時一次決定三天方案。</div><div class="step-n">初雪季部分雪場會以「開放雪道少」推出優惠價，屆時比較。</div></div>
+      <div class="step" style="--a:var(--teal)"><div class="step-t">裝備租借（3 日，先預約）</div><div class="step-d">雪場租借中心：雪板組／雪衣／護目鏡皆可租。<b>Day 2 早上領、Day 4 約 14:30 還</b>，租 3 日。</div><div class="step-n">待辦：線上預約三天裝備；確認 Day 4 東館退房後行李寄放、還裝備後更衣的地方。自備：手套、毛帽、護目鏡、防摔褲、厚襪。</div></div>
+    </div>
+
+    <h3 class="sec-h">三天節奏</h3>
+    <div class="scroll-x">
+      <table class="tbl">
+        <thead><tr><th>日期</th><th>住</th><th>安排</th><th>重點</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">Day 2 · 11/24</td><td class="seg">王子東館</td><td>APA 退房、東館寄行李、租裝備，滑雪第 1 天，入住</td><td class="num">熱身</td></tr>
+          <tr><td class="lbl">Day 3 · 11/25</td><td class="seg">王子東館</td><td>滑雪第 2 天，晚上休息泡湯</td><td class="num">主力日</td></tr>
+          <tr><td class="lbl">Day 4 · 11/26</td><td class="seg">上野 APA</td><td>東館退房寄行李，滑雪第 3 天，14:30 還裝備更衣，16 點多新幹線到上野</td><td class="num">半天收尾</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box"><b>雪況備案：</b>若 11 月中官網顯示開放雪道太少，Day 3 或 Day 4 可改半天為輕井澤觀光（舊輕銀座、白絲瀑布、雲場池），纜車票就不要一次買三天。</div>
+  </section>
+
+  <!-- ===== 05 交通 ===== -->
+  <section class="view">
+    <div class="v-head">
+      <div class="eyebrow">Transport</div>
+      <h2 class="v-title">交通</h2>
+      <p class="lede">四段長途：Day 1 成田 → 東京 → 輕井澤，Day 4 輕井澤 → 上野，Day 5 京成上野 → 成田。中間都在輕井澤站與雪場之間步行／接駁。地點名稱都是按鈕，點一下開 Google Maps。時刻與票價為概略，訂票時以官方為準。</p>
+    </div>
+
+    <h3 class="sec-h">列車一覽（各買單程）</h3>
+    <div class="scroll-x">
+      <table class="tbl">
+        <thead><tr><th>日期</th><th>區間</th><th>列車</th><th>車資</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">Day 1 · 11/23</td><td class="seg">成田空港 → 東京</td><td>N'EX 成田特快 約 60 分（單程，之後訂）</td><td class="num">約 ¥3,070</td></tr>
+          <tr><td class="lbl">Day 1 · 11/23</td><td class="seg">東京 → 輕井澤</td><td>北陸新幹線 あさま／はくたか 約 65–70 分（之後訂）</td><td class="num">約 ¥5,490</td></tr>
+          <tr><td class="lbl">Day 4 · 11/26</td><td class="seg">輕井澤 → 上野</td><td>北陸新幹線 あさま 16 點多發，約 60 分（之後訂）</td><td class="num">約 ¥5,300</td></tr>
+          <tr><td class="lbl">Day 5 · 11/27</td><td class="seg">京成上野 → 成田 第一航廈</td><td>Skyliner 約 45 分（單程，之後訂）</td><td class="num">約 ¥2,570</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="3">長途合計（概估）</td><td class="num">約 ¥16,400</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="box plain"><b>訂票方式：</b>新幹線兩段用 JR 東日本「えきねっと」訂指定席（Day 4 選 16 點多、有停上野的あさま）。N'EX 可在成田到站後現場買或事先網購；Skyliner 網路購買預售票比較便宜，各買單程即可，不需要套票。JR Tokyo Wide Pass 無法同時涵蓋 11/23 與 11/26，不划算。</div>
+
+    <h3 class="sec-h">Day 1｜成田 → 東京站 → 輕井澤</h3>
+    <div class="steps">
+      <div class="step" style="--a:var(--indigo)"><div class="step-t">06:30 抵達</div><div class="step-d"><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF+%E7%AC%AC1%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">📍 成田空港 第1ターミナル</a> → N'EX → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E6%9D%B1%E4%BA%AC%E9%A7%85">📍 JR 東京駅</a>。</div><div class="step-n">落地後買 Suica 或用手機 Suica；N'EX 需另購特急券。東京站 N'EX 到站的地下月台走到新幹線月台約 10–15 分，轉乘留 30 分。</div></div>
+      <div class="step" style="--a:var(--indigo)"><div class="step-t">新幹線</div><div class="step-d">東京 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85">📍 JR 軽井沢駅</a>，あさま／はくたか 約 65–70 分。</div><div class="step-n">北口出站 1 分即 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%91%E3%83%9B%E3%83%86%E3%83%AB+%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85%E5%89%8D">📍 アパホテル〈軽井沢駅前〉</a> 寄行李；南口是 Outlet 與雪場方向。</div></div>
+      <div class="step" style="--a:var(--pine)"><div class="step-t">~11:30 → 星野區</div><div class="step-d"><a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85+%E5%8C%97%E5%8F%A3+%E3%83%90%E3%82%B9%E4%B9%97%E3%82%8A%E5%A0%B4">📍 軽井沢駅 北口バス乗り場</a> 搭西武觀光巴士（草津・輕井沢線）約 17 分 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%98%9F%E9%87%8E%E6%B8%A9%E6%B3%89+%E3%83%88%E3%83%B3%E3%83%9C%E3%81%AE%E6%B9%AF">📍 星野温泉 トンボの湯</a> 巴士站下車，<a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%AB%E3%83%8B%E3%83%AC%E3%83%86%E3%83%A9%E3%82%B9+%E8%BB%BD%E4%BA%95%E6%B2%A2">📍 ハルニレテラス</a> 與蜻蜓之湯步行 1–3 分。午餐 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%B7%9D%E4%B8%8A%E5%BA%B5+%E3%83%8F%E3%83%AB%E3%83%8B%E3%83%AC%E3%83%86%E3%83%A9%E3%82%B9">📍 川上庵 ハルニレテラス店</a>。</div><div class="step-n">約 ¥470，可刷 Suica（行前確認）；約每小時 1–2 班，上車前看目的地牌是否寫「星野温泉トンボの湯」。星野區的免費接駁車只給星のや住客，不能搭。替代：しなの鉄道到中軽井沢駅 4 分，再步行約 15–20 分；計程車約 15 分、約 ¥2,800。回程在同一站搭回輕井澤站，行前查好下午與傍晚班次。</div></div>
+    </div>
+
+    <h3 class="sec-h">Day 2｜車站 → 王子東館 → 雪場</h3>
+    <div class="steps">
+      <div class="step" style="--a:var(--teal)"><div class="step-t">站前 → 東館</div><div class="step-d">APA → 車站南口 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%A4%E3%83%BC%E3%82%B9%E3%83%88">📍 軽井沢プリンスホテル イースト</a>：步行約 10–15 分或南口免費接駁巴士。</div><div class="step-n">接駁時刻待確認；行李多就等接駁。</div></div>
+      <div class="step" style="--a:var(--teal)"><div class="step-t">東館 → 雪場</div><div class="step-d">東館 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4">📍 軽井沢プリンスホテルスキー場</a> 租借中心與纜車，步行即到。</div><div class="step-n">Day 2–4 每天都是這段。</div></div>
+    </div>
+
+    <h3 class="sec-h">Day 4｜雪場 → 東館取行李 → 輕井澤站 → 上野</h3>
+    <div class="steps">
+      <div class="step" style="--a:var(--teal)"><div class="step-t">~14:30 還裝備</div><div class="step-d">租借中心歸還 → 更衣 → 回 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%9B%E3%83%86%E3%83%AB%E3%82%A4%E3%83%BC%E3%82%B9%E3%83%88">📍 軽井沢プリンスホテル イースト</a> 取行李 → 接駁或步行到 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E8%BB%BD%E4%BA%95%E6%B2%A2%E9%A7%85">📍 JR 軽井沢駅</a>。</div><div class="step-n">從還裝備到上車抓 1.5–2 小時很寬裕；更衣地點與退房後行李寄放待跟東館確認。</div></div>
+      <div class="step" style="--a:var(--plum)"><div class="step-t">16 點多 新幹線</div><div class="step-d">あさま 輕井澤 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=JR+%E4%B8%8A%E9%87%8E%E9%A7%85">📍 JR 上野駅</a> 約 60 分 → 步行到 <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%91%E3%83%9B%E3%83%86%E3%83%AB+%E4%BA%AC%E6%88%90%E4%B8%8A%E9%87%8E%E9%A7%85%E5%89%8D%E5%8D%97+%E5%8F%B0%E6%9D%B1%E5%8C%BA%E4%B8%8A%E9%87%8E2-6-11">📍 アパホテル〈京成上野駅前南〉</a>。</div><div class="step-n">上野站新幹線月台在地下深處，出站到飯店（上野 2-6-11）步行約 10 分。訂票時挑有停上野的班次（大多數あさま都停）。</div></div>
+    </div>
+
+    <h3 class="sec-h">Day 5｜京成上野 → 成田第一航廈</h3>
+    <div class="steps">
+      <div class="step" style="--a:var(--slate)"><div class="step-t">~09:15 Skyliner</div><div class="step-d">APA 步行約 5 分 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E6%88%90%E4%B8%8A%E9%87%8E%E9%A7%85">📍 京成上野駅</a> → Skyliner 約 45 分 → <a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF+%E7%AC%AC1%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB">📍 成田空港 第1ターミナル</a>。</div><div class="step-n">Skyliner 先停第二航廈再到第一航廈，坐到終點。目標約 10:00 抵達，離 12:55 起飛近 3 小時，報到、安檢、免稅都寬裕。</div></div>
+    </div>
+
+    <div class="box plain"><b>使用提醒：</b>本頁為草案，列車班次尚未購買；票價、雪道開放數行前以 JR 東日本、京成電鐵、王子飯店官網確認，航班以樂桃 App 為準。</div>
+  </section>
+
+</main>
+
+<footer class="foot"><div class="wrap">輕井澤 2026.11.23–11.27 · 行前請以官方公告為準</div></footer>
+
 <script>
 (function(){
-  var app   = document.getElementById('app');
-  var tabs  = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var panels= Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var detailbar = document.getElementById('detailbar');
-  var dtitleText = document.getElementById('dtitle-text');
-  var dtitle = detailbar.querySelector('.dtitle');
-  var backBtn = document.getElementById('back');
-  var dprev = document.getElementById('dprev');
-  var dnext = document.getElementById('dnext');
-  var idx = 0;
+  var navin = document.getElementById('navin');
+  var tabs  = [].slice.call(navin.querySelectorAll('.nav-i'));
+  var ind   = document.getElementById('navind');
+  var views = [].slice.call(document.querySelectorAll('.view'));
+  var main  = document.getElementById('main');
+  var chips = [].slice.call(document.querySelectorAll('.chip'));
+  var days  = [].slice.call(document.querySelectorAll('.day'));
+  var mast  = document.querySelector('.mast');
+  var idx = 0, busy = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var SECTIONS = [
-    { name:'總覽',     accent:'#A8792B' },
-    { name:'逐日行程', accent:'#B8742E' },
-    { name:'住宿',     accent:'#2F6FA8' },
-    { name:'滑雪',     accent:'#2E7D72' },
-    { name:'交通',     accent:'#6A5BB0' }
-  ];
-
-  function go(i){
-    i = Math.max(0, Math.min(panels.length-1, i));
-    if(i===idx && panels[i].classList.contains('active')) { return; }
-    idx = i;
-    panels.forEach(function(p,k){ p.classList.toggle('active', k===idx); });
-    tabs.forEach(function(t,k){ t.classList.toggle('on', k===idx); });
-    if(idx===0){
-      app.classList.add('home'); app.classList.remove('detail');
-    } else {
-      app.classList.add('detail'); app.classList.remove('home');
-      dtitleText.textContent = SECTIONS[idx].name;
-      dtitle.style.setProperty('--accent', SECTIONS[idx].accent);
-      dprev.disabled = (idx<=1);
-      dnext.disabled = (idx>=panels.length-1);
-    }
-    if(panels[idx]) panels[idx].scrollTop = 0;
+  function follow(box, el){
+    if (!box || !el) return;
+    var l = el.offsetLeft, r = l + el.offsetWidth, pad = 18;
+    if (l < box.scrollLeft + pad) box.scrollTo({left: Math.max(0, l - pad), behavior: reduce ? 'auto' : 'smooth'});
+    else if (r > box.scrollLeft + box.clientWidth - pad) box.scrollTo({left: r - box.clientWidth + pad, behavior: reduce ? 'auto' : 'smooth'});
   }
-  tabs.forEach(function(t,i){ t.addEventListener('click', function(){ go(i); }); });
-  backBtn.addEventListener('click', function(){ go(0); });
-  dprev.addEventListener('click', function(){ if(idx>1) go(idx-1); });
-  dnext.addEventListener('click', function(){ if(idx<panels.length-1) go(idx+1); });
 
-  Array.prototype.slice.call(document.querySelectorAll('.entry')).forEach(function(b){
-    b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-goto'),10)); });
-  });
+  function placeInd(){
+    var t = tabs[idx];
+    ind.style.width = t.offsetWidth + 'px';
+    ind.style.transform = 'translateX(' + t.offsetLeft + 'px)';
+  }
+
+  function show(i, then){
+    i = Math.max(0, Math.min(views.length - 1, i));
+    if (busy) return;
+    tabs.forEach(function(t, k){
+      t.classList.toggle('on', k === i);
+      t.setAttribute('aria-selected', k === i ? 'true' : 'false');
+    });
+    if (i === idx){ if (then) then(); return; }
+
+    busy = true;
+    var cur = views[idx], nxt = views[i];
+    idx = i;
+    placeInd();
+    follow(navin, tabs[i]);
+    cur.classList.add('out');
+
+    setTimeout(function(){
+      cur.classList.remove('on', 'out');
+      nxt.classList.add('pre', 'on');
+      var top = mast.offsetHeight;          /* .nav is sticky: its offsetTop tracks the scroll */
+      if (window.pageYOffset > top) window.scrollTo(0, top);
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          nxt.classList.remove('pre');
+          busy = false;
+          if (then) then();
+        });
+      });
+    }, reduce ? 0 : 160);
+  }
+
+  tabs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i); }); });
 
   document.addEventListener('keydown', function(e){
-    if(e.key==='ArrowRight') go(idx+1);
-    else if(e.key==='ArrowLeft') go(idx-1);
-    else if(e.key==='Escape' && idx!==0) go(0);
+    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    if (e.key === 'ArrowRight') show(idx + 1);
+    else if (e.key === 'ArrowLeft') show(idx - 1);
   });
 
-  /* ——— 逐日行程：日膠捲 ↔ 日膠囊（分頁滑動已移除，無手勢衝突） ——— */
-  var strip = document.getElementById('strip');
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.daychip'));
-  var days  = Array.prototype.slice.call(document.querySelectorAll('.day'));
-  var lockChip = false;
-
-  function setChip(i){ chips.forEach(function(cc,k){ cc.classList.toggle('on', k===i); }); }
-
-  function scrollToDay(i){
-    if(!strip || !days[i]) return;
-    lockChip = true;
-    setChip(i);
-    var left = strip.scrollLeft + (days[i].getBoundingClientRect().left - strip.getBoundingClientRect().left) - 2;
-    if(strip.scrollTo) strip.scrollTo({left: left, behavior: 'smooth'});
-    else strip.scrollLeft = left;
+  function goDay(d){
+    if (!days[d]) return;
+    setChip(d);
+    days[d].scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+  }
+  function setChip(d){
+    if (chips[d] && chips[d].classList.contains('on')) return;
+    chips.forEach(function(c, k){ c.classList.toggle('on', k === d); });
+    follow(document.getElementById('daybar'), chips[d]);
   }
 
-  Array.prototype.slice.call(document.querySelectorAll('.stop')).forEach(function(s){
-    s.addEventListener('click', function(){
-      var d = parseInt(s.getAttribute('data-day'),10) || 0;
-      go(1);
-      setTimeout(function(){ scrollToDay(d); }, 80);
+  chips.forEach(function(c, i){ c.addEventListener('click', function(){ goDay(i); }); });
+
+  [].slice.call(document.querySelectorAll('.card[data-day]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      var d = parseInt(b.getAttribute('data-day'), 10) || 0;
+      show(1, function(){ setTimeout(function(){ goDay(d); }, 60); });
     });
   });
-  chips.forEach(function(c,i){ c.addEventListener('click', function(){ scrollToDay(i); }); });
 
-  if(strip){
-    ['wheel','touchstart','pointerdown','mousedown'].forEach(function(ev){
-      strip.addEventListener(ev, function(){ lockChip = false; }, {passive:true});
-    });
-    var raf=null;
-    strip.addEventListener('scroll', function(){
-      if(lockChip) return;
-      if(raf) return;
-      raf = requestAnimationFrame(function(){
-        raf=null;
-        var sl=strip.scrollLeft, best=0, bd=1e9;
-        if(sl + strip.clientWidth >= strip.scrollWidth - 4){ best = days.length-1; }
-        else if(sl <= 2){ best = 0; }
-        else {
-          var sLeft = strip.getBoundingClientRect().left;
-          days.forEach(function(d,i){
-            var dist=Math.abs(d.getBoundingClientRect().left - sLeft);
-            if(dist<bd){ bd=dist; best=i; }
-          });
-        }
-        setChip(best);
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) setChip(days.indexOf(en.target));
       });
-    }, {passive:true});
+    }, {rootMargin: '-140px 0px -62% 0px', threshold: 0});
+    days.forEach(function(d){ io.observe(d); });
   }
+
+  placeInd();
+  window.addEventListener('resize', placeInd);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeInd);
+  setTimeout(function(){ main.classList.remove('boot'); }, 700);
 })();
 </script>
 </body>
